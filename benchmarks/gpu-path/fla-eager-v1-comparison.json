@@ -1,0 +1,17 @@
+{
+  "baseline": "reference-v1",
+  "candidate": "fla-eager-v1",
+  "speedup": 1.3455930099870839,
+  "maxProbabilityDelta": 0.02992233633995056,
+  "meanProbabilityDelta": 0.0057032914898757425,
+  "thresholdOrChoiceFlips": [],
+  "summary": {
+    "elapsedSeconds": 29.830835700035095,
+    "requests": 27,
+    "decisionsPerSecond": 0.9051037078377336,
+    "judgmentsPerSecond": 3.017012359459112,
+    "p50Ms": 1175.2565000206232,
+    "p95Ms": 1995.4723000410013,
+    "peakVramMiB": 10879
+  }
+}

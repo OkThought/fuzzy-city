@@ -1,0 +1,1867 @@
+{
+  "label": "fla-conv-v2",
+  "startedAt": 1790329567.952936,
+  "fixtureSha256": "eeb2ff27c7c1987c7ec18d7e29a8eaabccf12a11eb07275aac61b397a3a2d5be",
+  "concurrency": 1,
+  "queueDepth": 0,
+  "warmup": [
+    {
+      "id": "trace_0",
+      "kind": "evening_intentions",
+      "latencyMs": 2410.8327999711037,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "wants_rest": {
+            "type": "noul",
+            "confidence": 0.6005993485450745,
+            "noul": 0.6005993485450745
+          },
+          "seeks_company": {
+            "type": "noul",
+            "confidence": 0.8672237992286682,
+            "noul": 0.8672237992286682
+          },
+          "seeks_novelty": {
+            "type": "noul",
+            "confidence": 0.7104396224021912,
+            "noul": 0.7104396224021912
+          },
+          "willing_to_spend": {
+            "type": "noul",
+            "confidence": 0.7581012845039368,
+            "noul": 0.24189874529838562
+          },
+          "wants_extra_work": {
+            "type": "noul",
+            "confidence": 0.9203990697860718,
+            "noul": 0.07960100471973419
+          }
+        },
+        "usage": {
+          "input_tokens": 6139,
+          "output_tokens": 0
+        },
+        "latency_ms": 2387.04
+      }
+    },
+    {
+      "id": "trace_50",
+      "kind": "evening_intentions",
+      "latencyMs": 1006.998399971053,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "wants_rest": {
+            "type": "noul",
+            "confidence": 0.5808761715888977,
+            "noul": 0.5808761715888977
+          },
+          "seeks_company": {
+            "type": "noul",
+            "confidence": 0.6200019121170044,
+            "noul": 0.6200019121170044
+          },
+          "seeks_novelty": {
+            "type": "noul",
+            "confidence": 0.6005993485450745,
+            "noul": 0.3994007110595703
+          },
+          "willing_to_spend": {
+            "type": "noul",
+            "confidence": 0.6390282511711121,
+            "noul": 0.3609718084335327
+          },
+          "wants_extra_work": {
+            "type": "noul",
+            "confidence": 0.8249514698982239,
+            "noul": 0.17504850029945374
+          }
+        },
+        "usage": {
+          "input_tokens": 6174,
+          "output_tokens": 0
+        },
+        "latency_ms": 995.21
+      }
+    },
+    {
+      "id": "trace_99",
+      "kind": "evening_intentions",
+      "latencyMs": 903.6390999681316,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "wants_rest": {
+            "type": "noul",
+            "confidence": 0.6757558584213257,
+            "noul": 0.6757558584213257
+          },
+          "seeks_company": {
+            "type": "noul",
+            "confidence": 0.5808761715888977,
+            "noul": 0.5808761715888977
+          },
+          "seeks_novelty": {
+            "type": "noul",
+            "confidence": 0.8929667472839355,
+            "noul": 0.10703328251838684
+          },
+          "willing_to_spend": {
+            "type": "noul",
+            "confidence": 0.8849145770072937,
+            "noul": 0.11508537083864212
+          },
+          "wants_extra_work": {
+            "type": "noul",
+            "confidence": 0.8364234566688538,
+            "noul": 0.16357654333114624
+          }
+        },
+        "usage": {
+          "input_tokens": 5699,
+          "output_tokens": 0
+        },
+        "latency_ms": 890.74
+      }
+    },
+    {
+      "id": "trace_100",
+      "kind": "friend_selection",
+      "latencyMs": 364.82339998474345,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "friend": {
+            "type": "choice",
+            "confidence": 0.9115129113197327,
+            "choice": "citizen_51",
+            "probabilities": {
+              "citizen_51": 0.9115129113197327,
+              "citizen_35": 0.008708689361810684,
+              "citizen_41": 0.0038512384053319693,
+              "citizen_34": 0.0032713727559894323,
+              "none": 0.07265568524599075
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 1938,
+          "output_tokens": 0
+        },
+        "latency_ms": 362.85
+      }
+    },
+    {
+      "id": "trace_111",
+      "kind": "friend_selection",
+      "latencyMs": 257.16019998071715,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "friend": {
+            "type": "choice",
+            "confidence": 0.9273678660392761,
+            "choice": "citizen_89",
+            "probabilities": {
+              "citizen_89": 0.9273678660392761,
+              "citizen_34": 0.015685154125094414,
+              "citizen_13": 0.0036112237721681595,
+              "none": 0.053335655480623245
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 1531,
+          "output_tokens": 0
+        },
+        "latency_ms": 255.61
+      }
+    },
+    {
+      "id": "trace_121",
+      "kind": "friend_selection",
+      "latencyMs": 535.0109999999404,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "friend": {
+            "type": "choice",
+            "confidence": 0.6738228797912598,
+            "choice": "citizen_86",
+            "probabilities": {
+              "citizen_86": 0.6738228797912598,
+              "citizen_55": 0.16832418739795685,
+              "citizen_45": 0.010503830388188362,
+              "citizen_95": 0.002623907523229718,
+              "citizen_44": 0.00174490618519485,
+              "none": 0.14298027753829956
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 2279,
+          "output_tokens": 0
+        },
+        "latency_ms": 523.15
+      }
+    },
+    {
+      "id": "trace_122",
+      "kind": "social_interaction",
+      "latencyMs": 1699.28300002357,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "a_felt_connection": {
+            "type": "noul",
+            "confidence": 0.5203868746757507,
+            "noul": 0.5203868746757507
+          },
+          "b_felt_connection": {
+            "type": "noul",
+            "confidence": 0.5407059788703918,
+            "noul": 0.5407059788703918
+          },
+          "felt_tension": {
+            "type": "noul",
+            "confidence": 0.5608907341957092,
+            "noul": 0.43910929560661316
+          },
+          "memorable": {
+            "type": "noul",
+            "confidence": 0.6200019121170044,
+            "noul": 0.6200019121170044
+          }
+        },
+        "usage": {
+          "input_tokens": 8795,
+          "output_tokens": 0
+        },
+        "latency_ms": 1680.82
+      }
+    },
+    {
+      "id": "trace_136",
+      "kind": "social_interaction",
+      "latencyMs": 1099.644600006286,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "a_felt_connection": {
+            "type": "noul",
+            "confidence": 0.5203868746757507,
+            "noul": 0.5203868746757507
+          },
+          "b_felt_connection": {
+            "type": "noul",
+            "confidence": 0.5203868746757507,
+            "noul": 0.5203868746757507
+          },
+          "felt_tension": {
+            "type": "noul",
+            "confidence": 0.5203870534896851,
+            "noul": 0.47961291670799255
+          },
+          "memorable": {
+            "type": "noul",
+            "confidence": 0.6200019121170044,
+            "noul": 0.6200019121170044
+          }
+        },
+        "usage": {
+          "input_tokens": 6155,
+          "output_tokens": 0
+        },
+        "latency_ms": 1098.14
+      }
+    },
+    {
+      "id": "trace_150",
+      "kind": "social_interaction",
+      "latencyMs": 1765.9972999827005,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "a_felt_connection": {
+            "type": "noul",
+            "confidence": 0.5203868746757507,
+            "noul": 0.47961315512657166
+          },
+          "b_felt_connection": {
+            "type": "noul",
+            "confidence": 0.5,
+            "noul": 0.5
+          },
+          "felt_tension": {
+            "type": "noul",
+            "confidence": 0.6390282511711121,
+            "noul": 0.3609718084335327
+          },
+          "memorable": {
+            "type": "noul",
+            "confidence": 0.5808761715888977,
+            "noul": 0.5808761715888977
+          }
+        },
+        "usage": {
+          "input_tokens": 8847,
+          "output_tokens": 0
+        },
+        "latency_ms": 1764.5
+      }
+    }
+  ],
+  "records": [
+    {
+      "id": "trace_0",
+      "kind": "evening_intentions",
+      "latencyMs": 1013.5875000269152,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "wants_rest": {
+            "type": "noul",
+            "confidence": 0.6005993485450745,
+            "noul": 0.6005993485450745
+          },
+          "seeks_company": {
+            "type": "noul",
+            "confidence": 0.8672237992286682,
+            "noul": 0.8672237992286682
+          },
+          "seeks_novelty": {
+            "type": "noul",
+            "confidence": 0.7104396224021912,
+            "noul": 0.7104396224021912
+          },
+          "willing_to_spend": {
+            "type": "noul",
+            "confidence": 0.7581012845039368,
+            "noul": 0.24189874529838562
+          },
+          "wants_extra_work": {
+            "type": "noul",
+            "confidence": 0.9203990697860718,
+            "noul": 0.07960100471973419
+          }
+        },
+        "usage": {
+          "input_tokens": 6139,
+          "output_tokens": 0
+        },
+        "latency_ms": 1001.85
+      },
+      "repeat": 0
+    },
+    {
+      "id": "trace_50",
+      "kind": "evening_intentions",
+      "latencyMs": 1003.0243000364862,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "wants_rest": {
+            "type": "noul",
+            "confidence": 0.5808761715888977,
+            "noul": 0.5808761715888977
+          },
+          "seeks_company": {
+            "type": "noul",
+            "confidence": 0.6200019121170044,
+            "noul": 0.6200019121170044
+          },
+          "seeks_novelty": {
+            "type": "noul",
+            "confidence": 0.6005993485450745,
+            "noul": 0.3994007110595703
+          },
+          "willing_to_spend": {
+            "type": "noul",
+            "confidence": 0.6390282511711121,
+            "noul": 0.3609718084335327
+          },
+          "wants_extra_work": {
+            "type": "noul",
+            "confidence": 0.8249514698982239,
+            "noul": 0.17504850029945374
+          }
+        },
+        "usage": {
+          "input_tokens": 6174,
+          "output_tokens": 0
+        },
+        "latency_ms": 1001.41
+      },
+      "repeat": 0
+    },
+    {
+      "id": "trace_99",
+      "kind": "evening_intentions",
+      "latencyMs": 895.1624999754131,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "wants_rest": {
+            "type": "noul",
+            "confidence": 0.6757558584213257,
+            "noul": 0.6757558584213257
+          },
+          "seeks_company": {
+            "type": "noul",
+            "confidence": 0.5808761715888977,
+            "noul": 0.5808761715888977
+          },
+          "seeks_novelty": {
+            "type": "noul",
+            "confidence": 0.8929667472839355,
+            "noul": 0.10703328251838684
+          },
+          "willing_to_spend": {
+            "type": "noul",
+            "confidence": 0.8849145770072937,
+            "noul": 0.11508537083864212
+          },
+          "wants_extra_work": {
+            "type": "noul",
+            "confidence": 0.8364234566688538,
+            "noul": 0.16357654333114624
+          }
+        },
+        "usage": {
+          "input_tokens": 5699,
+          "output_tokens": 0
+        },
+        "latency_ms": 893.71
+      },
+      "repeat": 0
+    },
+    {
+      "id": "trace_100",
+      "kind": "friend_selection",
+      "latencyMs": 372.17489996692166,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "friend": {
+            "type": "choice",
+            "confidence": 0.9115129113197327,
+            "choice": "citizen_51",
+            "probabilities": {
+              "citizen_51": 0.9115129113197327,
+              "citizen_35": 0.008708689361810684,
+              "citizen_41": 0.0038512384053319693,
+              "citizen_34": 0.0032713727559894323,
+              "none": 0.07265568524599075
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 1938,
+          "output_tokens": 0
+        },
+        "latency_ms": 359.91
+      },
+      "repeat": 0
+    },
+    {
+      "id": "trace_111",
+      "kind": "friend_selection",
+      "latencyMs": 268.38210003916174,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "friend": {
+            "type": "choice",
+            "confidence": 0.9273678660392761,
+            "choice": "citizen_89",
+            "probabilities": {
+              "citizen_89": 0.9273678660392761,
+              "citizen_34": 0.015685154125094414,
+              "citizen_13": 0.0036112237721681595,
+              "none": 0.053335655480623245
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 1531,
+          "output_tokens": 0
+        },
+        "latency_ms": 257.55
+      },
+      "repeat": 0
+    },
+    {
+      "id": "trace_121",
+      "kind": "friend_selection",
+      "latencyMs": 433.31200000829995,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "friend": {
+            "type": "choice",
+            "confidence": 0.6738228797912598,
+            "choice": "citizen_86",
+            "probabilities": {
+              "citizen_86": 0.6738228797912598,
+              "citizen_55": 0.16832418739795685,
+              "citizen_45": 0.010503830388188362,
+              "citizen_95": 0.002623907523229718,
+              "citizen_44": 0.00174490618519485,
+              "none": 0.14298027753829956
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 2279,
+          "output_tokens": 0
+        },
+        "latency_ms": 431.63
+      },
+      "repeat": 0
+    },
+    {
+      "id": "trace_122",
+      "kind": "social_interaction",
+      "latencyMs": 1693.934499984607,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "a_felt_connection": {
+            "type": "noul",
+            "confidence": 0.5203868746757507,
+            "noul": 0.5203868746757507
+          },
+          "b_felt_connection": {
+            "type": "noul",
+            "confidence": 0.5407059788703918,
+            "noul": 0.5407059788703918
+          },
+          "felt_tension": {
+            "type": "noul",
+            "confidence": 0.5608907341957092,
+            "noul": 0.43910929560661316
+          },
+          "memorable": {
+            "type": "noul",
+            "confidence": 0.6200019121170044,
+            "noul": 0.6200019121170044
+          }
+        },
+        "usage": {
+          "input_tokens": 8795,
+          "output_tokens": 0
+        },
+        "latency_ms": 1680.72
+      },
+      "repeat": 0
+    },
+    {
+      "id": "trace_136",
+      "kind": "social_interaction",
+      "latencyMs": 1048.1097000301816,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "a_felt_connection": {
+            "type": "noul",
+            "confidence": 0.5203868746757507,
+            "noul": 0.5203868746757507
+          },
+          "b_felt_connection": {
+            "type": "noul",
+            "confidence": 0.5203868746757507,
+            "noul": 0.5203868746757507
+          },
+          "felt_tension": {
+            "type": "noul",
+            "confidence": 0.5203870534896851,
+            "noul": 0.47961291670799255
+          },
+          "memorable": {
+            "type": "noul",
+            "confidence": 0.6200019121170044,
+            "noul": 0.6200019121170044
+          }
+        },
+        "usage": {
+          "input_tokens": 6155,
+          "output_tokens": 0
+        },
+        "latency_ms": 1046.25
+      },
+      "repeat": 0
+    },
+    {
+      "id": "trace_150",
+      "kind": "social_interaction",
+      "latencyMs": 1701.951300026849,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "a_felt_connection": {
+            "type": "noul",
+            "confidence": 0.5203868746757507,
+            "noul": 0.47961315512657166
+          },
+          "b_felt_connection": {
+            "type": "noul",
+            "confidence": 0.5,
+            "noul": 0.5
+          },
+          "felt_tension": {
+            "type": "noul",
+            "confidence": 0.6390282511711121,
+            "noul": 0.3609718084335327
+          },
+          "memorable": {
+            "type": "noul",
+            "confidence": 0.5808761715888977,
+            "noul": 0.5808761715888977
+          }
+        },
+        "usage": {
+          "input_tokens": 8847,
+          "output_tokens": 0
+        },
+        "latency_ms": 1689.53
+      },
+      "repeat": 0
+    },
+    {
+      "id": "trace_0",
+      "kind": "evening_intentions",
+      "latencyMs": 999.6829000301659,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "wants_rest": {
+            "type": "noul",
+            "confidence": 0.6005993485450745,
+            "noul": 0.6005993485450745
+          },
+          "seeks_company": {
+            "type": "noul",
+            "confidence": 0.8672237992286682,
+            "noul": 0.8672237992286682
+          },
+          "seeks_novelty": {
+            "type": "noul",
+            "confidence": 0.7104396224021912,
+            "noul": 0.7104396224021912
+          },
+          "willing_to_spend": {
+            "type": "noul",
+            "confidence": 0.7581012845039368,
+            "noul": 0.24189874529838562
+          },
+          "wants_extra_work": {
+            "type": "noul",
+            "confidence": 0.9203990697860718,
+            "noul": 0.07960100471973419
+          }
+        },
+        "usage": {
+          "input_tokens": 6139,
+          "output_tokens": 0
+        },
+        "latency_ms": 989.24
+      },
+      "repeat": 1
+    },
+    {
+      "id": "trace_50",
+      "kind": "evening_intentions",
+      "latencyMs": 1006.7729000002146,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "wants_rest": {
+            "type": "noul",
+            "confidence": 0.5808761715888977,
+            "noul": 0.5808761715888977
+          },
+          "seeks_company": {
+            "type": "noul",
+            "confidence": 0.6200019121170044,
+            "noul": 0.6200019121170044
+          },
+          "seeks_novelty": {
+            "type": "noul",
+            "confidence": 0.6005993485450745,
+            "noul": 0.3994007110595703
+          },
+          "willing_to_spend": {
+            "type": "noul",
+            "confidence": 0.6390282511711121,
+            "noul": 0.3609718084335327
+          },
+          "wants_extra_work": {
+            "type": "noul",
+            "confidence": 0.8249514698982239,
+            "noul": 0.17504850029945374
+          }
+        },
+        "usage": {
+          "input_tokens": 6174,
+          "output_tokens": 0
+        },
+        "latency_ms": 995.91
+      },
+      "repeat": 1
+    },
+    {
+      "id": "trace_99",
+      "kind": "evening_intentions",
+      "latencyMs": 912.1984000084922,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "wants_rest": {
+            "type": "noul",
+            "confidence": 0.6757558584213257,
+            "noul": 0.6757558584213257
+          },
+          "seeks_company": {
+            "type": "noul",
+            "confidence": 0.5808761715888977,
+            "noul": 0.5808761715888977
+          },
+          "seeks_novelty": {
+            "type": "noul",
+            "confidence": 0.8929667472839355,
+            "noul": 0.10703328251838684
+          },
+          "willing_to_spend": {
+            "type": "noul",
+            "confidence": 0.8849145770072937,
+            "noul": 0.11508537083864212
+          },
+          "wants_extra_work": {
+            "type": "noul",
+            "confidence": 0.8364234566688538,
+            "noul": 0.16357654333114624
+          }
+        },
+        "usage": {
+          "input_tokens": 5699,
+          "output_tokens": 0
+        },
+        "latency_ms": 899.81
+      },
+      "repeat": 1
+    },
+    {
+      "id": "trace_100",
+      "kind": "friend_selection",
+      "latencyMs": 374.3998999707401,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "friend": {
+            "type": "choice",
+            "confidence": 0.9115129113197327,
+            "choice": "citizen_51",
+            "probabilities": {
+              "citizen_51": 0.9115129113197327,
+              "citizen_35": 0.008708689361810684,
+              "citizen_41": 0.0038512384053319693,
+              "citizen_34": 0.0032713727559894323,
+              "none": 0.07265568524599075
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 1938,
+          "output_tokens": 0
+        },
+        "latency_ms": 361.8
+      },
+      "repeat": 1
+    },
+    {
+      "id": "trace_111",
+      "kind": "friend_selection",
+      "latencyMs": 266.6947999969125,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "friend": {
+            "type": "choice",
+            "confidence": 0.9273678660392761,
+            "choice": "citizen_89",
+            "probabilities": {
+              "citizen_89": 0.9273678660392761,
+              "citizen_34": 0.015685154125094414,
+              "citizen_13": 0.0036112237721681595,
+              "none": 0.053335655480623245
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 1531,
+          "output_tokens": 0
+        },
+        "latency_ms": 253.66
+      },
+      "repeat": 1
+    },
+    {
+      "id": "trace_121",
+      "kind": "friend_selection",
+      "latencyMs": 447.3774999496527,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "friend": {
+            "type": "choice",
+            "confidence": 0.6738228797912598,
+            "choice": "citizen_86",
+            "probabilities": {
+              "citizen_86": 0.6738228797912598,
+              "citizen_55": 0.16832418739795685,
+              "citizen_45": 0.010503830388188362,
+              "citizen_95": 0.002623907523229718,
+              "citizen_44": 0.00174490618519485,
+              "none": 0.14298027753829956
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 2279,
+          "output_tokens": 0
+        },
+        "latency_ms": 434.58
+      },
+      "repeat": 1
+    },
+    {
+      "id": "trace_122",
+      "kind": "social_interaction",
+      "latencyMs": 1704.6283000381663,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "a_felt_connection": {
+            "type": "noul",
+            "confidence": 0.5203868746757507,
+            "noul": 0.5203868746757507
+          },
+          "b_felt_connection": {
+            "type": "noul",
+            "confidence": 0.5407059788703918,
+            "noul": 0.5407059788703918
+          },
+          "felt_tension": {
+            "type": "noul",
+            "confidence": 0.5608907341957092,
+            "noul": 0.43910929560661316
+          },
+          "memorable": {
+            "type": "noul",
+            "confidence": 0.6200019121170044,
+            "noul": 0.6200019121170044
+          }
+        },
+        "usage": {
+          "input_tokens": 8795,
+          "output_tokens": 0
+        },
+        "latency_ms": 1693.44
+      },
+      "repeat": 1
+    },
+    {
+      "id": "trace_136",
+      "kind": "social_interaction",
+      "latencyMs": 1069.4953000056557,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "a_felt_connection": {
+            "type": "noul",
+            "confidence": 0.5203868746757507,
+            "noul": 0.5203868746757507
+          },
+          "b_felt_connection": {
+            "type": "noul",
+            "confidence": 0.5203868746757507,
+            "noul": 0.5203868746757507
+          },
+          "felt_tension": {
+            "type": "noul",
+            "confidence": 0.5203870534896851,
+            "noul": 0.47961291670799255
+          },
+          "memorable": {
+            "type": "noul",
+            "confidence": 0.6200019121170044,
+            "noul": 0.6200019121170044
+          }
+        },
+        "usage": {
+          "input_tokens": 6155,
+          "output_tokens": 0
+        },
+        "latency_ms": 1058.69
+      },
+      "repeat": 1
+    },
+    {
+      "id": "trace_150",
+      "kind": "social_interaction",
+      "latencyMs": 1706.1231999541633,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "a_felt_connection": {
+            "type": "noul",
+            "confidence": 0.5203868746757507,
+            "noul": 0.47961315512657166
+          },
+          "b_felt_connection": {
+            "type": "noul",
+            "confidence": 0.5,
+            "noul": 0.5
+          },
+          "felt_tension": {
+            "type": "noul",
+            "confidence": 0.6390282511711121,
+            "noul": 0.3609718084335327
+          },
+          "memorable": {
+            "type": "noul",
+            "confidence": 0.5808761715888977,
+            "noul": 0.5808761715888977
+          }
+        },
+        "usage": {
+          "input_tokens": 8847,
+          "output_tokens": 0
+        },
+        "latency_ms": 1694.18
+      },
+      "repeat": 1
+    },
+    {
+      "id": "trace_0",
+      "kind": "evening_intentions",
+      "latencyMs": 999.7855999972671,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "wants_rest": {
+            "type": "noul",
+            "confidence": 0.6005993485450745,
+            "noul": 0.6005993485450745
+          },
+          "seeks_company": {
+            "type": "noul",
+            "confidence": 0.8672237992286682,
+            "noul": 0.8672237992286682
+          },
+          "seeks_novelty": {
+            "type": "noul",
+            "confidence": 0.7104396224021912,
+            "noul": 0.7104396224021912
+          },
+          "willing_to_spend": {
+            "type": "noul",
+            "confidence": 0.7581012845039368,
+            "noul": 0.24189874529838562
+          },
+          "wants_extra_work": {
+            "type": "noul",
+            "confidence": 0.9203990697860718,
+            "noul": 0.07960100471973419
+          }
+        },
+        "usage": {
+          "input_tokens": 6139,
+          "output_tokens": 0
+        },
+        "latency_ms": 989.86
+      },
+      "repeat": 2
+    },
+    {
+      "id": "trace_50",
+      "kind": "evening_intentions",
+      "latencyMs": 1003.8974999915808,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "wants_rest": {
+            "type": "noul",
+            "confidence": 0.5808761715888977,
+            "noul": 0.5808761715888977
+          },
+          "seeks_company": {
+            "type": "noul",
+            "confidence": 0.6200019121170044,
+            "noul": 0.6200019121170044
+          },
+          "seeks_novelty": {
+            "type": "noul",
+            "confidence": 0.6005993485450745,
+            "noul": 0.3994007110595703
+          },
+          "willing_to_spend": {
+            "type": "noul",
+            "confidence": 0.6390282511711121,
+            "noul": 0.3609718084335327
+          },
+          "wants_extra_work": {
+            "type": "noul",
+            "confidence": 0.8249514698982239,
+            "noul": 0.17504850029945374
+          }
+        },
+        "usage": {
+          "input_tokens": 6174,
+          "output_tokens": 0
+        },
+        "latency_ms": 993.87
+      },
+      "repeat": 2
+    },
+    {
+      "id": "trace_99",
+      "kind": "evening_intentions",
+      "latencyMs": 904.634700040333,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "wants_rest": {
+            "type": "noul",
+            "confidence": 0.6757558584213257,
+            "noul": 0.6757558584213257
+          },
+          "seeks_company": {
+            "type": "noul",
+            "confidence": 0.5808761715888977,
+            "noul": 0.5808761715888977
+          },
+          "seeks_novelty": {
+            "type": "noul",
+            "confidence": 0.8929667472839355,
+            "noul": 0.10703328251838684
+          },
+          "willing_to_spend": {
+            "type": "noul",
+            "confidence": 0.8849145770072937,
+            "noul": 0.11508537083864212
+          },
+          "wants_extra_work": {
+            "type": "noul",
+            "confidence": 0.8364234566688538,
+            "noul": 0.16357654333114624
+          }
+        },
+        "usage": {
+          "input_tokens": 5699,
+          "output_tokens": 0
+        },
+        "latency_ms": 894.37
+      },
+      "repeat": 2
+    },
+    {
+      "id": "trace_100",
+      "kind": "friend_selection",
+      "latencyMs": 371.298799989745,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "friend": {
+            "type": "choice",
+            "confidence": 0.9115129113197327,
+            "choice": "citizen_51",
+            "probabilities": {
+              "citizen_51": 0.9115129113197327,
+              "citizen_35": 0.008708689361810684,
+              "citizen_41": 0.0038512384053319693,
+              "citizen_34": 0.0032713727559894323,
+              "none": 0.07265568524599075
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 1938,
+          "output_tokens": 0
+        },
+        "latency_ms": 361.63
+      },
+      "repeat": 2
+    },
+    {
+      "id": "trace_111",
+      "kind": "friend_selection",
+      "latencyMs": 255.0891999853775,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "friend": {
+            "type": "choice",
+            "confidence": 0.9273678660392761,
+            "choice": "citizen_89",
+            "probabilities": {
+              "citizen_89": 0.9273678660392761,
+              "citizen_34": 0.015685154125094414,
+              "citizen_13": 0.0036112237721681595,
+              "none": 0.053335655480623245
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 1531,
+          "output_tokens": 0
+        },
+        "latency_ms": 253.49
+      },
+      "repeat": 2
+    },
+    {
+      "id": "trace_121",
+      "kind": "friend_selection",
+      "latencyMs": 445.66170003963634,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "friend": {
+            "type": "choice",
+            "confidence": 0.6738228797912598,
+            "choice": "citizen_86",
+            "probabilities": {
+              "citizen_86": 0.6738228797912598,
+              "citizen_55": 0.16832418739795685,
+              "citizen_45": 0.010503830388188362,
+              "citizen_95": 0.002623907523229718,
+              "citizen_44": 0.00174490618519485,
+              "none": 0.14298027753829956
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 2279,
+          "output_tokens": 0
+        },
+        "latency_ms": 433.26
+      },
+      "repeat": 2
+    },
+    {
+      "id": "trace_122",
+      "kind": "social_interaction",
+      "latencyMs": 1690.3534000157379,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "a_felt_connection": {
+            "type": "noul",
+            "confidence": 0.5203868746757507,
+            "noul": 0.5203868746757507
+          },
+          "b_felt_connection": {
+            "type": "noul",
+            "confidence": 0.5407059788703918,
+            "noul": 0.5407059788703918
+          },
+          "felt_tension": {
+            "type": "noul",
+            "confidence": 0.5608907341957092,
+            "noul": 0.43910929560661316
+          },
+          "memorable": {
+            "type": "noul",
+            "confidence": 0.6200019121170044,
+            "noul": 0.6200019121170044
+          }
+        },
+        "usage": {
+          "input_tokens": 8795,
+          "output_tokens": 0
+        },
+        "latency_ms": 1677.97
+      },
+      "repeat": 2
+    },
+    {
+      "id": "trace_136",
+      "kind": "social_interaction",
+      "latencyMs": 1061.7318999720737,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "a_felt_connection": {
+            "type": "noul",
+            "confidence": 0.5203868746757507,
+            "noul": 0.5203868746757507
+          },
+          "b_felt_connection": {
+            "type": "noul",
+            "confidence": 0.5203868746757507,
+            "noul": 0.5203868746757507
+          },
+          "felt_tension": {
+            "type": "noul",
+            "confidence": 0.5203870534896851,
+            "noul": 0.47961291670799255
+          },
+          "memorable": {
+            "type": "noul",
+            "confidence": 0.6200019121170044,
+            "noul": 0.6200019121170044
+          }
+        },
+        "usage": {
+          "input_tokens": 6155,
+          "output_tokens": 0
+        },
+        "latency_ms": 1048.01
+      },
+      "repeat": 2
+    },
+    {
+      "id": "trace_150",
+      "kind": "social_interaction",
+      "latencyMs": 1703.008700045757,
+      "response": {
+        "model": "alibiserikbay/JevK5",
+        "answers": {
+          "a_felt_connection": {
+            "type": "noul",
+            "confidence": 0.5203868746757507,
+            "noul": 0.47961315512657166
+          },
+          "b_felt_connection": {
+            "type": "noul",
+            "confidence": 0.5,
+            "noul": 0.5
+          },
+          "felt_tension": {
+            "type": "noul",
+            "confidence": 0.6390282511711121,
+            "noul": 0.3609718084335327
+          },
+          "memorable": {
+            "type": "noul",
+            "confidence": 0.5808761715888977,
+            "noul": 0.5808761715888977
+          }
+        },
+        "usage": {
+          "input_tokens": 8847,
+          "output_tokens": 0
+        },
+        "latency_ms": 1692.81
+      },
+      "repeat": 2
+    }
+  ],
+  "gpuSamples": [
+    {
+      "time": 1790329567.9910033,
+      "devices": [
+        [
+          9337,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329568.5289376,
+      "devices": [
+        [
+          9442,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329569.0654445,
+      "devices": [
+        [
+          9482,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329569.6029737,
+      "devices": [
+        [
+          9802,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329570.1405535,
+      "devices": [
+        [
+          9802,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329570.6779747,
+      "devices": [
+        [
+          9802,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329571.2155786,
+      "devices": [
+        [
+          9802,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329571.7578218,
+      "devices": [
+        [
+          9802,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329572.3031113,
+      "devices": [
+        [
+          9802,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329572.8405535,
+      "devices": [
+        [
+          10262,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329573.3780632,
+      "devices": [
+        [
+          10898,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329573.9197526,
+      "devices": [
+        [
+          10898,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329574.4573078,
+      "devices": [
+        [
+          10898,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329574.994784,
+      "devices": [
+        [
+          10898,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329575.532939,
+      "devices": [
+        [
+          10898,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329576.0704284,
+      "devices": [
+        [
+          10898,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329576.6073215,
+      "devices": [
+        [
+          10900,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329577.156031,
+      "devices": [
+        [
+          10900,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329577.6910307,
+      "devices": [
+        [
+          10900,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329578.2353184,
+      "devices": [
+        [
+          10900,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329578.774069,
+      "devices": [
+        [
+          10900,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329579.3157647,
+      "devices": [
+        [
+          10900,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329579.8580194,
+      "devices": [
+        [
+          10900,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329580.4013925,
+      "devices": [
+        [
+          10900,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329580.9366446,
+      "devices": [
+        [
+          10900,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329581.4741595,
+      "devices": [
+        [
+          10900,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329582.011728,
+      "devices": [
+        [
+          10899,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329582.5495872,
+      "devices": [
+        [
+          10899,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329583.087335,
+      "devices": [
+        [
+          10898,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329583.6242187,
+      "devices": [
+        [
+          10898,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329584.1659007,
+      "devices": [
+        [
+          10898,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329584.7075787,
+      "devices": [
+        [
+          10898,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329585.2451096,
+      "devices": [
+        [
+          10898,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329585.7909687,
+      "devices": [
+        [
+          10898,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329586.3368132,
+      "devices": [
+        [
+          10898,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329586.874398,
+      "devices": [
+        [
+          10898,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329587.4121928,
+      "devices": [
+        [
+          10898,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329587.9535825,
+      "devices": [
+        [
+          10898,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329588.4952314,
+      "devices": [
+        [
+          10898,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329589.0374868,
+      "devices": [
+        [
+          10898,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329589.574441,
+      "devices": [
+        [
+          10898,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329590.1161513,
+      "devices": [
+        [
+          10898,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329590.6540022,
+      "devices": [
+        [
+          10898,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329591.191185,
+      "devices": [
+        [
+          10899,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329591.7313478,
+      "devices": [
+        [
+          10899,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329592.2698357,
+      "devices": [
+        [
+          10906,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329592.8037071,
+      "devices": [
+        [
+          10906,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329593.3495727,
+      "devices": [
+        [
+          10901,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329593.8870773,
+      "devices": [
+        [
+          10901,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329594.4309669,
+      "devices": [
+        [
+          10901,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329594.974706,
+      "devices": [
+        [
+          10901,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329595.50795,
+      "devices": [
+        [
+          10901,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329596.0496564,
+      "devices": [
+        [
+          10901,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329596.5871747,
+      "devices": [
+        [
+          10901,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329597.1366248,
+      "devices": [
+        [
+          10901,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329597.6705606,
+      "devices": [
+        [
+          10901,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329598.2122307,
+      "devices": [
+        [
+          10899,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329598.745616,
+      "devices": [
+        [
+          10899,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329599.2831352,
+      "devices": [
+        [
+          10899,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329599.8206992,
+      "devices": [
+        [
+          10899,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329600.3581264,
+      "devices": [
+        [
+          10899,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329600.8956385,
+      "devices": [
+        [
+          10899,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329601.436627,
+      "devices": [
+        [
+          10899,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329601.9706664,
+      "devices": [
+        [
+          10899,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329602.5159123,
+      "devices": [
+        [
+          10899,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790329603.0506814,
+      "devices": [
+        [
+          10899,
+          12282
+        ]
+      ]
+    }
+  ],
+  "summary": {
+    "elapsedSeconds": 25.355295299959835,
+    "requests": 27,
+    "decisionsPerSecond": 1.0648663200559438,
+    "judgmentsPerSecond": 3.5495544001864796,
+    "p50Ms": 999.7855999972671,
+    "p95Ms": 1704.6283000381663,
+    "peakVramMiB": 10906
+  }
+}

@@ -17,7 +17,7 @@ export default function FuzzyCity({
   mode,
   pricing,
 }: {
-  mode: "mock" | "live";
+  mode: World["mode"];
   pricing: { input: number | null; output: number | null };
 }) {
   const [simulation, setSimulation] = useState<Simulation>();
@@ -37,7 +37,7 @@ export default function FuzzyCity({
   const tickInFlight = useRef<Promise<void> | null>(null);
   useEffect(() => {
     const engine =
-      mode === "live" ? new JevDecisionEngine() : new MockDecisionEngine();
+      mode !== "mock" ? new JevDecisionEngine() : new MockDecisionEngine();
     const sim = new Simulation(engine, generateCity("fuzzy-city-001", mode));
     sim.updateMetrics();
     setSimulation(sim);
@@ -166,6 +166,7 @@ export default function FuzzyCity({
           </span>
         </a>
         <nav className="main-nav" aria-label="Main navigation">
+          <a href="/benchmark">Benchmark ↗</a>
           <button
             className={panel === "city" ? "active" : ""}
             onClick={() => setPanel("city")}
@@ -194,7 +195,11 @@ export default function FuzzyCity({
         <div className="header-actions">
           <span className={`mode-badge ${mode}`}>
             <i />
-            {mode === "mock" ? "MOCK MODEL" : "LIVE JEV"}
+            {mode === "mock"
+              ? "MOCK MODEL"
+              : mode === "jevk5"
+                ? "LOCAL JEVK5"
+                : "TYPESAFE JEV"}
           </span>
           <button className="export-button" onClick={() => downloadRun(w)}>
             Export run <span>↗</span>
@@ -413,7 +418,9 @@ export default function FuzzyCity({
                     <p className="notice">
                       {mode === "mock"
                         ? "This run uses a deterministic mock model. It makes no AI API calls. Cultural effects in mock mode use a small, documented keyword heuristic."
-                        : "This run uses live Jev evaluations. Failed upstream evaluations are visibly marked fallback."}
+                        : mode === "jevk5"
+                          ? "This run uses local JevK5 inference on your GPU. No paid API key is required. Backend failures pause the simulation; no mock answers are substituted."
+                          : "This run uses TypeSafe Jev. Backend failures pause the simulation."}
                     </p>
                     <p>
                       Version 0.1 · One Thousand Evenings
@@ -442,8 +449,12 @@ export default function FuzzyCity({
                     <p>Small judgments. Compounding lives.</p>
                     <div className="counter-baseline">
                       <span>
-                        {mode === "mock" ? "MOCK" : "JEV + FALLBACK"} / TYPED
-                        PROBABILITIES
+                        {mode === "mock"
+                          ? "MOCK"
+                          : mode === "jevk5"
+                            ? "JEVK5 · LOCAL"
+                            : "TYPESAFE JEV"}{" "}
+                        / TYPED PROBABILITIES
                       </span>
                       <span>↗</span>
                     </div>
@@ -476,7 +487,7 @@ export default function FuzzyCity({
                       </strong>
                     </div>
                     <div>
-                      <span>Jev API calls</span>
+                      <span>Decision API calls</span>
                       <strong>{w.apiCalls}</strong>
                     </div>
                   </div>
@@ -524,7 +535,7 @@ export default function FuzzyCity({
               onClick={() => {
                 setSimulation(
                   new Simulation(
-                    mode === "live"
+                    mode !== "mock"
                       ? new JevDecisionEngine()
                       : new MockDecisionEngine(),
                     saved,
@@ -546,7 +557,7 @@ export default function FuzzyCity({
             Save on this device
           </button>
           <span>
-            {mode === "mock" ? "NO API KEY NEEDED" : "SERVER-SIDE API KEY"}
+            {mode === "live" ? "SERVER-SIDE API KEY" : "NO API KEY NEEDED"}
           </span>
         </div>
       </footer>

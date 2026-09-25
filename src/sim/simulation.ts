@@ -222,6 +222,21 @@ export class Simulation {
           .slice(0, 5)
           .map((r) => [r.toCitizenId, r]),
       );
+      if (!Object.keys(job.state.candidates).length) {
+        const location = this.destination(c, "cafe");
+        c.currentPlan.destinationId = location.id;
+        c.currentPlan.resolvedActivity = "cafe";
+        c.currentPlan.resolution =
+          "No eligible contacts. Deterministic café redirect; no model judgment made.";
+        this.event(
+          "resolution",
+          `${c.firstName}: no eligible contacts; café redirect without inference.`,
+          [c.id],
+          [c.currentPlan.intentionTraceId],
+        );
+        travel(c, location, this.rng);
+        continue;
+      }
       const [result] = await this.evaluate([job]);
       const trace = this.trace(job, result, [c.id]);
       const draw = this.rng.next(),
@@ -381,10 +396,11 @@ export class Simulation {
           );
         }
         if (w.minute >= 1020 && w.minute < 1070) {
-          const offset = (w.minute - 1020) * 20;
+          const cohortSize = Math.ceil(w.citizens.length / 50);
+          const offset = (w.minute - 1020) * cohortSize;
           await this.intentions(
             w.citizens
-              .slice(offset, offset + 20)
+              .slice(offset, offset + cohortSize)
               .filter((c) => c.currentPlan?.day !== w.day),
           );
         }

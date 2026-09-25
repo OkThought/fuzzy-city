@@ -12,10 +12,14 @@ export class JevDecisionEngine implements DecisionEngine {
         body: JSON.stringify({ jobs: batch }),
         signal: AbortSignal.timeout(100000),
       });
-      if (!response.ok)
+      if (!response.ok) {
+        const error = (await response.json().catch(() => ({}))) as {
+          error?: string;
+        };
         throw new Error(
-          `Decision proxy unavailable (${response.status}). Simulation paused; reload your last checkpoint.`,
+          `${error.error || `Decision proxy unavailable (${response.status})`}. Simulation paused; reload your last checkpoint.`,
         );
+      }
       const data = (await response.json()) as { results: Evaluation[] };
       if (!Array.isArray(data.results) || data.results.length !== batch.length)
         throw new Error("Incomplete proxy response");

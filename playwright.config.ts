@@ -6,7 +6,7 @@ export default defineConfig({
   expect: { timeout: 15000 },
   retries: 0,
   workers: 1,
-  use: { baseURL: "http://127.0.0.1:3000", trace: "retain-on-failure" },
+  use: { baseURL: "http://127.0.0.1:3100", trace: "retain-on-failure" },
   projects: [
     {
       name: "chromium-desktop",
@@ -36,9 +36,10 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: "pnpm dev",
-    url: "http://127.0.0.1:3000",
-    reuseExistingServer: !process.env.CI,
+    command: "pnpm start --port 3100",
+    env: { DECISION_PROVIDER: "mock" },
+    url: "http://127.0.0.1:3100",
+    reuseExistingServer: false,
     timeout: 120000,
   },
 });

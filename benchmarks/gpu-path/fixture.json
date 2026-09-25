@@ -1,0 +1,1526 @@
+{
+  "source": "benchmarks/2026-09-24T17-25-19-409Z-0c8db54b/100.json",
+  "cases": [
+    {
+      "id": "trace_0",
+      "kind": "evening_intentions",
+      "request": {
+        "model": "alibiserikbay/JevK5",
+        "state": {
+          "world": {
+            "day": 1,
+            "time": "17:00",
+            "city_principle": "A good life should leave room for recovery, meaningful relationships and curiosity.",
+            "cultural_norm": "A soft cultural norm, not an absolute instruction. Consider individual context."
+          },
+          "citizen": {
+            "id": "citizen_0",
+            "age": 56,
+            "occupation": "teacher",
+            "traits": {
+              "sociability": 0.7545340026845224,
+              "conscientiousness": 0.36093736777547747,
+              "openness": 0.6291621501441114,
+              "ambition": 0.3470945365843363,
+              "riskTolerance": 0.708807427319698
+            },
+            "current_state": {
+              "energy": 0.28948327403524937,
+              "stress": 0.7016470232940266,
+              "socialNeed": 0.6669252727378893,
+              "money": 82.90657415609449,
+              "satisfaction": 0.49416280078003183,
+              "days_since_meaningful_social_contact": 1
+            },
+            "known_people": [
+              {
+                "fromCitizenId": "citizen_0",
+                "toCitizenId": "citizen_7",
+                "affinity": 0.17470276618027128,
+                "familiarity": 0.13510976826772095,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_0",
+                "toCitizenId": "citizen_89",
+                "affinity": 0.33532619835808875,
+                "familiarity": 0.14620862679556013,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_0",
+                "toCitizenId": "citizen_91",
+                "affinity": 0.48367927384446374,
+                "familiarity": 0.3382662215456367,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_0",
+                "toCitizenId": "citizen_51",
+                "affinity": 0.38075053743436005,
+                "familiarity": 0.3352672398276627,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_0",
+                "toCitizenId": "citizen_65",
+                "affinity": 0.36289417484425934,
+                "familiarity": 0.36898320086300374,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_0",
+                "toCitizenId": "citizen_85",
+                "affinity": 0.19811155482660978,
+                "familiarity": 0.24899917544797062,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_0",
+                "toCitizenId": "citizen_37",
+                "affinity": 0.1618884326692205,
+                "familiarity": 0.24176133174449205,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_0",
+                "toCitizenId": "citizen_81",
+                "affinity": 0.17336202927166597,
+                "familiarity": 0.43406692493706944,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              }
+            ],
+            "recent_memories": []
+          }
+        },
+        "questions": {
+          "wants_rest": {
+            "type": "noul",
+            "instructions": "Given this person’s complete current context, would spending this evening resting at home feel especially attractive to them tonight?"
+          },
+          "seeks_company": {
+            "type": "noul",
+            "instructions": "Given this person’s complete current context, would they actively prefer meaningful company over spending the evening alone?"
+          },
+          "seeks_novelty": {
+            "type": "noul",
+            "instructions": "Given this person’s complete current context, would they be drawn to breaking routine and doing something unfamiliar tonight?"
+          },
+          "willing_to_spend": {
+            "type": "noul",
+            "instructions": "Given this person’s financial and emotional context, would they feel comfortable spending discretionary money on leisure tonight?"
+          },
+          "wants_extra_work": {
+            "type": "noul",
+            "instructions": "Given this person’s complete current context, would they voluntarily continue working tonight rather than stop for the day?"
+          }
+        }
+      }
+    },
+    {
+      "id": "trace_50",
+      "kind": "evening_intentions",
+      "request": {
+        "model": "alibiserikbay/JevK5",
+        "state": {
+          "world": {
+            "day": 1,
+            "time": "17:25",
+            "city_principle": "A good life should leave room for recovery, meaningful relationships and curiosity.",
+            "cultural_norm": "A soft cultural norm, not an absolute instruction. Consider individual context."
+          },
+          "citizen": {
+            "id": "citizen_50",
+            "age": 22,
+            "occupation": "teacher",
+            "traits": {
+              "sociability": 0.32820229313801974,
+              "conscientiousness": 0.4608989280532114,
+              "openness": 0.4393731579184532,
+              "ambition": 0.5895060587790795,
+              "riskTolerance": 0.3947736296104267
+            },
+            "current_state": {
+              "energy": 0.6060128050414824,
+              "stress": 0.6877381254671118,
+              "socialNeed": 0.4121491683454074,
+              "money": 151.58333271740764,
+              "satisfaction": 0.5848032634239644,
+              "days_since_meaningful_social_contact": 1
+            },
+            "known_people": [
+              {
+                "fromCitizenId": "citizen_50",
+                "toCitizenId": "citizen_10",
+                "affinity": 0.2557798136002384,
+                "familiarity": 0.12415075620636344,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_50",
+                "toCitizenId": "citizen_51",
+                "affinity": 0.31082946916925724,
+                "familiarity": 0.3487861889600754,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_50",
+                "toCitizenId": "citizen_83",
+                "affinity": 0.2825370657991152,
+                "familiarity": 0.30506326641887427,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_50",
+                "toCitizenId": "citizen_17",
+                "affinity": 0.12357015045476147,
+                "familiarity": 0.17875534707680346,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_50",
+                "toCitizenId": "citizen_56",
+                "affinity": 0.4158866657328326,
+                "familiarity": 0.34273691961541775,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_50",
+                "toCitizenId": "citizen_4",
+                "affinity": 0.31548256337759084,
+                "familiarity": 0.11088652705773712,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_50",
+                "toCitizenId": "citizen_91",
+                "affinity": 0.16279602299677207,
+                "familiarity": 0.40632403960451485,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_50",
+                "toCitizenId": "citizen_46",
+                "affinity": 0.2506713115237653,
+                "familiarity": 0.45274521132931117,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              }
+            ],
+            "recent_memories": []
+          }
+        },
+        "questions": {
+          "wants_rest": {
+            "type": "noul",
+            "instructions": "Given this person’s complete current context, would spending this evening resting at home feel especially attractive to them tonight?"
+          },
+          "seeks_company": {
+            "type": "noul",
+            "instructions": "Given this person’s complete current context, would they actively prefer meaningful company over spending the evening alone?"
+          },
+          "seeks_novelty": {
+            "type": "noul",
+            "instructions": "Given this person’s complete current context, would they be drawn to breaking routine and doing something unfamiliar tonight?"
+          },
+          "willing_to_spend": {
+            "type": "noul",
+            "instructions": "Given this person’s financial and emotional context, would they feel comfortable spending discretionary money on leisure tonight?"
+          },
+          "wants_extra_work": {
+            "type": "noul",
+            "instructions": "Given this person’s complete current context, would they voluntarily continue working tonight rather than stop for the day?"
+          }
+        }
+      }
+    },
+    {
+      "id": "trace_99",
+      "kind": "evening_intentions",
+      "request": {
+        "model": "alibiserikbay/JevK5",
+        "state": {
+          "world": {
+            "day": 1,
+            "time": "17:49",
+            "city_principle": "A good life should leave room for recovery, meaningful relationships and curiosity.",
+            "cultural_norm": "A soft cultural norm, not an absolute instruction. Consider individual context."
+          },
+          "citizen": {
+            "id": "citizen_99",
+            "age": 53,
+            "occupation": "baker",
+            "traits": {
+              "sociability": 0.5979022113606334,
+              "conscientiousness": 0.5317258925642818,
+              "openness": 0.10288977314485237,
+              "ambition": 0.4490941815311089,
+              "riskTolerance": 0.5363652836531401
+            },
+            "current_state": {
+              "energy": 0.3252943273733383,
+              "stress": 0.6922620652209002,
+              "socialNeed": 0.3496357269086513,
+              "money": 103.3029346159422,
+              "satisfaction": 0.3970943571184762,
+              "days_since_meaningful_social_contact": 1
+            },
+            "known_people": [
+              {
+                "fromCitizenId": "citizen_99",
+                "toCitizenId": "citizen_86",
+                "affinity": 0.3883673896233085,
+                "familiarity": 0.29657406426966193,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_99",
+                "toCitizenId": "citizen_44",
+                "affinity": 0.15778834164724684,
+                "familiarity": 0.22568203836679457,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_99",
+                "toCitizenId": "citizen_95",
+                "affinity": 0.16884441213100218,
+                "familiarity": 0.1624560726992786,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_99",
+                "toCitizenId": "citizen_45",
+                "affinity": 0.17810311842826196,
+                "familiarity": 0.36055314207449557,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_99",
+                "toCitizenId": "citizen_13",
+                "affinity": 0.1557671494758688,
+                "familiarity": 0.21511852128431203,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_99",
+                "toCitizenId": "citizen_55",
+                "affinity": 0.3012813199346419,
+                "familiarity": 0.3913514363765717,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_99",
+                "toCitizenId": "citizen_25",
+                "affinity": 0.22715098112006674,
+                "familiarity": 0.34817349884659055,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              }
+            ],
+            "recent_memories": []
+          }
+        },
+        "questions": {
+          "wants_rest": {
+            "type": "noul",
+            "instructions": "Given this person’s complete current context, would spending this evening resting at home feel especially attractive to them tonight?"
+          },
+          "seeks_company": {
+            "type": "noul",
+            "instructions": "Given this person’s complete current context, would they actively prefer meaningful company over spending the evening alone?"
+          },
+          "seeks_novelty": {
+            "type": "noul",
+            "instructions": "Given this person’s complete current context, would they be drawn to breaking routine and doing something unfamiliar tonight?"
+          },
+          "willing_to_spend": {
+            "type": "noul",
+            "instructions": "Given this person’s financial and emotional context, would they feel comfortable spending discretionary money on leisure tonight?"
+          },
+          "wants_extra_work": {
+            "type": "noul",
+            "instructions": "Given this person’s complete current context, would they voluntarily continue working tonight rather than stop for the day?"
+          }
+        }
+      }
+    },
+    {
+      "id": "trace_100",
+      "kind": "friend_selection",
+      "request": {
+        "model": "alibiserikbay/JevK5",
+        "state": {
+          "world": {
+            "day": 1,
+            "time": "18:00",
+            "city_principle": "A good life should leave room for recovery, meaningful relationships and curiosity.",
+            "cultural_norm": "A soft cultural norm, not an absolute instruction. Consider individual context."
+          },
+          "citizen": {
+            "id": "citizen_5",
+            "age": 53,
+            "occupation": "botanist",
+            "traits": {
+              "sociability": 0.4926668709376827,
+              "conscientiousness": 0.7178996616858058,
+              "openness": 0.37441923044389114,
+              "ambition": 0.37477898981887847,
+              "riskTolerance": 0.5574991043540649
+            },
+            "current_state": {
+              "energy": 0.501233425088079,
+              "stress": 0.7118349718443104,
+              "socialNeed": 0.28973983631746963,
+              "money": 105.26181486843844,
+              "satisfaction": 0.3031437276513316,
+              "days_since_meaningful_social_contact": 1
+            },
+            "known_people": [
+              {
+                "fromCitizenId": "citizen_5",
+                "toCitizenId": "citizen_51",
+                "affinity": 0.5494842971302569,
+                "familiarity": 0.3744011673331261,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_5",
+                "toCitizenId": "citizen_58",
+                "affinity": 0.18104676403221673,
+                "familiarity": 0.4700711954571307,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_5",
+                "toCitizenId": "citizen_41",
+                "affinity": 0.26962671255809256,
+                "familiarity": 0.37952236665412786,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_5",
+                "toCitizenId": "citizen_35",
+                "affinity": 0.3935169326933101,
+                "familiarity": 0.2748463431559503,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_5",
+                "toCitizenId": "citizen_34",
+                "affinity": 0.21048981264815667,
+                "familiarity": 0.17423935329541565,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_5",
+                "toCitizenId": "citizen_77",
+                "affinity": 0.37921460197889245,
+                "familiarity": 0.34788297975435856,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              }
+            ],
+            "recent_memories": []
+          },
+          "candidates": {
+            "citizen_51": {
+              "fromCitizenId": "citizen_5",
+              "toCitizenId": "citizen_51",
+              "affinity": 0.5494842971302569,
+              "familiarity": 0.3744011673331261,
+              "interactionCount": 0,
+              "lastInteractionDay": null,
+              "history": []
+            },
+            "citizen_35": {
+              "fromCitizenId": "citizen_5",
+              "toCitizenId": "citizen_35",
+              "affinity": 0.3935169326933101,
+              "familiarity": 0.2748463431559503,
+              "interactionCount": 0,
+              "lastInteractionDay": null,
+              "history": []
+            },
+            "citizen_41": {
+              "fromCitizenId": "citizen_5",
+              "toCitizenId": "citizen_41",
+              "affinity": 0.26962671255809256,
+              "familiarity": 0.37952236665412786,
+              "interactionCount": 0,
+              "lastInteractionDay": null,
+              "history": []
+            },
+            "citizen_34": {
+              "fromCitizenId": "citizen_5",
+              "toCitizenId": "citizen_34",
+              "affinity": 0.21048981264815667,
+              "familiarity": 0.17423935329541565,
+              "interactionCount": 0,
+              "lastInteractionDay": null,
+              "history": []
+            }
+          }
+        },
+        "questions": {
+          "friend": {
+            "type": "choice",
+            "instructions": "Given this citizen’s present mood, history and relationships, whom would they most naturally want to spend this evening with?",
+            "criteria": {
+              "citizen_51": {
+                "citizen_id": "citizen_51",
+                "relationship": {
+                  "fromCitizenId": "citizen_5",
+                  "toCitizenId": "citizen_51",
+                  "affinity": 0.5494842971302569,
+                  "familiarity": 0.3744011673331261,
+                  "interactionCount": 0,
+                  "lastInteractionDay": null,
+                  "history": []
+                }
+              },
+              "citizen_35": {
+                "citizen_id": "citizen_35",
+                "relationship": {
+                  "fromCitizenId": "citizen_5",
+                  "toCitizenId": "citizen_35",
+                  "affinity": 0.3935169326933101,
+                  "familiarity": 0.2748463431559503,
+                  "interactionCount": 0,
+                  "lastInteractionDay": null,
+                  "history": []
+                }
+              },
+              "citizen_41": {
+                "citizen_id": "citizen_41",
+                "relationship": {
+                  "fromCitizenId": "citizen_5",
+                  "toCitizenId": "citizen_41",
+                  "affinity": 0.26962671255809256,
+                  "familiarity": 0.37952236665412786,
+                  "interactionCount": 0,
+                  "lastInteractionDay": null,
+                  "history": []
+                }
+              },
+              "citizen_34": {
+                "citizen_id": "citizen_34",
+                "relationship": {
+                  "fromCitizenId": "citizen_5",
+                  "toCitizenId": "citizen_34",
+                  "affinity": 0.21048981264815667,
+                  "familiarity": 0.17423935329541565,
+                  "interactionCount": 0,
+                  "lastInteractionDay": null,
+                  "history": []
+                }
+              },
+              "none": "No listed contact feels right tonight."
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "trace_111",
+      "kind": "friend_selection",
+      "request": {
+        "model": "alibiserikbay/JevK5",
+        "state": {
+          "world": {
+            "day": 1,
+            "time": "18:00",
+            "city_principle": "A good life should leave room for recovery, meaningful relationships and curiosity.",
+            "cultural_norm": "A soft cultural norm, not an absolute instruction. Consider individual context."
+          },
+          "citizen": {
+            "id": "citizen_64",
+            "age": 23,
+            "occupation": "ceramicist",
+            "traits": {
+              "sociability": 0.8796630435972475,
+              "conscientiousness": 0.5358231413410977,
+              "openness": 0.4488597678137012,
+              "ambition": 0.21736866497667506,
+              "riskTolerance": 0.27723527257330716
+            },
+            "current_state": {
+              "energy": 0.5725701132653641,
+              "stress": 0.7285390549857143,
+              "socialNeed": 0.5802496986770779,
+              "money": 54.42594885635789,
+              "satisfaction": 0.5750363419065252,
+              "days_since_meaningful_social_contact": 1
+            },
+            "known_people": [
+              {
+                "fromCitizenId": "citizen_64",
+                "toCitizenId": "citizen_99",
+                "affinity": 0.2870274652761873,
+                "familiarity": 0.4223750499263406,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_64",
+                "toCitizenId": "citizen_89",
+                "affinity": 0.5113459027640056,
+                "familiarity": 0.34700721858069306,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_64",
+                "toCitizenId": "citizen_34",
+                "affinity": 0.33500022703432475,
+                "familiarity": 0.1478517338819802,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_64",
+                "toCitizenId": "citizen_13",
+                "affinity": 0.24319962315843444,
+                "familiarity": 0.1642581005766988,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              }
+            ],
+            "recent_memories": []
+          },
+          "candidates": {
+            "citizen_89": {
+              "fromCitizenId": "citizen_64",
+              "toCitizenId": "citizen_89",
+              "affinity": 0.5113459027640056,
+              "familiarity": 0.34700721858069306,
+              "interactionCount": 0,
+              "lastInteractionDay": null,
+              "history": []
+            },
+            "citizen_34": {
+              "fromCitizenId": "citizen_64",
+              "toCitizenId": "citizen_34",
+              "affinity": 0.33500022703432475,
+              "familiarity": 0.1478517338819802,
+              "interactionCount": 0,
+              "lastInteractionDay": null,
+              "history": []
+            },
+            "citizen_13": {
+              "fromCitizenId": "citizen_64",
+              "toCitizenId": "citizen_13",
+              "affinity": 0.24319962315843444,
+              "familiarity": 0.1642581005766988,
+              "interactionCount": 0,
+              "lastInteractionDay": null,
+              "history": []
+            }
+          }
+        },
+        "questions": {
+          "friend": {
+            "type": "choice",
+            "instructions": "Given this citizen’s present mood, history and relationships, whom would they most naturally want to spend this evening with?",
+            "criteria": {
+              "citizen_89": {
+                "citizen_id": "citizen_89",
+                "relationship": {
+                  "fromCitizenId": "citizen_64",
+                  "toCitizenId": "citizen_89",
+                  "affinity": 0.5113459027640056,
+                  "familiarity": 0.34700721858069306,
+                  "interactionCount": 0,
+                  "lastInteractionDay": null,
+                  "history": []
+                }
+              },
+              "citizen_34": {
+                "citizen_id": "citizen_34",
+                "relationship": {
+                  "fromCitizenId": "citizen_64",
+                  "toCitizenId": "citizen_34",
+                  "affinity": 0.33500022703432475,
+                  "familiarity": 0.1478517338819802,
+                  "interactionCount": 0,
+                  "lastInteractionDay": null,
+                  "history": []
+                }
+              },
+              "citizen_13": {
+                "citizen_id": "citizen_13",
+                "relationship": {
+                  "fromCitizenId": "citizen_64",
+                  "toCitizenId": "citizen_13",
+                  "affinity": 0.24319962315843444,
+                  "familiarity": 0.1642581005766988,
+                  "interactionCount": 0,
+                  "lastInteractionDay": null,
+                  "history": []
+                }
+              },
+              "none": "No listed contact feels right tonight."
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "trace_121",
+      "kind": "friend_selection",
+      "request": {
+        "model": "alibiserikbay/JevK5",
+        "state": {
+          "world": {
+            "day": 1,
+            "time": "18:00",
+            "city_principle": "A good life should leave room for recovery, meaningful relationships and curiosity.",
+            "cultural_norm": "A soft cultural norm, not an absolute instruction. Consider individual context."
+          },
+          "citizen": {
+            "id": "citizen_99",
+            "age": 53,
+            "occupation": "baker",
+            "traits": {
+              "sociability": 0.5979022113606334,
+              "conscientiousness": 0.5317258925642818,
+              "openness": 0.10288977314485237,
+              "ambition": 0.4490941815311089,
+              "riskTolerance": 0.5363652836531401
+            },
+            "current_state": {
+              "energy": 0.32331432737333815,
+              "stress": 0.6922620652209002,
+              "socialNeed": 0.35161572690865145,
+              "money": 103.3029346159422,
+              "satisfaction": 0.3970943571184762,
+              "days_since_meaningful_social_contact": 1
+            },
+            "known_people": [
+              {
+                "fromCitizenId": "citizen_99",
+                "toCitizenId": "citizen_86",
+                "affinity": 0.3883673896233085,
+                "familiarity": 0.29657406426966193,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_99",
+                "toCitizenId": "citizen_44",
+                "affinity": 0.15778834164724684,
+                "familiarity": 0.22568203836679457,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_99",
+                "toCitizenId": "citizen_95",
+                "affinity": 0.16884441213100218,
+                "familiarity": 0.1624560726992786,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_99",
+                "toCitizenId": "citizen_45",
+                "affinity": 0.17810311842826196,
+                "familiarity": 0.36055314207449557,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_99",
+                "toCitizenId": "citizen_13",
+                "affinity": 0.1557671494758688,
+                "familiarity": 0.21511852128431203,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_99",
+                "toCitizenId": "citizen_55",
+                "affinity": 0.3012813199346419,
+                "familiarity": 0.3913514363765717,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_99",
+                "toCitizenId": "citizen_25",
+                "affinity": 0.22715098112006674,
+                "familiarity": 0.34817349884659055,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              }
+            ],
+            "recent_memories": []
+          },
+          "candidates": {
+            "citizen_86": {
+              "fromCitizenId": "citizen_99",
+              "toCitizenId": "citizen_86",
+              "affinity": 0.3883673896233085,
+              "familiarity": 0.29657406426966193,
+              "interactionCount": 0,
+              "lastInteractionDay": null,
+              "history": []
+            },
+            "citizen_55": {
+              "fromCitizenId": "citizen_99",
+              "toCitizenId": "citizen_55",
+              "affinity": 0.3012813199346419,
+              "familiarity": 0.3913514363765717,
+              "interactionCount": 0,
+              "lastInteractionDay": null,
+              "history": []
+            },
+            "citizen_45": {
+              "fromCitizenId": "citizen_99",
+              "toCitizenId": "citizen_45",
+              "affinity": 0.17810311842826196,
+              "familiarity": 0.36055314207449557,
+              "interactionCount": 0,
+              "lastInteractionDay": null,
+              "history": []
+            },
+            "citizen_95": {
+              "fromCitizenId": "citizen_99",
+              "toCitizenId": "citizen_95",
+              "affinity": 0.16884441213100218,
+              "familiarity": 0.1624560726992786,
+              "interactionCount": 0,
+              "lastInteractionDay": null,
+              "history": []
+            },
+            "citizen_44": {
+              "fromCitizenId": "citizen_99",
+              "toCitizenId": "citizen_44",
+              "affinity": 0.15778834164724684,
+              "familiarity": 0.22568203836679457,
+              "interactionCount": 0,
+              "lastInteractionDay": null,
+              "history": []
+            }
+          }
+        },
+        "questions": {
+          "friend": {
+            "type": "choice",
+            "instructions": "Given this citizen’s present mood, history and relationships, whom would they most naturally want to spend this evening with?",
+            "criteria": {
+              "citizen_86": {
+                "citizen_id": "citizen_86",
+                "relationship": {
+                  "fromCitizenId": "citizen_99",
+                  "toCitizenId": "citizen_86",
+                  "affinity": 0.3883673896233085,
+                  "familiarity": 0.29657406426966193,
+                  "interactionCount": 0,
+                  "lastInteractionDay": null,
+                  "history": []
+                }
+              },
+              "citizen_55": {
+                "citizen_id": "citizen_55",
+                "relationship": {
+                  "fromCitizenId": "citizen_99",
+                  "toCitizenId": "citizen_55",
+                  "affinity": 0.3012813199346419,
+                  "familiarity": 0.3913514363765717,
+                  "interactionCount": 0,
+                  "lastInteractionDay": null,
+                  "history": []
+                }
+              },
+              "citizen_45": {
+                "citizen_id": "citizen_45",
+                "relationship": {
+                  "fromCitizenId": "citizen_99",
+                  "toCitizenId": "citizen_45",
+                  "affinity": 0.17810311842826196,
+                  "familiarity": 0.36055314207449557,
+                  "interactionCount": 0,
+                  "lastInteractionDay": null,
+                  "history": []
+                }
+              },
+              "citizen_95": {
+                "citizen_id": "citizen_95",
+                "relationship": {
+                  "fromCitizenId": "citizen_99",
+                  "toCitizenId": "citizen_95",
+                  "affinity": 0.16884441213100218,
+                  "familiarity": 0.1624560726992786,
+                  "interactionCount": 0,
+                  "lastInteractionDay": null,
+                  "history": []
+                }
+              },
+              "citizen_44": {
+                "citizen_id": "citizen_44",
+                "relationship": {
+                  "fromCitizenId": "citizen_99",
+                  "toCitizenId": "citizen_44",
+                  "affinity": 0.15778834164724684,
+                  "familiarity": 0.22568203836679457,
+                  "interactionCount": 0,
+                  "lastInteractionDay": null,
+                  "history": []
+                }
+              },
+              "none": "No listed contact feels right tonight."
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "trace_122",
+      "kind": "social_interaction",
+      "request": {
+        "model": "alibiserikbay/JevK5",
+        "state": {
+          "world": {
+            "day": 1,
+            "time": "19:00",
+            "city_principle": "A good life should leave room for recovery, meaningful relationships and curiosity.",
+            "cultural_norm": "A soft cultural norm, not an absolute instruction. Consider individual context."
+          },
+          "citizen": {
+            "id": "citizen_0",
+            "age": 56,
+            "occupation": "teacher",
+            "traits": {
+              "sociability": 0.7545340026845224,
+              "conscientiousness": 0.36093736777547747,
+              "openness": 0.6291621501441114,
+              "ambition": 0.3470945365843363,
+              "riskTolerance": 0.708807427319698
+            },
+            "current_state": {
+              "energy": 0.26770327403524774,
+              "stress": 0.7016470232940266,
+              "socialNeed": 0.6887052727378842,
+              "money": 82.90657415609449,
+              "satisfaction": 0.49416280078003183,
+              "days_since_meaningful_social_contact": 1
+            },
+            "known_people": [
+              {
+                "fromCitizenId": "citizen_0",
+                "toCitizenId": "citizen_7",
+                "affinity": 0.17470276618027128,
+                "familiarity": 0.13510976826772095,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_0",
+                "toCitizenId": "citizen_89",
+                "affinity": 0.33532619835808875,
+                "familiarity": 0.14620862679556013,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_0",
+                "toCitizenId": "citizen_91",
+                "affinity": 0.48367927384446374,
+                "familiarity": 0.3382662215456367,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_0",
+                "toCitizenId": "citizen_51",
+                "affinity": 0.38075053743436005,
+                "familiarity": 0.3352672398276627,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_0",
+                "toCitizenId": "citizen_65",
+                "affinity": 0.36289417484425934,
+                "familiarity": 0.36898320086300374,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_0",
+                "toCitizenId": "citizen_85",
+                "affinity": 0.19811155482660978,
+                "familiarity": 0.24899917544797062,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_0",
+                "toCitizenId": "citizen_37",
+                "affinity": 0.1618884326692205,
+                "familiarity": 0.24176133174449205,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_0",
+                "toCitizenId": "citizen_81",
+                "affinity": 0.17336202927166597,
+                "familiarity": 0.43406692493706944,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              }
+            ],
+            "recent_memories": []
+          },
+          "other": {
+            "id": "citizen_58",
+            "age": 66,
+            "occupation": "editor",
+            "traits": {
+              "sociability": 0.26229549245908856,
+              "conscientiousness": 0.5446299645118415,
+              "openness": 0.4111547452630475,
+              "ambition": 0.4494083854951896,
+              "riskTolerance": 0.6656720389728434
+            },
+            "current_state": {
+              "energy": 0.36853909903882043,
+              "stress": 0.5105209215002127,
+              "socialNeed": 0.6254023877535884,
+              "money": 197.40656863587276,
+              "satisfaction": 0.5095759657560848,
+              "days_since_meaningful_social_contact": 1
+            },
+            "known_people": [
+              {
+                "fromCitizenId": "citizen_58",
+                "toCitizenId": "citizen_11",
+                "affinity": 0.3504376574978232,
+                "familiarity": 0.33710413809865714,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_58",
+                "toCitizenId": "citizen_60",
+                "affinity": 0.3442818517598789,
+                "familiarity": 0.10798037771135569,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_58",
+                "toCitizenId": "citizen_68",
+                "affinity": 0.2855210810061545,
+                "familiarity": 0.45819141447544104,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_58",
+                "toCitizenId": "citizen_46",
+                "affinity": 0.3725805124826729,
+                "familiarity": 0.25440953124314547,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_58",
+                "toCitizenId": "citizen_53",
+                "affinity": 0.5370741531345993,
+                "familiarity": 0.2997756627574563,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_58",
+                "toCitizenId": "citizen_43",
+                "affinity": 0.4553988284640945,
+                "familiarity": 0.14852116556838155,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_58",
+                "toCitizenId": "citizen_0",
+                "affinity": 0.4873657809663564,
+                "familiarity": 0.16385910782963037,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              }
+            ],
+            "recent_memories": []
+          },
+          "locationId": "home_259"
+        },
+        "questions": {
+          "a_felt_connection": {
+            "type": "noul",
+            "instructions": "Is person A (citizen) likely to leave this interaction feeling more positively connected to person B (other)?"
+          },
+          "b_felt_connection": {
+            "type": "noul",
+            "instructions": "Is person B (other) likely to leave this interaction feeling more positively connected to person A (citizen)?"
+          },
+          "felt_tension": {
+            "type": "noul",
+            "instructions": "Is there a meaningful chance this interaction felt tense, awkward, irritating or unpleasant?"
+          },
+          "memorable": {
+            "type": "noul",
+            "instructions": "Is this interaction likely to remain meaningfully memorable to either participant rather than feeling routine?"
+          }
+        }
+      }
+    },
+    {
+      "id": "trace_136",
+      "kind": "social_interaction",
+      "request": {
+        "model": "alibiserikbay/JevK5",
+        "state": {
+          "world": {
+            "day": 1,
+            "time": "19:00",
+            "city_principle": "A good life should leave room for recovery, meaningful relationships and curiosity.",
+            "cultural_norm": "A soft cultural norm, not an absolute instruction. Consider individual context."
+          },
+          "citizen": {
+            "id": "citizen_64",
+            "age": 23,
+            "occupation": "ceramicist",
+            "traits": {
+              "sociability": 0.8796630435972475,
+              "conscientiousness": 0.5358231413410977,
+              "openness": 0.4488597678137012,
+              "ambition": 0.21736866497667506,
+              "riskTolerance": 0.27723527257330716
+            },
+            "current_state": {
+              "energy": 0.5615901132653667,
+              "stress": 0.7285390549857143,
+              "socialNeed": 0.5912296986770753,
+              "money": 54.42594885635789,
+              "satisfaction": 0.5750363419065252,
+              "days_since_meaningful_social_contact": 1
+            },
+            "known_people": [
+              {
+                "fromCitizenId": "citizen_64",
+                "toCitizenId": "citizen_99",
+                "affinity": 0.2870274652761873,
+                "familiarity": 0.4223750499263406,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_64",
+                "toCitizenId": "citizen_89",
+                "affinity": 0.5113459027640056,
+                "familiarity": 0.34700721858069306,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_64",
+                "toCitizenId": "citizen_34",
+                "affinity": 0.33500022703432475,
+                "familiarity": 0.1478517338819802,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_64",
+                "toCitizenId": "citizen_13",
+                "affinity": 0.24319962315843444,
+                "familiarity": 0.1642581005766988,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              }
+            ],
+            "recent_memories": []
+          },
+          "other": {
+            "id": "citizen_89",
+            "age": 53,
+            "occupation": "architect",
+            "traits": {
+              "sociability": 0.4265733819338493,
+              "conscientiousness": 0.43297580094076693,
+              "openness": 0.7136639004456811,
+              "ambition": 0.6661184232798405,
+              "riskTolerance": 0.6365736987791024
+            },
+            "current_state": {
+              "energy": 0.41463385868499114,
+              "stress": 0.8284201955510264,
+              "socialNeed": 0.6403648325339828,
+              "money": 171.8284539671916,
+              "satisfaction": 0.3985646450310014,
+              "days_since_meaningful_social_contact": 1
+            },
+            "known_people": [
+              {
+                "fromCitizenId": "citizen_89",
+                "toCitizenId": "citizen_20",
+                "affinity": 0.5124650985852349,
+                "familiarity": 0.09633724225685,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_89",
+                "toCitizenId": "citizen_79",
+                "affinity": 0.3067330331285484,
+                "familiarity": 0.26011390753090385,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_89",
+                "toCitizenId": "citizen_33",
+                "affinity": 0.44003311822656543,
+                "familiarity": 0.35067858157679443,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_89",
+                "toCitizenId": "citizen_17",
+                "affinity": 0.4530238177720457,
+                "familiarity": 0.3135678044706583,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              }
+            ],
+            "recent_memories": []
+          },
+          "locationId": "home_242"
+        },
+        "questions": {
+          "a_felt_connection": {
+            "type": "noul",
+            "instructions": "Is person A (citizen) likely to leave this interaction feeling more positively connected to person B (other)?"
+          },
+          "b_felt_connection": {
+            "type": "noul",
+            "instructions": "Is person B (other) likely to leave this interaction feeling more positively connected to person A (citizen)?"
+          },
+          "felt_tension": {
+            "type": "noul",
+            "instructions": "Is there a meaningful chance this interaction felt tense, awkward, irritating or unpleasant?"
+          },
+          "memorable": {
+            "type": "noul",
+            "instructions": "Is this interaction likely to remain meaningfully memorable to either participant rather than feeling routine?"
+          }
+        }
+      }
+    },
+    {
+      "id": "trace_150",
+      "kind": "social_interaction",
+      "request": {
+        "model": "alibiserikbay/JevK5",
+        "state": {
+          "world": {
+            "day": 1,
+            "time": "19:15",
+            "city_principle": "A good life should leave room for recovery, meaningful relationships and curiosity.",
+            "cultural_norm": "A soft cultural norm, not an absolute instruction. Consider individual context."
+          },
+          "citizen": {
+            "id": "citizen_26",
+            "age": 23,
+            "occupation": "architect",
+            "traits": {
+              "sociability": 0.7504247578908689,
+              "conscientiousness": 0.6312011919799261,
+              "openness": 0.5273859447916038,
+              "ambition": 0.49208726262440905,
+              "riskTolerance": 0.45993894926505163
+            },
+            "current_state": {
+              "energy": 0.5205331601169368,
+              "stress": 0.6051788167848233,
+              "socialNeed": 0.5919168651316246,
+              "money": 187.26676650302204,
+              "satisfaction": 0.5016198583180085,
+              "days_since_meaningful_social_contact": 1
+            },
+            "known_people": [
+              {
+                "fromCitizenId": "citizen_26",
+                "toCitizenId": "citizen_5",
+                "affinity": 0.23714447941514663,
+                "familiarity": 0.2782984470203519,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_26",
+                "toCitizenId": "citizen_29",
+                "affinity": 0.2230968504829798,
+                "familiarity": 0.36933500228449706,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_26",
+                "toCitizenId": "citizen_21",
+                "affinity": 0.3765140407346189,
+                "familiarity": 0.15430518101900817,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_26",
+                "toCitizenId": "citizen_14",
+                "affinity": 0.1294076664117165,
+                "familiarity": 0.4599451201222837,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_26",
+                "toCitizenId": "citizen_18",
+                "affinity": 0.33971233450341976,
+                "familiarity": 0.1443147885799408,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_26",
+                "toCitizenId": "citizen_96",
+                "affinity": 0.3181044895877131,
+                "familiarity": 0.45489650752395394,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_26",
+                "toCitizenId": "citizen_97",
+                "affinity": 0.08593451385153458,
+                "familiarity": 0.4111268685385585,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              }
+            ],
+            "recent_memories": []
+          },
+          "other": {
+            "id": "citizen_96",
+            "age": 58,
+            "occupation": "designer",
+            "traits": {
+              "sociability": 0.25944156758487225,
+              "conscientiousness": 0.6385152309085242,
+              "openness": 0.7282023067818955,
+              "ambition": 0.21318025566870347,
+              "riskTolerance": 0.5787466028123163
+            },
+            "current_state": {
+              "energy": 0.4805987404581493,
+              "stress": 0.36477581422468736,
+              "socialNeed": 0.48534069494139626,
+              "money": 105.34148796864858,
+              "satisfaction": 0.4949676264077425,
+              "days_since_meaningful_social_contact": 1
+            },
+            "known_people": [
+              {
+                "fromCitizenId": "citizen_96",
+                "toCitizenId": "citizen_83",
+                "affinity": 0.43676387560321017,
+                "familiarity": 0.22045430831611157,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_96",
+                "toCitizenId": "citizen_24",
+                "affinity": 0.2983108494116459,
+                "familiarity": 0.47061209121719005,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_96",
+                "toCitizenId": "citizen_69",
+                "affinity": 0.3072769106749911,
+                "familiarity": 0.22349724398925902,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_96",
+                "toCitizenId": "citizen_22",
+                "affinity": 0.43374953116057435,
+                "familiarity": 0.30594891227781773,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_96",
+                "toCitizenId": "citizen_3",
+                "affinity": 0.31743473230511887,
+                "familiarity": 0.17194254986941815,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_96",
+                "toCitizenId": "citizen_84",
+                "affinity": 0.03084324328578078,
+                "familiarity": 0.42909133696928625,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_96",
+                "toCitizenId": "citizen_99",
+                "affinity": 0.22025302705937064,
+                "familiarity": 0.25640993399545553,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              },
+              {
+                "fromCitizenId": "citizen_96",
+                "toCitizenId": "citizen_10",
+                "affinity": 0.19170652042725125,
+                "familiarity": 0.4749109982699156,
+                "interactionCount": 0,
+                "lastInteractionDay": null,
+                "history": []
+              }
+            ],
+            "recent_memories": []
+          },
+          "locationId": "home_69"
+        },
+        "questions": {
+          "a_felt_connection": {
+            "type": "noul",
+            "instructions": "Is person A (citizen) likely to leave this interaction feeling more positively connected to person B (other)?"
+          },
+          "b_felt_connection": {
+            "type": "noul",
+            "instructions": "Is person B (other) likely to leave this interaction feeling more positively connected to person A (citizen)?"
+          },
+          "felt_tension": {
+            "type": "noul",
+            "instructions": "Is there a meaningful chance this interaction felt tense, awkward, irritating or unpleasant?"
+          },
+          "memorable": {
+            "type": "noul",
+            "instructions": "Is this interaction likely to remain meaningfully memorable to either participant rather than feeling routine?"
+          }
+        }
+      }
+    }
+  ]
+}

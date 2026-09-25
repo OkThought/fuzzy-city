@@ -37,7 +37,7 @@ export default function StatsPanel({
         ["No interaction yet tonight", today.alone],
         ["Mean uncertainty today", today.meanUncertainty.toFixed(3)],
         ["Total typed judgments", world.judgments.toLocaleString()],
-        ["Jev API attempts", world.apiCalls],
+        ["Decision API attempts", world.apiCalls],
         ["Input tokens", world.inputTokens],
         ["Output tokens", world.outputTokens],
         [
@@ -53,12 +53,14 @@ export default function StatsPanel({
       <div className="data-row">
         <span>Estimated API cost</span>
         <span>
-          {pricing.input !== null && pricing.output !== null
-            ? `$${((world.inputTokens * pricing.input + world.outputTokens * pricing.output) / 1e6).toFixed(4)}`
-            : "Not configured"}
+          {world.mode === "jevk5"
+            ? "Local · no API charge"
+            : pricing.input !== null && pricing.output !== null
+              ? `$${((world.inputTokens * pricing.input + world.outputTokens * pricing.output) / 1e6).toFixed(4)}`
+              : "Not configured"}
         </span>
       </div>
-      {pricing.input !== null && (
+      {world.mode !== "jevk5" && pricing.input !== null && (
         <p className="small muted">
           Configured USD / million tokens: input {pricing.input}, output{" "}
           {pricing.output ?? "unknown"}. Usage without a valid response is

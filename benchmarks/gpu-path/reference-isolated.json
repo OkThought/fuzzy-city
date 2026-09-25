@@ -1,0 +1,47 @@
+{
+  "label": "reference-isolated",
+  "fixtureSha256": "eeb2ff27c7c1987c7ec18d7e29a8eaabccf12a11eb07275aac61b397a3a2d5be",
+  "concurrency": 1,
+  "queueDepth": 0,
+  "warmup": [],
+  "records": [],
+  "gpuSamples": [
+    {
+      "time": 1790274854.5317225,
+      "devices": [
+        [
+          8855,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790274855.074418,
+      "devices": [
+        [
+          8807,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790274855.6245358,
+      "devices": [
+        [
+          8806,
+          12282
+        ]
+      ]
+    },
+    {
+      "time": 1790274856.1855302,
+      "devices": [
+        [
+          8803,
+          12282
+        ]
+      ]
+    }
+  ],
+  "error": "URLError(ConnectionRefusedError(10061, 'No connection could be made because the target machine actively refused it', None, 10061, None))"
+}

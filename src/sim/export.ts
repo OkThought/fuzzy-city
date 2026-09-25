@@ -4,7 +4,7 @@ export function exportRun(world: World) {
     schemaVersion: "fuzzy-city/v1",
     config: {
       seed: world.seed,
-      population: 1000,
+      population: world.citizens.length,
       mode: world.mode,
       memoryLimit: 12,
       initialMinute: 990,

@@ -38,8 +38,11 @@ export function dayMetrics(day: number): DayMetrics {
 }
 export function generateCity(
   seed = "fuzzy-city-001",
-  mode: "mock" | "live" = "mock",
+  mode: World["mode"] = "mock",
+  population = 1000,
 ): World {
+  if (![100, 250, 500, 1000].includes(population))
+    throw new Error("Population must be 100, 250, 500 or 1000");
   const rng = new Rng(seed);
   const locations: Location[] = [];
   const specials: Record<string, [Location["kind"], string]> = {
@@ -173,7 +176,7 @@ export function generateCity(
     "Dubois",
     "Flores",
   ];
-  const citizens: Citizen[] = Array.from({ length: 1000 }, (_, i) => {
+  const citizens: Citizen[] = Array.from({ length: population }, (_, i) => {
     const home = rng.pick(homeLocations),
       work = rng.pick(workLocations);
     return {

@@ -1,0 +1,21 @@
+{
+  "jevk5": "0.2.0",
+  "torch": "2.9.1+cu128",
+  "transformers": "5.17.0",
+  "triton-windows": "3.5.1.post24",
+  "flash-linear-attention": "0.5.2",
+  "fla-core": "0.5.2",
+  "model": "alibiserikbay/JevK5",
+  "revision": "27d2d6b8d4714807f6293b0623bd7370b27e42f8",
+  "dtype": "bfloat16",
+  "gpu": "NVIDIA RTX 4070 Ti",
+  "graphCandidate": [
+    1536,
+    3072
+  ],
+  "selectedGraphs": [],
+  "selectedKernels": [
+    "FLA gated delta rule",
+    "FLA Triton causal convolution"
+  ]
+}

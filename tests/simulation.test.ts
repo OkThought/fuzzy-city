@@ -118,7 +118,12 @@ describe("causal simulation", () => {
     expect(a.today.interactions).toBeGreaterThan(100);
     expect(
       a.world.traces.filter((t) => t.kind === "friend_selection"),
-    ).toHaveLength(a.today.activities.visit_friend);
+    ).toHaveLength(
+      a.today.activities.visit_friend -
+        a.world.citizens.filter((c) =>
+          c.currentPlan?.resolution?.startsWith("No eligible contacts."),
+        ).length,
+    );
     expect(a.world.judgments).toBe(
       a.world.traces.reduce(
         (n, t) =>

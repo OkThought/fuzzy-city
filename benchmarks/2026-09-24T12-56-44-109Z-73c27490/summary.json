@@ -1,0 +1,219 @@
+{
+  "id": "2026-09-24T12-56-44-109Z-73c27490",
+  "status": "complete",
+  "provider": "jevk5",
+  "model": "alibiserikbay/JevK5",
+  "config": {
+    "populations": [
+      100,
+      250,
+      500,
+      1000
+    ],
+    "minutes": 35,
+    "concurrency": 1,
+    "seed": "fuzzy-city-001"
+  },
+  "startedAt": "2026-09-24T12:56:44.111Z",
+  "cases": [
+    {
+      "population": 100,
+      "status": "complete",
+      "simulatedMinute": 1025,
+      "evaluatedCitizens": 12,
+      "interactions": 0,
+      "summary": {
+        "elapsedMs": 19240.822499990463,
+        "completedDecisions": 12,
+        "failedDecisions": 0,
+        "judgments": 60,
+        "decisionsPerSecond": 0.6236739619632138,
+        "judgmentsPerSecond": 3.118369809816069,
+        "latencyMs": {
+          "p50": 1871.8117999881506,
+          "p95": 3737.4795999974012
+        },
+        "serviceMs": {
+          "p50": 1673.5278000086546,
+          "p95": 1874.3606999963522
+        },
+        "queueWaitMs": {
+          "p50": 0.05089999735355377,
+          "p95": 1871.1862000077963
+        },
+        "queue": {
+          "current": 0,
+          "peak": 1,
+          "mean": 0.5164063438574745,
+          "peakActive": 1
+        },
+        "vram": {
+          "scope": "whole GPU, all processes",
+          "available": true,
+          "samples": 21,
+          "devices": [
+            {
+              "index": 0,
+              "name": "NVIDIA GeForce RTX 4070 Ti",
+              "peakUsedMiB": 10609,
+              "lastUsedMiB": 10606,
+              "totalMiB": 12282
+            }
+          ],
+          "errors": []
+        },
+        "apiCalls": 12
+      }
+    },
+    {
+      "population": 250,
+      "status": "complete",
+      "simulatedMinute": 1025,
+      "evaluatedCitizens": 30,
+      "interactions": 0,
+      "summary": {
+        "elapsedMs": 46448.65199999511,
+        "completedDecisions": 30,
+        "failedDecisions": 0,
+        "judgments": 150,
+        "decisionsPerSecond": 0.6458745024506449,
+        "judgmentsPerSecond": 3.229372512253225,
+        "latencyMs": {
+          "p50": 4384.338200002909,
+          "p95": 8250.368000000715
+        },
+        "serviceMs": {
+          "p50": 1598.617699995637,
+          "p95": 1872.825100004673
+        },
+        "queueWaitMs": {
+          "p50": 2971.232500001788,
+          "p95": 6588.724399998784
+        },
+        "queue": {
+          "current": 0,
+          "peak": 4,
+          "mean": 1.9789289062685733,
+          "peakActive": 1
+        },
+        "vram": {
+          "scope": "whole GPU, all processes",
+          "available": true,
+          "samples": 48,
+          "devices": [
+            {
+              "index": 0,
+              "name": "NVIDIA GeForce RTX 4070 Ti",
+              "peakUsedMiB": 10604,
+              "lastUsedMiB": 10603,
+              "totalMiB": 12282
+            }
+          ],
+          "errors": []
+        },
+        "apiCalls": 30
+      }
+    },
+    {
+      "population": 500,
+      "status": "complete",
+      "simulatedMinute": 1025,
+      "evaluatedCitizens": 60,
+      "interactions": 0,
+      "summary": {
+        "elapsedMs": 87731.32560001314,
+        "completedDecisions": 60,
+        "failedDecisions": 0,
+        "judgments": 300,
+        "decisionsPerSecond": 0.6839062283585399,
+        "judgmentsPerSecond": 3.4195311417926995,
+        "latencyMs": {
+          "p50": 8348.248999997973,
+          "p95": 14340.320399999619
+        },
+        "serviceMs": {
+          "p50": 1403.3313999921083,
+          "p95": 1871.6240999996662
+        },
+        "queueWaitMs": {
+          "p50": 6680.040799990296,
+          "p95": 12750.1344999969
+        },
+        "queue": {
+          "current": 0,
+          "peak": 9,
+          "mean": 4.551058435162537,
+          "peakActive": 1
+        },
+        "vram": {
+          "scope": "whole GPU, all processes",
+          "available": true,
+          "samples": 89,
+          "devices": [
+            {
+              "index": 0,
+              "name": "NVIDIA GeForce RTX 4070 Ti",
+              "peakUsedMiB": 10819,
+              "lastUsedMiB": 10797,
+              "totalMiB": 12282
+            }
+          ],
+          "errors": []
+        },
+        "apiCalls": 60
+      }
+    },
+    {
+      "population": 1000,
+      "status": "complete",
+      "simulatedMinute": 1025,
+      "evaluatedCitizens": 120,
+      "interactions": 0,
+      "summary": {
+        "elapsedMs": 175167.62260000408,
+        "completedDecisions": 120,
+        "failedDecisions": 0,
+        "judgments": 600,
+        "decisionsPerSecond": 0.6850581073079952,
+        "judgmentsPerSecond": 3.425290536539976,
+        "latencyMs": {
+          "p50": 14956.683499991894,
+          "p95": 28086.19539999962
+        },
+        "serviceMs": {
+          "p50": 1419.797799989581,
+          "p95": 1869.3557000011206
+        },
+        "queueWaitMs": {
+          "p50": 13688.810699999332,
+          "p95": 27009.23440000415
+        },
+        "queue": {
+          "current": 0,
+          "peak": 19,
+          "mean": 9.524175871871202,
+          "peakActive": 1
+        },
+        "vram": {
+          "scope": "whole GPU, all processes",
+          "available": true,
+          "samples": 176,
+          "devices": [
+            {
+              "index": 0,
+              "name": "NVIDIA GeForce RTX 4070 Ti",
+              "peakUsedMiB": 10864,
+              "lastUsedMiB": 10790,
+              "totalMiB": 12282
+            }
+          ],
+          "errors": []
+        },
+        "apiCalls": 120
+      }
+    }
+  ],
+  "phase": "complete",
+  "reportDirectory": "benchmarks/2026-09-24T12-56-44-109Z-73c27490",
+  "finishedAt": "2026-09-24T13:02:19.246Z"
+}

@@ -1,0 +1,36 @@
+{
+  "baseline": "reference-v1",
+  "candidate": "fla-graphs-v1",
+  "speedup": 1.3394680809802018,
+  "maxProbabilityDelta": 0.040705978870391846,
+  "meanProbabilityDelta": 0.007020600946686629,
+  "thresholdOrChoiceFlips": [
+    [
+      "trace_150",
+      "a_felt_connection",
+      false,
+      true
+    ],
+    [
+      "trace_150",
+      "a_felt_connection",
+      false,
+      true
+    ],
+    [
+      "trace_150",
+      "a_felt_connection",
+      false,
+      true
+    ]
+  ],
+  "summary": {
+    "elapsedSeconds": 29.96724189998349,
+    "requests": 27,
+    "decisionsPerSecond": 0.9009838172666426,
+    "judgmentsPerSecond": 3.0032793908888085,
+    "p50Ms": 1086.2313999678008,
+    "p95Ms": 2041.2754000280984,
+    "peakVramMiB": 10402
+  }
+}

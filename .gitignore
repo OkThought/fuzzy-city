@@ -7,3 +7,5 @@ playwright-report/
 *.tsbuildinfo
 .scratch/
 .venv/
+.pnpm-store/
+__pycache__/

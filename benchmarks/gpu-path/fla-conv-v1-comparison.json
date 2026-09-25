@@ -1,0 +1,17 @@
+{
+  "baseline": "reference-v1",
+  "candidate": "fla-conv-v1",
+  "speedup": 1.411078857940924,
+  "maxProbabilityDelta": 0.02147100865840912,
+  "meanProbabilityDelta": 0.0058975931495383735,
+  "thresholdOrChoiceFlips": [],
+  "summary": {
+    "elapsedSeconds": 28.446435699996073,
+    "requests": 27,
+    "decisionsPerSecond": 0.9491523045189006,
+    "judgmentsPerSecond": 3.163841015063002,
+    "p50Ms": 1120.6158999702893,
+    "p95Ms": 1903.2509999815375,
+    "peakVramMiB": 10846
+  }
+}

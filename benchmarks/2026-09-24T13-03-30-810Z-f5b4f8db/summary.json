@@ -1,0 +1,71 @@
+{
+  "id": "2026-09-24T13-03-30-810Z-f5b4f8db",
+  "status": "failed",
+  "provider": "jevk5",
+  "model": "alibiserikbay/JevK5",
+  "config": {
+    "populations": [
+      100
+    ],
+    "minutes": 390,
+    "concurrency": 1,
+    "seed": "fuzzy-city-001"
+  },
+  "startedAt": "2026-09-24T13:03:30.811Z",
+  "cases": [
+    {
+      "population": 100,
+      "status": "failed",
+      "simulatedMinute": 1080,
+      "evaluatedCitizens": 100,
+      "interactions": 0,
+      "summary": {
+        "elapsedMs": 209925.81219999492,
+        "completedDecisions": 104,
+        "failedDecisions": 1,
+        "judgments": 504,
+        "decisionsPerSecond": 0.4954131124233541,
+        "judgmentsPerSecond": 2.400848160205485,
+        "latencyMs": {
+          "p50": 1843.0266000032425,
+          "p95": 3456.735799998045
+        },
+        "serviceMs": {
+          "p50": 1552.9831000119448,
+          "p95": 1848.8682000041008
+        },
+        "queueWaitMs": {
+          "p50": 0.010600000619888306,
+          "p95": 1829.8173999935389
+        },
+        "queue": {
+          "current": 0,
+          "peak": 1,
+          "mean": 0.35487614705063447,
+          "peakActive": 1
+        },
+        "vram": {
+          "scope": "whole GPU, all processes",
+          "available": true,
+          "samples": 210,
+          "devices": [
+            {
+              "index": 0,
+              "name": "NVIDIA GeForce RTX 4070 Ti",
+              "peakUsedMiB": 11842,
+              "lastUsedMiB": 11810,
+              "totalMiB": 12282
+            }
+          ],
+          "errors": []
+        },
+        "apiCalls": 104
+      },
+      "error": "jevk5 timeout or network failure"
+    }
+  ],
+  "phase": "failed",
+  "reportDirectory": "benchmarks/2026-09-24T13-03-30-810Z-f5b4f8db",
+  "error": "jevk5 timeout or network failure",
+  "finishedAt": "2026-09-24T13:07:02.897Z"
+}

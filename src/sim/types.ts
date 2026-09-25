@@ -6,7 +6,7 @@ export type Activity =
   | "cafe"
   | "park"
   | "explore";
-export type Source = "jev" | "mock" | "fallback";
+export type Source = "jev" | "jevk5" | "mock" | "fallback";
 export type Kind =
   | "evening_intentions"
   | "friend_selection"
@@ -114,6 +114,9 @@ export interface Job {
   state: DecisionState;
 }
 export interface Evaluation {
+  provider?: "jevk5" | "typesafe" | "mock";
+  queueMs?: number;
+  serviceMs?: number;
   source: Source;
   model: string;
   answers: Probabilities;
@@ -187,7 +190,7 @@ export interface World {
   outputTokens: number;
   friendsResolvedDay: number;
   rngState: number;
-  mode: "mock" | "live";
+  mode: "mock" | "live" | "jevk5";
 }
 export const ACTIVITIES: Activity[] = [
   "home_rest",

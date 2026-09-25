@@ -1,11 +1,12 @@
 import { validJob } from "../../../../ai/jevApiTypes";
-import { evaluateLive, serverPool } from "../../../../ai/jevServer";
-import { mockEvaluation } from "../../../../ai/mockEngine";
+import { providerService } from "../../../../ai/providerService";
 export const runtime = "nodejs";
 export const maxDuration = 120;
 export async function POST(request: Request) {
   const origin = request.headers.get("origin");
-  if (origin && origin !== new URL(request.url).origin)
+  const url = new URL(request.url);
+  const expectedOrigin = `${url.protocol}//${request.headers.get("host") || url.host}`;
+  if (origin && origin !== expectedOrigin)
     return Response.json({ error: "Origin not allowed" }, { status: 403 });
   let body: unknown;
   try {
@@ -28,25 +29,25 @@ export async function POST(request: Request) {
       { status: 400 },
     );
   try {
-    const results = await Promise.all(
-      jobs.map((job) =>
-        serverPool.run(async () =>
-          process.env.JEV_MODE === "live"
-            ? evaluateLive(job, {
-                key: process.env.TYPESAFE_API_KEY ?? "",
-                model: process.env.TYPESAFE_MODEL || "jev-latest",
-              })
-            : mockEvaluation(job),
-        ),
-      ),
-    );
+    const service = providerService();
+    if (service.benchmarkActive)
+      return Response.json(
+        { error: "Benchmark owns the provider. Wait for it to finish." },
+        { status: 409 },
+      );
+    const results = await service.engine.evaluate(jobs);
     return Response.json(
       { results },
       { headers: { "Cache-Control": "no-store" } },
     );
-  } catch {
+  } catch (error) {
     return Response.json(
-      { error: "Decision queue full. Try later." },
+      {
+        error:
+          error instanceof Error
+            ? error.message
+            : "Decision backend unavailable",
+      },
       { status: 503 },
     );
   }
