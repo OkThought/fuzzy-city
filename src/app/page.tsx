@@ -9,7 +9,8 @@ export default function Page() {
       : null;
   return (
     <FuzzyCity
-      mode={provider === "typesafe" ? "live" : provider}
+      mode={provider === "typesafe" || provider === "vercel" ? "live" : provider}
+      hostedProvider={provider === "vercel" ? "vercel" : "typesafe"}
       pricing={{
         input: price(process.env.JEV_INPUT_PRICE_PER_MILLION),
         output: price(process.env.JEV_OUTPUT_PRICE_PER_MILLION),

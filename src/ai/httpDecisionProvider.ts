@@ -21,6 +21,8 @@ export class HttpDecisionProvider implements DecisionProvider {
     request: SystemOneRequest,
     signal?: AbortSignal,
   ): Promise<ProviderResult> {
+    if (this.id === "vercel" && !this.config.key)
+      throw new ProviderError("Vercel AI Gateway requires AI_GATEWAY_API_KEY.");
     if (this.id === "typesafe" && !this.config.key)
       throw new ProviderError(
         "TypeSafe requires a server key. Choose jevk5 for local inference.",

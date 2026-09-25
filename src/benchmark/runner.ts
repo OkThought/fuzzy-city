@@ -107,7 +107,7 @@ export async function runBenchmark(
       status.phase = `${population} citizens · unmeasured warm-up`;
       const world = generateCity(
         status.config.seed,
-        provider.id === "typesafe" ? "live" : provider.id,
+        provider.id === "typesafe" || provider.id === "vercel" ? "live" : provider.id,
         population,
       );
       const warmupEngine = new ProviderDecisionEngine(provider);

@@ -135,6 +135,70 @@ describe("local decision providers", () => {
     expect(() => providerConfig({ DECISION_CONCURRENCY: "1000" })).toThrow();
   });
 });
+describe("Vercel AI Gateway Jev provider", () => {
+  it("uses the gateway key, compatible endpoint and Jev model without changing judgments", async () => {
+    const config = providerConfig({
+      JEV_PROVIDER: "vercel",
+      AI_GATEWAY_API_KEY: "gateway-test-secret",
+      TYPESAFE_API_KEY: "unused-typesafe-secret",
+      DECISION_API_BASE_URL: "https://old.example.test",
+      DECISION_MODEL: "old-model",
+    });
+    expect(config).toMatchObject({
+      id: "vercel",
+      baseUrl: "https://ai-gateway.vercel.sh/typesafe",
+      model: "typesafe-ai/jev",
+      key: "gateway-test-secret",
+      concurrency: 8,
+    });
+    const fetcher = vi.fn<typeof fetch>().mockResolvedValue(
+      Response.json({ ...envelope, model: "typesafe-ai/jev" }),
+    );
+    const engine = new ProviderDecisionEngine(
+      new HttpDecisionProvider(config, fetcher),
+    );
+    const [result] = await engine.evaluate([job]);
+    expect(fetcher).toHaveBeenCalledTimes(1);
+    const [url, init] = fetcher.mock.calls[0];
+    expect(url).toBe("https://ai-gateway.vercel.sh/typesafe/v1/systemone");
+    expect(init?.headers).toHaveProperty("Authorization", "Bearer gateway-test-secret");
+    expect(JSON.parse(String(init?.body))).toEqual({
+      model: "typesafe-ai/jev",
+      state: job.state,
+      questions: questionsFor(job),
+    });
+    expect(result).toMatchObject({
+      source: "jev",
+      provider: "vercel",
+      model: "typesafe-ai/jev",
+      answers: Object.fromEntries(Object.keys(questionsFor(job)).map((key) => [key, 0.65])),
+      inputTokens: 4200,
+      outputTokens: 0,
+      apiCalls: 1,
+    });
+    expect(JSON.stringify(result)).not.toContain("gateway-test-secret");
+  });
+
+  it("fails before sending a request when the gateway key is absent", async () => {
+    const fetcher = vi.fn<typeof fetch>();
+    const engine = new ProviderDecisionEngine(
+      new HttpDecisionProvider(providerConfig({ JEV_PROVIDER: "vercel" }), fetcher),
+    );
+    await expect(engine.evaluate([job])).rejects.toThrow("AI_GATEWAY_API_KEY");
+    expect(fetcher).not.toHaveBeenCalled();
+  });
+
+  it("keeps direct TypeSafe available only when explicitly selected", () => {
+    expect(providerConfig({
+      JEV_PROVIDER: "typesafe",
+      TYPESAFE_API_KEY: "direct-test-secret",
+    })).toMatchObject({
+      baseUrl: "https://api.typesafe.ai",
+      model: "jev-latest",
+      key: "direct-test-secret",
+    });
+  });
+});
 describe("stress workload and measurement integrity", () => {
   it.each([100, 250, 500, 1000])(
     "simulates a complete %i-citizen evening with valid contacts and real interactions",

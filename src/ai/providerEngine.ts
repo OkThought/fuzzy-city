@@ -73,7 +73,7 @@ export class ProviderDecisionEngine implements DecisionEngine {
         this.observe?.(measurement);
         return {
           ...data,
-          source: this.provider.id === "typesafe" ? "jev" : this.provider.id,
+          source: this.provider.id === "typesafe" || this.provider.id === "vercel" ? "jev" : this.provider.id,
           provider: this.provider.id,
           latencyMs: measurement.latencyMs,
           queueMs: measurement.queueMs,

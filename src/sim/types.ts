@@ -114,7 +114,7 @@ export interface Job {
   state: DecisionState;
 }
 export interface Evaluation {
-  provider?: "jevk5" | "typesafe" | "mock";
+  provider?: "jevk5" | "vercel" | "typesafe" | "mock";
   queueMs?: number;
   serviceMs?: number;
   source: Source;

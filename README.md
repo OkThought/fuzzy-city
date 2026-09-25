@@ -2,7 +2,7 @@
 
 1,000 simulated citizens. No generated dialogue. A Canvas city where typed probabilistic judgments shape evenings, encounters and tomorrow’s relationships.
 
-**Defaults to local JevK5 v0.2.0. No paid API key is required.** Inference goes through a server-side `DecisionProvider` using the TypeSafe `/v1/systemone` contract. Traces distinguish local JevK5, hosted Jev, mock and historical fallback evaluations. Counters count returned questions, never projected usage.
+Inference goes through a server-side `DecisionProvider` using the TypeSafe `/v1/systemone` contract. The documented hosted setup uses Vercel AI Gateway; an unset provider still defaults to local JevK5 v0.2.0. Traces distinguish local JevK5, hosted Jev, mock and historical fallback evaluations. Counters count returned questions, never projected usage.
 
 ## Run locally
 
@@ -57,21 +57,20 @@ This architecture asks what happens when semantic judgment becomes a primitive i
 
 ## Decision backend
 
-Defaults (also in `.env.example`):
+For hosted Jev, put this in `.env.local` (also shown in `.env.example`):
 
 ```dotenv
-DECISION_PROVIDER=jevk5
-DECISION_API_BASE_URL=http://127.0.0.1:8090
-DECISION_MODEL=alibiserikbay/JevK5
-DECISION_CONCURRENCY=1
-DECISION_TIMEOUT_MS=60000
+JEV_PROVIDER=vercel
+AI_GATEWAY_API_KEY=<your Vercel AI Gateway key>
 ```
 
-No key or placeholder is needed. The browser only calls `/api/jev/batch`; it never receives a backend credential. The provider boundary accepts `model`, shared `state` and named typed `questions`, and validates the official TypeSafe Noul/Choice answer envelope, full distributions and token usage. `MockDecisionProvider` implements the same boundary.
+The server uses the key to call `https://ai-gateway.vercel.sh/typesafe/v1/systemone` with model `typesafe-ai/jev`. The browser only calls `/api/jev/batch`; it never receives a backend credential. The provider boundary accepts `model`, shared `state` and named typed `questions`, and validates the official TypeSafe Noul/Choice answer envelope, full distributions and token usage. `MockDecisionProvider` implements the same boundary. The [Gateway's TypeSafe-compatible API](https://vercel.com/docs/ai-gateway/sdks-and-apis/typesafe) preserves this request and response format.
+
+For local inference, use `JEV_PROVIDER=jevk5` with the values in [`config/jevk5.env.example`](config/jevk5.env.example); no key is needed. Direct TypeSafe access remains available with `JEV_PROVIDER=typesafe` and `TYPESAFE_API_KEY`. `DECISION_PROVIDER` remains a legacy alias when `JEV_PROVIDER` is absent; `JEV_MODE=mock|live` remains recognized after that. Vercel mode pins the Gateway endpoint and model, even if older `DECISION_API_BASE_URL` or `DECISION_MODEL` values remain in `.env.local`.
 
 The local server serializes inference on one GPU, so one in-flight request is the default. Concurrency is configurable from 1 to 8 for stress testing. The application queue is bounded, order-preserving, and pauses the clock at decision boundaries while rendering continues. HTTP 429/5xx use at most three attempts with bounded backoff. Local socket timeouts are not retried into duplicate GPU work. Invalid responses or exhausted failures stop the run, with no mock substitution. Benchmark cancellation drains admitted inference and skips queued work.
 
-Hosted TypeSafe remains optional: explicitly set `DECISION_PROVIDER=typesafe`, `DECISION_API_BASE_URL=https://api.typesafe.ai`, `DECISION_MODEL=jev-latest` and a server-only `DECISION_API_KEY`. It is not needed for local operation. Legacy `JEV_MODE=mock|live` is recognized only when `DECISION_PROVIDER` is absent. Existing fallback traces remain readable; the old hosted compatibility helper is not used by the application.
+Hosted providers use the existing bounded queue and retry policy. Existing fallback traces remain readable; the old hosted compatibility helper is not used by the application.
 
 API totals count acknowledged upstream attempts. Tokens come from validated response usage. Set the optional configured token prices only for hosted inference; local GPU work is not a paid API call. The adapter follows the [official TypeSafe contract](https://docs.typesafe.ai/api).
 

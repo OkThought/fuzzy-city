@@ -1,7 +1,7 @@
 import type { Question } from "./jevApiTypes";
 import type { DecisionState } from "../sim/types";
 
-export type ProviderId = "jevk5" | "typesafe" | "mock";
+export type ProviderId = "jevk5" | "vercel" | "typesafe" | "mock";
 /** The provider boundary is the TypeSafe /v1/systemone wire contract. */
 export interface SystemOneRequest {
   model: string;

@@ -15,9 +15,11 @@ import StatsPanel from "./StatsPanel";
 
 export default function FuzzyCity({
   mode,
+  hostedProvider,
   pricing,
 }: {
   mode: World["mode"];
+  hostedProvider: "vercel" | "typesafe";
   pricing: { input: number | null; output: number | null };
 }) {
   const [simulation, setSimulation] = useState<Simulation>();
@@ -199,7 +201,7 @@ export default function FuzzyCity({
               ? "MOCK MODEL"
               : mode === "jevk5"
                 ? "LOCAL JEVK5"
-                : "TYPESAFE JEV"}
+                : hostedProvider === "vercel" ? "VERCEL JEV" : "TYPESAFE JEV"}
           </span>
           <button className="export-button" onClick={() => downloadRun(w)}>
             Export run <span>↗</span>
@@ -420,7 +422,7 @@ export default function FuzzyCity({
                         ? "This run uses a deterministic mock model. It makes no AI API calls. Cultural effects in mock mode use a small, documented keyword heuristic."
                         : mode === "jevk5"
                           ? "This run uses local JevK5 inference on your GPU. No paid API key is required. Backend failures pause the simulation; no mock answers are substituted."
-                          : "This run uses TypeSafe Jev. Backend failures pause the simulation."}
+                          : `This run uses Jev through ${hostedProvider === "vercel" ? "Vercel AI Gateway" : "TypeSafe"}. Backend failures pause the simulation.`}
                     </p>
                     <p>
                       Version 0.1 · One Thousand Evenings
@@ -453,7 +455,7 @@ export default function FuzzyCity({
                           ? "MOCK"
                           : mode === "jevk5"
                             ? "JEVK5 · LOCAL"
-                            : "TYPESAFE JEV"}{" "}
+                            : hostedProvider === "vercel" ? "VERCEL JEV" : "TYPESAFE JEV"}{" "}
                         / TYPED PROBABILITIES
                       </span>
                       <span>↗</span>

@@ -178,6 +178,8 @@ describe("Jev contract and graceful failures", () => {
     ]) {
       const source = readFileSync(file, "utf8");
       expect(source).not.toContain("TYPESAFE_API_KEY");
+      expect(source).not.toContain("AI_GATEWAY_API_KEY");
+      expect(source).not.toContain("httpDecisionProvider");
       expect(source).not.toContain("jevServer");
     }
   });

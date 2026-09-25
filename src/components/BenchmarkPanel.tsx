@@ -126,7 +126,7 @@ export default function BenchmarkPanel() {
               ? "LOCAL GPU · NO PAID KEY"
               : provider === "mock"
                 ? "MOCK · NOT AN INFERENCE BENCHMARK"
-                : provider === "typesafe"
+                : provider === "typesafe" || provider === "vercel"
                   ? "HOSTED API"
                   : "CHECKING BACKEND"}
           </span>
