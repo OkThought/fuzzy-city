@@ -1,0 +1,185 @@
+{
+  "version": "fuzzy-city-replay/v1",
+  "recording": {
+    "id": "milestone-one-jevk5",
+    "sourceFormat": "fuzzy-city-recording/v2",
+    "rules": "fuzzy-city-rules/v1",
+    "seed": "milestone-one-jevk5",
+    "population": 100,
+    "provider": "jevk5",
+    "model": "alibiserikbay/JevK5",
+    "snapshot": "27d2d6b8d4714807f6293b0623bd7370b27e42f8",
+    "kernel": "optimized-fla-triton-no-graphs",
+    "startedAt": "2026-09-25T12:47:06.666Z",
+    "endedAt": "2026-09-25T12:53:13.127Z",
+    "wallTimeMs": 366461,
+    "status": "failed",
+    "completedEvenings": 0,
+    "journalCount": 92,
+    "judgments": 460,
+    "apiCalls": 92,
+    "uncertaintyNote": "jevk5 timeout or network failure; 2 ambiguous remote attempts."
+  },
+  "frames": [
+    {
+      "id": "day-1-minute-0990",
+      "day": 1,
+      "minute": 990,
+      "journalCount": 0,
+      "snapshot": {
+        "url": "/recordings/milestone-one-jevk5/frames/day-1-minute-0990.json",
+        "sha256": "60c080cd6f4df21beaad82656b8526e2afe77386422ca35242df472bc1473f14",
+        "bytes": 238453
+      },
+      "history": [
+        {
+          "url": "/recordings/milestone-one-jevk5/history/history-00000.json",
+          "sha256": "8d41b45e411a0a77139c37d8b31612ceda8ed2d7b1f8887d877a612f0f7923f8",
+          "bytes": 169
+        }
+      ]
+    },
+    {
+      "id": "day-1-minute-1005",
+      "day": 1,
+      "minute": 1005,
+      "journalCount": 0,
+      "snapshot": {
+        "url": "/recordings/milestone-one-jevk5/frames/day-1-minute-1005.json",
+        "sha256": "b9a502da70cd5bccfaf8c8b0226e0b105f9a0428bedb1ddd1d6cbcc52d557ca2",
+        "bytes": 239953
+      },
+      "history": [
+        {
+          "url": "/recordings/milestone-one-jevk5/history/history-00000.json",
+          "sha256": "8d41b45e411a0a77139c37d8b31612ceda8ed2d7b1f8887d877a612f0f7923f8",
+          "bytes": 169
+        }
+      ]
+    },
+    {
+      "id": "day-1-minute-1020",
+      "day": 1,
+      "minute": 1020,
+      "journalCount": 2,
+      "snapshot": {
+        "url": "/recordings/milestone-one-jevk5/frames/day-1-minute-1020.json",
+        "sha256": "35efe429aa988e89cef026a9bf53ccb03c02f6bbefd5892022d678d6c32d1971",
+        "bytes": 240764
+      },
+      "history": [
+        {
+          "url": "/recordings/milestone-one-jevk5/history/history-00000.json",
+          "sha256": "8d41b45e411a0a77139c37d8b31612ceda8ed2d7b1f8887d877a612f0f7923f8",
+          "bytes": 169
+        },
+        {
+          "url": "/recordings/milestone-one-jevk5/history/history-00001.json",
+          "sha256": "b109f8cce88d262bcabfd8417d878169c39b22977c4c9a07e5d9d11d8734a30b",
+          "bytes": 6223
+        }
+      ]
+    },
+    {
+      "id": "day-1-minute-1035",
+      "day": 1,
+      "minute": 1035,
+      "journalCount": 32,
+      "snapshot": {
+        "url": "/recordings/milestone-one-jevk5/frames/day-1-minute-1035.json",
+        "sha256": "2702a67157ae25cd4bb83482afe50fe893334ae0123dfc8c0849e73e6a6d6f8e",
+        "bytes": 251131
+      },
+      "history": [
+        {
+          "url": "/recordings/milestone-one-jevk5/history/history-00000.json",
+          "sha256": "8d41b45e411a0a77139c37d8b31612ceda8ed2d7b1f8887d877a612f0f7923f8",
+          "bytes": 169
+        },
+        {
+          "url": "/recordings/milestone-one-jevk5/history/history-00001.json",
+          "sha256": "b109f8cce88d262bcabfd8417d878169c39b22977c4c9a07e5d9d11d8734a30b",
+          "bytes": 6223
+        },
+        {
+          "url": "/recordings/milestone-one-jevk5/history/history-00002.json",
+          "sha256": "345a2c021f8fbe53e1ebdb111f559c04f8256625ed9c7b4c6101efcfb89fd3d8",
+          "bytes": 94132
+        }
+      ]
+    },
+    {
+      "id": "day-1-minute-1050",
+      "day": 1,
+      "minute": 1050,
+      "journalCount": 62,
+      "snapshot": {
+        "url": "/recordings/milestone-one-jevk5/frames/day-1-minute-1050.json",
+        "sha256": "3c3ec11258d2b527580f810c9cbebc065f4532eaccaac22e8394f6d5ee98a43a",
+        "bytes": 261060
+      },
+      "history": [
+        {
+          "url": "/recordings/milestone-one-jevk5/history/history-00000.json",
+          "sha256": "8d41b45e411a0a77139c37d8b31612ceda8ed2d7b1f8887d877a612f0f7923f8",
+          "bytes": 169
+        },
+        {
+          "url": "/recordings/milestone-one-jevk5/history/history-00001.json",
+          "sha256": "b109f8cce88d262bcabfd8417d878169c39b22977c4c9a07e5d9d11d8734a30b",
+          "bytes": 6223
+        },
+        {
+          "url": "/recordings/milestone-one-jevk5/history/history-00002.json",
+          "sha256": "345a2c021f8fbe53e1ebdb111f559c04f8256625ed9c7b4c6101efcfb89fd3d8",
+          "bytes": 94132
+        },
+        {
+          "url": "/recordings/milestone-one-jevk5/history/history-00003.json",
+          "sha256": "b0abf8dc78d0d06746b5fe3257b0c2adda06fc121e87528520c5315a062b8474",
+          "bytes": 93887
+        }
+      ]
+    },
+    {
+      "id": "day-1-minute-1065",
+      "day": 1,
+      "minute": 1065,
+      "journalCount": 92,
+      "snapshot": {
+        "url": "/recordings/milestone-one-jevk5/frames/day-1-minute-1065.json",
+        "sha256": "4a471546e3270fe90465f710562d911162063d858e7499d99e307e8e65f72549",
+        "bytes": 270406
+      },
+      "history": [
+        {
+          "url": "/recordings/milestone-one-jevk5/history/history-00000.json",
+          "sha256": "8d41b45e411a0a77139c37d8b31612ceda8ed2d7b1f8887d877a612f0f7923f8",
+          "bytes": 169
+        },
+        {
+          "url": "/recordings/milestone-one-jevk5/history/history-00001.json",
+          "sha256": "b109f8cce88d262bcabfd8417d878169c39b22977c4c9a07e5d9d11d8734a30b",
+          "bytes": 6223
+        },
+        {
+          "url": "/recordings/milestone-one-jevk5/history/history-00002.json",
+          "sha256": "345a2c021f8fbe53e1ebdb111f559c04f8256625ed9c7b4c6101efcfb89fd3d8",
+          "bytes": 94132
+        },
+        {
+          "url": "/recordings/milestone-one-jevk5/history/history-00003.json",
+          "sha256": "b0abf8dc78d0d06746b5fe3257b0c2adda06fc121e87528520c5315a062b8474",
+          "bytes": 93887
+        },
+        {
+          "url": "/recordings/milestone-one-jevk5/history/history-00004.json",
+          "sha256": "2368bb9e6f9ad2f4b2f20f7f467dd92db0a5cbe5ce330ea8b04dbd8a915434bf",
+          "bytes": 95895
+        }
+      ]
+    }
+  ],
+  "initialBytes": 244933,
+  "totalBytes": 1798384
+}

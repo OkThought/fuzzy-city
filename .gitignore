@@ -9,5 +9,5 @@ playwright-report/
 .venv/
 .pnpm-store/
 __pycache__/
-recordings/
+/recordings/
 .recording-gpu.lock

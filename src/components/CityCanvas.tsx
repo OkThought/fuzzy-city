@@ -379,7 +379,7 @@ export default function CityCanvas({
     <div ref={wrapper} className="map-wrap">
       <canvas
         ref={canvas}
-        aria-label="City map with 1,000 simulated citizens. Drag to pan, scroll to zoom, click a citizen to inspect."
+        aria-label={`City map with ${world.citizens.length.toLocaleString()} simulated citizens. Drag to pan, scroll to zoom, click a citizen to inspect.`}
         data-population={world.citizens.length}
         tabIndex={0}
         onKeyDown={(event) => {

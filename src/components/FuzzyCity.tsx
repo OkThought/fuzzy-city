@@ -168,6 +168,7 @@ export default function FuzzyCity({
           </span>
         </a>
         <nav className="main-nav" aria-label="Main navigation">
+          <a href="/replay">Recorded replay ↗</a>
           <a href="/benchmark">Benchmark ↗</a>
           <button
             className={panel === "city" ? "active" : ""}
