@@ -5,6 +5,7 @@ import {
   stopBenchmark,
 } from "../../../benchmark/service";
 import { providerService } from "../../../ai/providerService";
+import { recordingOwnsGpu } from "../../../ai/recordingLock";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 function local(request: Request) {
@@ -31,6 +32,7 @@ export async function GET() {
   );
 }
 export async function POST(request: Request) {
+  if (recordingOwnsGpu()) return Response.json({ error: "Recorder owns the local GPU." }, { status: 409 });
   if (!local(request))
     return Response.json(
       { error: "Start stress tests from localhost." },

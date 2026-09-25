@@ -5,6 +5,8 @@ Uses upstream HTTP handling, weights, prompts, calibration and readout unchanged
 import argparse
 import inspect
 import json
+import importlib.metadata
+import sys
 from http.server import ThreadingHTTPServer
 
 parser = argparse.ArgumentParser()
@@ -42,6 +44,19 @@ if lengths:
         raise ValueError('Use at most three graph lengths between 128 and 4096')
     model.capture(lengths)
 print(json.dumps({'model': args.model, 'revision':args.revision, 'kernels':args.kernels, 'tritonConv':args.triton_conv, 'graphLengths':lengths, 'torch':torch.__version__, 'allocatedMiB':torch.cuda.memory_allocated() // 1048576, 'reservedMiB':torch.cuda.memory_reserved() // 1048576}), flush=True)
-server = ThreadingHTTPServer(('127.0.0.1', args.port), make_handler(model, args.model))
+UpstreamHandler = make_handler(model, args.model)
+class Handler(UpstreamHandler):
+    def do_GET(self):
+        if self.path.rstrip('/') == '/health':
+            self._send(200, {
+                'ok': True, 'model': args.model, 'revision': args.revision,
+                'kernels': args.kernels, 'tritonConv': args.triton_conv,
+                'graphLengths': lengths, 'torch': torch.__version__,
+                'cuda': torch.version.cuda, 'python': sys.version.split()[0],
+                'jevk5': importlib.metadata.version('jevk5'),
+            })
+        else:
+            super().do_GET()
+server = ThreadingHTTPServer(('127.0.0.1', args.port), Handler)
 print(f'serving on http://127.0.0.1:{args.port}', flush=True)
 server.serve_forever()

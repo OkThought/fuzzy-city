@@ -1,5 +1,6 @@
 import { validJob } from "../../../../ai/jevApiTypes";
 import { providerService } from "../../../../ai/providerService";
+import { recordingOwnsGpu } from "../../../../ai/recordingLock";
 export const runtime = "nodejs";
 export const maxDuration = 120;
 export async function POST(request: Request) {
@@ -29,6 +30,7 @@ export async function POST(request: Request) {
       { status: 400 },
     );
   try {
+    if (recordingOwnsGpu()) return Response.json({ error: "Recorder owns the local GPU." }, { status: 409 });
     const service = providerService();
     if (service.benchmarkActive)
       return Response.json(
