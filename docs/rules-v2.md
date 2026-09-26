@@ -1,6 +1,21 @@
 # Simulation rules v2
 
-`fuzzy-city-rules/v2` is a correction release prepared after the three-evening rules-v1 pilot. It is not fitted to create more dramatic stories, and no real v2 inference recording has been run.
+`fuzzy-city-rules/v2` is a correction release prepared after the three-evening rules-v1 pilot. It is not fitted to create more dramatic stories.
+
+## Replacement-pilot freeze
+
+Reviewed and frozen before inference on 26 September 2026:
+
+- the constants below are accepted unchanged for one bounded replacement pilot;
+- population is exactly 1,000 and the fixed seed is `fuzzy-city-rules-v2-pilot-001`;
+- the target is three completed evenings under `fuzzy-city-rules/v2`;
+- inference is local JevK5 only, at provider concurrency one, with no provider mixing or mock fallback;
+- the elapsed-run hard limit is two hours;
+- output is the fresh immutable directory `recordings/pilot-1000-3e-rules-v2-2026-09-26`; the rules-v1 pilot is not resumed or modified.
+
+The deterministic-mock satisfaction saturation is accepted as a **known limitation of the mock soak for this diagnostic pilot only**. The mock fixture produces only positive centered relationship deltas, so its 653–702 citizens at maximum satisfaction after fourteen evenings does not establish that real JevK5 will saturate in the same way. It also does not establish that satisfaction is healthy: satisfaction was outside the correction set, remains unchanged, and its lower/upper boundary counts must be reported from the real three-evening pilot. Any material real saturation is a review finding, not a reason to tune this frozen run or proceed to fourteen evenings.
+
+This freeze authorizes only the replacement pilot and its replay/measurement work. It does not authorize a fourteen-evening recording, deployment, publication, or outreach.
 
 ## Frozen constants
 
@@ -51,4 +66,4 @@ Run the soak with:
 pnpm rules:v2:soak
 ```
 
-Do not run the real v2 pilot until these constants and the remaining satisfaction limitation are explicitly reviewed and frozen. That decision and bounded execution are tracked in [GitHub issue #1](https://github.com/OkThought/fuzzy-city/issues/1).
+The review above closes the pre-inference decision gate for the bounded replacement pilot. Its execution and evidence remain tracked in [GitHub issue #1](https://github.com/OkThought/fuzzy-city/issues/1).
