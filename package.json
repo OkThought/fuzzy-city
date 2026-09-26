@@ -16,8 +16,10 @@
     "test:browser": "playwright test",
     "benchmark": "tsx scripts/benchmark.ts",
     "record": "tsx scripts/record.ts",
-    "replay:bundle": "tsx scripts/build-replay.ts",
-    "pilot:analyze": "tsx scripts/analyze-pilot.ts"
+    "replay:bundle": "tsx scripts/build-replay-v2.ts",
+    "replay:bundle:v1": "tsx scripts/build-replay.ts",
+    "pilot:analyze": "tsx scripts/analyze-pilot.ts",
+    "rules:v2:soak": "tsx scripts/soak-rules-v2.ts"
   },
   "dependencies": {
     "motion": "latest",

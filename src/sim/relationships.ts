@@ -6,6 +6,7 @@ import {
   type Relationship,
   type World,
 } from "./types";
+import { CURRENT_RULES, type SimulationRules } from "./rules";
 export const isFriend = (r: Relationship) =>
   r.affinity > 0.35 && r.familiarity > 0.2;
 export function applyInteraction(
@@ -13,6 +14,7 @@ export function applyInteraction(
   a: Citizen,
   b: Citizen,
   trace: DecisionTrace,
+  rules: SimulationRules = CURRENT_RULES,
 ): { newFriends: number; deltaA: number; deltaB: number } {
   let newFriends = 0;
   const deltas: number[] = [];
@@ -32,10 +34,16 @@ export function applyInteraction(
     });
     const wasFriend = isFriend(r),
       old = r.affinity;
+    const connectionSignal = rules.relationship.centerConnection
+      ? 2 * connection - 1
+      : connection;
+    const tensionSignal = rules.relationship.centerTension
+      ? 2 * trace.answers.felt_tension - 1
+      : trace.answers.felt_tension;
     r.affinity = clamp(
       r.affinity +
-        0.08 * (2 * connection - 1) -
-        0.06 * trace.answers.felt_tension,
+        rules.relationship.connectionWeight * connectionSignal -
+        rules.relationship.tensionWeight * tensionSignal,
       -1,
       1,
     );
@@ -49,7 +57,9 @@ export function applyInteraction(
     if (!from.knownPeople.includes(to.id)) from.knownPeople.push(to.id);
     from.lastContactDay = world.day;
     from.interactedDay = world.day;
-    from.state.socialNeed = clamp(from.state.socialNeed - 0.3 * connection);
+    from.state.socialNeed = clamp(
+      from.state.socialNeed - rules.relationship.socialNeedRelief * connection,
+    );
     from.state.satisfaction = clamp(from.state.satisfaction + delta);
     if (trace.answers.memorable > 0.65) {
       from.recentMemories.push({

@@ -4,6 +4,7 @@ import type { DecisionEngine } from "../ai/decisionEngine";
 import type { Evaluation, Job } from "../sim/types";
 import { questionsFor } from "../ai/jevApiTypes";
 import { canonical, FORMAT, requestHash, sha, type JournalEntry } from "./format";
+import { CURRENT_RULES, type RulesId } from "../sim/rules";
 
 function validateEvaluation(job: Job, result: Evaluation, provider: string, model: string) {
   if (result.source === "fallback" || result.error || result.provider !== provider || result.model !== model) throw new Error(`Invalid provider result for ${job.id}`);
@@ -23,13 +24,14 @@ export class JournalEngine implements DecisionEngine {
     private readonly live: DecisionEngine | undefined,
     start = 0,
     private readonly shouldStop: () => boolean = () => false,
+    private readonly rules: RulesId = CURRENT_RULES.id,
   ) { this.cursor = start; }
   async evaluate(jobs: Job[]): Promise<Evaluation[]> {
     const results: Evaluation[] = [];
     for (const job of jobs) {
       if (this.shouldStop()) throw new RecordingStopped();
       const questions = questionsFor(job);
-      const key = requestHash(job, questions, this.configuration);
+      const key = requestHash(job, questions, this.configuration, this.rules);
       const old = this.entries[this.cursor];
       if (old) {
         if (old.requestHash !== key || canonical(old.job) !== canonical(job) || canonical(old.configuration) !== canonical(this.configuration)) throw new Error(`Recorded request mismatch at sequence ${this.cursor}: ${job.id}`);

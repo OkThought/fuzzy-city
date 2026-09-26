@@ -12,9 +12,10 @@ import { sampleGpu } from "../src/benchmark/gpu";
 import { JournalEngine, RecordingStopped } from "../src/recording/engine";
 import { codeIdentity, durableWrite, FORMAT, loadCheckpoint, loadJournal, readJson, RULES, saveCheckpoint, sha, type JournalEntry } from "../src/recording/format";
 import type { World } from "../src/sim/types";
+import { rulesFor, type RulesId } from "../src/sim/rules";
 
 interface Manifest {
-  version: typeof FORMAT; rules: typeof RULES; code: ReturnType<typeof codeIdentity>;
+  version: typeof FORMAT; rules: RulesId; code: ReturnType<typeof codeIdentity>;
   seed: string; population: number; initialHash: string; principleHistory: World["principleHistory"];
   configuration: JournalEntry["configuration"];
   startedAt: string; endedAt?: string; status: "running" | "incomplete" | "complete" | "failed";
@@ -49,10 +50,11 @@ async function main() {
   if (!["record", "replay", "inspect", "seek"].includes(command)) throw new Error("Usage: pnpm record record --population 1000 --seed NAME --evenings 3 --output DIR --max-hours N | record --resume DIR --evenings N --max-hours N | replay DIR | seek DIR --day N --minute N | inspect DIR");
   const dir = resolve(command === "record" ? option("--resume") ?? option("--output") ?? "" : process.argv[3] ?? "");
   if (dir === process.cwd()) throw new Error("Provide a recording directory");
-  if (command === "inspect") { const manifest = readJson<Manifest>(join(dir, "manifest.json")); loadCheckpoint(dir); loadJournal(dir); console.log(JSON.stringify(manifest, null, 2)); return; }
+  if (command === "inspect") { const manifest = readJson<Manifest>(join(dir, "manifest.json")); rulesFor(manifest.rules); loadCheckpoint(dir); loadJournal(dir, manifest.rules); console.log(JSON.stringify(manifest, null, 2)); return; }
   if (command === "seek") {
     const manifest = readJson<Manifest>(join(dir, "manifest.json"));
-    if (manifest.version !== FORMAT || manifest.rules !== RULES) throw new Error("Unsupported recording rules");
+    if (manifest.version !== FORMAT) throw new Error("Unsupported recording format");
+    const rules = rulesFor(manifest.rules);
     const day = positiveInt(option("--day"), "--day");
     const minute = Number(option("--minute"));
     if (!Number.isInteger(minute) || minute < 0 || minute >= 1440) throw new Error("Invalid --minute");
@@ -63,21 +65,22 @@ async function main() {
     const candidates = names.map((name) => { const match = name.match(/^checkpoint-day-(\d+)-minute-(\d+)\.json$/)!; return { name, time: (Number(match[1]) - 1) * 1440 + Number(match[2]) }; }).filter((item) => item.time <= target).sort((a, b) => b.time - a.time);
     if (!candidates.length) throw new Error("No checkpoint before target");
     const cp = loadCheckpoint(dir, candidates[0].name);
-    const entries = loadJournal(dir);
-    const engine = new JournalEngine(dir, entries, manifest.configuration, undefined, cp.journalCount);
-    const sim = new Simulation(engine, cp.world);
+    const entries = loadJournal(dir, manifest.rules);
+    const engine = new JournalEngine(dir, entries, manifest.configuration, undefined, cp.journalCount, () => false, manifest.rules);
+    const sim = new Simulation(engine, cp.world, rules);
     while ((sim.world.day - 1) * 1440 + sim.world.minute < target) await sim.step();
     console.log(JSON.stringify({ status: "verified-seek", checkpoint: candidates[0].name, day, minute, requestsConsumed: engine.cursor - cp.journalCount, worldHash: sha(JSON.stringify(sim.world)), events: sim.world.events.length, traces: sim.world.traces.length, outgoingInferenceCalls: 0 }));
     return;
   }
   if (command === "replay") {
     const manifest = readJson<Manifest>(join(dir, "manifest.json"));
-    if (manifest.version !== FORMAT || manifest.rules !== RULES) throw new Error("Unsupported recording rules");
+    if (manifest.version !== FORMAT) throw new Error("Unsupported recording format");
+    const rules = rulesFor(manifest.rules);
     const initial = readJson<World>(join(dir, "initial.json"));
     if (sha(JSON.stringify(initial)) !== manifest.initialHash) throw new Error("Damaged initial world");
-    const entries = loadJournal(dir);
-    const engine = new JournalEngine(dir, entries, manifest.configuration, undefined);
-    const sim = new Simulation(engine, initial);
+    const entries = loadJournal(dir, manifest.rules);
+    const engine = new JournalEngine(dir, entries, manifest.configuration, undefined, 0, () => false, manifest.rules);
+    const sim = new Simulation(engine, initial, rules);
     const cp = loadCheckpoint(dir);
     const target = (cp.world.day - 1) * 1440 + cp.world.minute;
     while ((sim.world.day - 1) * 1440 + sim.world.minute < target) await sim.step();
@@ -122,7 +125,7 @@ async function main() {
     manifest = { version: FORMAT, rules: RULES, code: codeIdentity(), seed, population, initialHash: sha(JSON.stringify(world)), principleHistory: world.principleHistory, configuration, startedAt: new Date().toISOString(), status: "incomplete", completedEvenings: 0, targetEvenings: target, journalCount: 0, judgments: 0, apiCalls: 0, inputTokens: 0, outputTokens: 0, uncertainAttempts: 0, evenings: [] };
     saveManifest(dir, manifest);
   }
-  const entries = loadJournal(dir);
+  const entries = loadJournal(dir, manifest.rules);
   if (entries.length < journalCount) throw new Error("Journal is missing committed decisions");
   for (const entry of entries) if (JSON.stringify(entry.configuration) !== JSON.stringify(configuration)) throw new Error("Journal model configuration mismatch");
   if (config.id === "jevk5") await checkBrowser();
@@ -135,8 +138,8 @@ async function main() {
   const gpuSamples: Awaited<ReturnType<typeof sampleGpu>>[] = [];
   const timer = config.id === "jevk5" ? setInterval(() => { void sampleGpu(Date.now() - start).then((sample) => gpuSamples.push(sample)); }, 30_000) : undefined;
   const provider = createDecisionProvider(config);
-  const engine = new JournalEngine(dir, entries, configuration, new ProviderDecisionEngine(provider, new ConcurrencyPool(1)), journalCount, () => stop || Date.now() >= deadline);
-  const sim = new Simulation(engine, world);
+  const engine = new JournalEngine(dir, entries, configuration, new ProviderDecisionEngine(provider, new ConcurrencyPool(1)), journalCount, () => stop || Date.now() >= deadline, manifest.rules);
+  const sim = new Simulation(engine, world, rulesFor(manifest.rules));
   let eveningStart = Date.now(), eveningJournal = engine.cursor, eveningJudgments = world.judgments, eveningCalls = world.apiCalls, eveningInput = world.inputTokens, eveningOutput = world.outputTokens;
   manifest.status = "running"; manifest.targetEvenings = target; delete manifest.error; saveManifest(dir, manifest);
   try {

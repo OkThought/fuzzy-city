@@ -4,9 +4,10 @@ import { join, dirname, relative } from "node:path";
 import { execFileSync } from "node:child_process";
 import type { Evaluation, Job, World } from "../sim/types";
 import { questionsFor } from "../ai/jevApiTypes";
+import { CURRENT_RULES, type RulesId } from "../sim/rules";
 
 export const FORMAT = "fuzzy-city-recording/v2" as const;
-export const RULES = "fuzzy-city-rules/v1" as const;
+export const RULES = CURRENT_RULES.id;
 export const sha = (data: string | Buffer) => createHash("sha256").update(data).digest("hex");
 export function canonical(value: unknown): string {
   if (Array.isArray(value)) return `[${value.map(canonical).join(",")}]`;
@@ -48,10 +49,10 @@ export interface JournalEntry {
   evaluation: Evaluation;
   hash: string;
 }
-export function requestHash(job: Job, questions: ReturnType<typeof questionsFor>, configuration: JournalEntry["configuration"]) {
-  return sha(canonical({ job, questions, configuration, rules: RULES }));
+export function requestHash(job: Job, questions: ReturnType<typeof questionsFor>, configuration: JournalEntry["configuration"], rules: RulesId = RULES) {
+  return sha(canonical({ job, questions, configuration, rules }));
 }
-export function loadJournal(dir: string): JournalEntry[] {
+export function loadJournal(dir: string, rules: RulesId = RULES): JournalEntry[] {
   const path = join(dir, "journal.jsonl");
   if (!existsSync(path)) return [];
   const raw = readFileSync(path, "utf8");
@@ -60,7 +61,7 @@ export function loadJournal(dir: string): JournalEntry[] {
   return raw.trim() ? raw.trimEnd().split("\n").map((line, i) => {
     const entry = JSON.parse(line) as JournalEntry;
     const { hash, ...body } = entry;
-    if (entry.version !== FORMAT || entry.sequence !== i || entry.previousHash !== previousHash || sha(canonical(body)) !== hash || requestHash(entry.job, entry.questions, entry.configuration) !== entry.requestHash)
+    if (entry.version !== FORMAT || entry.sequence !== i || entry.previousHash !== previousHash || sha(canonical(body)) !== hash || requestHash(entry.job, entry.questions, entry.configuration, rules) !== entry.requestHash)
       throw new Error(`Damaged journal entry ${i}`);
     previousHash = hash;
     return entry;

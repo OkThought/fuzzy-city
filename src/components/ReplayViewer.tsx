@@ -3,13 +3,26 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { timeLabel } from "../sim/decisions";
 import { ACTIVITIES, COLORS, LABELS, type CityEvent, type World } from "../sim/types";
-import { loadReplayFrame, loadReplayIndex } from "../replay/load";
-import type { ReplayIndex } from "../replay/types";
+import {
+  loadReplayTraceCatalog,
+  loadReplayTraces,
+  loadReplayV2Frame,
+  loadReplayV2Index,
+} from "../replay/load";
+import type { ReplayV2Index } from "../replay/types";
 import CityCanvas from "./CityCanvas";
 import CitizenInspector from "./CitizenInspector";
 import DecisionInspector from "./DecisionInspector";
 
-const INDEX_URL = "/recordings/milestone-one-jevk5/index.json";
+const DEFAULT_RECORDING = "milestone-one-jevk5-v2";
+function replayIndexUrl() {
+  const requested = new URLSearchParams(window.location.search).get("recording");
+  const recording =
+    requested && /^[a-z0-9][a-z0-9-]{0,80}$/.test(requested)
+      ? requested
+      : DEFAULT_RECORDING;
+  return `/recordings/${recording}/index.json`;
+}
 const speeds = [0.5, 1, 2, 4];
 
 function duration(value: number | null) {
@@ -75,7 +88,7 @@ function ReplayInspector({
 }
 
 export default function ReplayViewer() {
-  const [index, setIndex] = useState<ReplayIndex>();
+  const [index, setIndex] = useState<ReplayV2Index>();
   const [world, setWorld] = useState<World>();
   const [frameIndex, setFrameIndex] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -86,7 +99,7 @@ export default function ReplayViewer() {
   const [selectedEvent, setSelectedEvent] = useState<CityEvent>();
   const [layer, setLayer] = useState<"activity" | "uncertainty">("activity");
   const requestId = useRef(0);
-  const indexRef = useRef<ReplayIndex | undefined>(undefined);
+  const indexRef = useRef<ReplayV2Index | undefined>(undefined);
 
   const showFrame = useCallback(async (next: number, replayIndex = indexRef.current) => {
     if (!replayIndex) return;
@@ -94,7 +107,7 @@ export default function ReplayViewer() {
     setLoading(true);
     setError("");
     try {
-      const nextWorld = await loadReplayFrame(replayIndex, next);
+      const nextWorld = await loadReplayV2Frame(replayIndex, next);
       if (id !== requestId.current) return;
       setWorld(nextWorld);
       setFrameIndex(next);
@@ -108,7 +121,7 @@ export default function ReplayViewer() {
 
   useEffect(() => {
     let active = true;
-    loadReplayIndex(INDEX_URL)
+    loadReplayV2Index(replayIndexUrl())
       .then(async (replayIndex) => {
         if (!active) return;
         indexRef.current = replayIndex;
@@ -134,7 +147,54 @@ export default function ReplayViewer() {
     const target = index.frames.findIndex((frame) => frame.day === day);
     if (target >= 0) void showFrame(target);
   };
-  const selectCitizen = (id: string) => { setSelectedId(id); setSelectedEvent(undefined); };
+  const loadEvidence = useCallback(async (ids: string[]) => {
+    const replayIndex = indexRef.current;
+    if (!replayIndex || !ids.length) return;
+    try {
+      const traces = await loadReplayTraces(replayIndex, ids);
+      setWorld((current) => {
+        if (!current) return current;
+        const byId = new Map(current.traces.map((trace) => [trace.id, trace]));
+        for (const trace of traces) byId.set(trace.id, trace);
+        return { ...current, traces: [...byId.values()] };
+      });
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : "Replay evidence loading failed");
+    }
+  }, []);
+  const selectCitizen = (id: string) => {
+    setSelectedId(id);
+    setSelectedEvent(undefined);
+  };
+  const selectEvent = (event: CityEvent) => {
+    setSelectedEvent(event);
+    void loadEvidence(event.traceIds);
+  };
+  useEffect(() => {
+    if (!index || !selectedId) return;
+    const current = index.frames[frameIndex];
+    let active = true;
+    void loadReplayTraceCatalog(index)
+      .then((catalog) => {
+        if (!active) return;
+        return loadEvidence(
+          catalog
+            .filter(
+              (trace) =>
+                trace.citizenIds.includes(selectedId) &&
+                (trace.simulationDay < current.day ||
+                  (trace.simulationDay === current.day &&
+                    trace.simulationMinute <= current.minute)),
+            )
+            .map((trace) => trace.id),
+        );
+      })
+      .catch((cause) => {
+        if (active)
+          setError(cause instanceof Error ? cause.message : "Replay evidence loading failed");
+      });
+    return () => { active = false; };
+  }, [frameIndex, index, loadEvidence, selectedId]);
 
   if (!index || !world) return (
     <main className="loading" aria-live="polite">
@@ -232,7 +292,7 @@ export default function ReplayViewer() {
 
           <footer className="city-footer replay-provenance">
             <span>Rules {index.recording.rules} · snapshot {index.recording.snapshot.slice(0, 12)}… · {index.recording.kernel}</span>
-            <span>Initial transfer {bytes(index.initialBytes)} · full replay {bytes(index.totalBytes)}</span>
+            <span>Generated {bytes(index.generatedBytes)} · independently compressed estimate {bytes(index.brotliBytes)}</span>
           </footer>
         </section>
 
@@ -249,7 +309,7 @@ export default function ReplayViewer() {
                 <div className="event-section">
                   <div className="section-title"><span>EVENTS AT THIS CHECKPOINT</span><span>{world.events.length}</span></div>
                   <div className="event-stream">
-                    {recentEvents.map((event) => <button key={event.id} onClick={() => setSelectedEvent(event)}><time>{timeLabel(event.minute)}</time><span>{event.text}</span></button>)}
+                    {recentEvents.map((event) => <button key={event.id} onClick={() => selectEvent(event)}><time>{timeLabel(event.minute)}</time><span>{event.text}</span></button>)}
                     {!recentEvents.length && <p className="small muted">The city is approaching its first recorded decisions.</p>}
                   </div>
                 </div>

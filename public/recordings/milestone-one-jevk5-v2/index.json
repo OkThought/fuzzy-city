@@ -1,0 +1,127 @@
+{
+  "version": "fuzzy-city-replay/v2",
+  "recording": {
+    "id": "milestone-one-jevk5",
+    "sourceFormat": "fuzzy-city-recording/v2",
+    "rules": "fuzzy-city-rules/v1",
+    "seed": "milestone-one-jevk5",
+    "population": 100,
+    "provider": "jevk5",
+    "model": "alibiserikbay/JevK5",
+    "snapshot": "27d2d6b8d4714807f6293b0623bd7370b27e42f8",
+    "kernel": "optimized-fla-triton-no-graphs",
+    "startedAt": "2026-09-25T12:47:06.666Z",
+    "endedAt": "2026-09-25T12:53:13.127Z",
+    "wallTimeMs": 366461,
+    "status": "failed",
+    "completedEvenings": 0,
+    "journalCount": 92,
+    "judgments": 460,
+    "apiCalls": 92,
+    "uncertaintyNote": "jevk5 timeout or network failure; 2 ambiguous remote attempts."
+  },
+  "frames": [
+    {
+      "id": "day-1-minute-0990",
+      "day": 1,
+      "minute": 990,
+      "journalCount": 0,
+      "traceCount": 0,
+      "eventCount": 1,
+      "segment": 0,
+      "offset": 0,
+      "semanticHash": "cf06301bb739befabfc84287aee4507ae56d15413cb15ba4294489575f3c2a10"
+    },
+    {
+      "id": "day-1-minute-1005",
+      "day": 1,
+      "minute": 1005,
+      "journalCount": 0,
+      "traceCount": 0,
+      "eventCount": 1,
+      "segment": 0,
+      "offset": 1,
+      "semanticHash": "f2daf8bd03e0c2a6f30247886bc7fb792f5156c49b19e79fc8d0f29a77a55c76"
+    },
+    {
+      "id": "day-1-minute-1020",
+      "day": 1,
+      "minute": 1020,
+      "journalCount": 2,
+      "traceCount": 2,
+      "eventCount": 3,
+      "segment": 0,
+      "offset": 2,
+      "semanticHash": "5fc54f2006c6a2a731e209577a443ce6cacb7515cb5cdf5e2f999cd3e95e3021"
+    },
+    {
+      "id": "day-1-minute-1035",
+      "day": 1,
+      "minute": 1035,
+      "journalCount": 32,
+      "traceCount": 32,
+      "eventCount": 33,
+      "segment": 0,
+      "offset": 3,
+      "semanticHash": "6e53af21e2c4254cde96823778f145231aac8306e819e94ce40e9bfc2f72b741"
+    },
+    {
+      "id": "day-1-minute-1050",
+      "day": 1,
+      "minute": 1050,
+      "journalCount": 62,
+      "traceCount": 62,
+      "eventCount": 63,
+      "segment": 0,
+      "offset": 4,
+      "semanticHash": "2238e70ab5429f74ce53b4f8f0e8f8ba21db26524f6572f52bfbb6ff65f5d962"
+    },
+    {
+      "id": "day-1-minute-1065",
+      "day": 1,
+      "minute": 1065,
+      "journalCount": 92,
+      "traceCount": 92,
+      "eventCount": 93,
+      "segment": 0,
+      "offset": 5,
+      "semanticHash": "a2ba4f985cbc1451ace40327b5dc6084a084aa30490c35dd3ef6ac90a00e425a"
+    }
+  ],
+  "segments": [
+    {
+      "url": "/recordings/milestone-one-jevk5-v2/segments/segment-000.json",
+      "sha256": "5ca60ba779b4814e7fddd711f38e6601d346fa688ab3329733a4041646059768",
+      "bytes": 483955
+    }
+  ],
+  "traceCatalog": {
+    "url": "/recordings/milestone-one-jevk5-v2/traces/catalog.json",
+    "sha256": "aa9dfd96e890480c4169145a8e8082442ed83b41e3ac8a55d136681bc211f53d",
+    "bytes": 13181
+  },
+  "traceShards": [
+    {
+      "url": "/recordings/milestone-one-jevk5-v2/traces/traces-000.json",
+      "sha256": "7598d011eee5f87084cc47c76e6a12e86d97198933f30fa19a91813c2babd9e0",
+      "bytes": 191006
+    },
+    {
+      "url": "/recordings/milestone-one-jevk5-v2/traces/traces-001.json",
+      "sha256": "aeacce9d337d875e6e6d036fccf8f4c70305789bf7d00d3c9acc6731d2278540",
+      "bytes": 84514
+    }
+  ],
+  "eventShards": [
+    {
+      "url": "/recordings/milestone-one-jevk5-v2/events/events-000.json",
+      "sha256": "b7330486042f882b1499378d7c81e039f049d5031abe5a5118048185348c98c4",
+      "bytes": 14805
+    }
+  ],
+  "keyframeIntervalMinutes": 120,
+  "initialBytes": 487574,
+  "totalBytes": 791080,
+  "generatedBytes": 791080,
+  "brotliBytes": 118691
+}

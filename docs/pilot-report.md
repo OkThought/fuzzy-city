@@ -146,6 +146,8 @@ Do not rerun that command against the existing directory. Preserve the immutable
 
 ## Recommended next bounded step
 
+Implementation update, 26 September 2026: the rules-v2 correction and lossless replay-v2 package has been implemented and validated without running new inference. See `docs/rules-v2.md` and `docs/replay.md`. [GitHub issue #1](https://github.com/OkThought/fuzzy-city/issues/1) tracks the explicit review/freeze gate and bounded replacement pilot; this note does not authorize GPU execution.
+
 Before any additional GPU recording:
 
 1. diagnose the negative-affinity skew and state saturation without changing this evidence;

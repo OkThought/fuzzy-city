@@ -4,6 +4,7 @@ import { activityDistribution, context, decisionState } from "./decisions";
 import { move, travel } from "./movement";
 import { applyInteraction, isFriend } from "./relationships";
 import { clamp, entropy, Rng, sample } from "./rng";
+import { CURRENT_RULES, type SimulationRules } from "./rules";
 import {
   LABELS,
   type Activity,
@@ -27,6 +28,7 @@ export class Simulation {
   constructor(
     public engine: DecisionEngine,
     world = generateCity(),
+    public readonly rules: SimulationRules = CURRENT_RULES,
   ) {
     this.world = world;
     this.rng = new Rng(world.rngState);
@@ -340,7 +342,7 @@ export class Simulation {
     const results = await this.evaluate(jobs);
     pairs.forEach(([a, b], i) => {
       const trace = this.trace(jobs[i], results[i], [a.id, b.id]);
-      const update = applyInteraction(this.world, a, b, trace);
+      const update = applyInteraction(this.world, a, b, trace, this.rules);
       trace.outcome = {
         deltaA: update.deltaA,
         deltaB: update.deltaB,
@@ -441,19 +443,36 @@ export class Simulation {
                         c.currentPlan.activity)
                       : "work";
           if (c.activity === "sleep" || c.activity === "home_rest") {
-            c.state.energy = clamp(c.state.energy + 0.0013);
-            c.state.stress = clamp(c.state.stress - 0.0008);
+            c.state.energy = clamp(
+              c.state.energy + this.rules.state.restEnergyPerMinute,
+            );
+            c.state.stress = clamp(
+              c.state.stress + this.rules.state.restStressPerMinute,
+            );
           } else if (c.activity === "work" || c.activity === "overtime") {
-            c.state.energy = clamp(c.state.energy - 0.00065);
-            c.state.stress = clamp(c.state.stress + 0.0004);
-            c.state.money += 0.1 + c.traits.ambition * 0.1;
+            c.state.energy = clamp(
+              c.state.energy + this.rules.state.workEnergyPerMinute,
+            );
+            c.state.stress = clamp(
+              c.state.stress + this.rules.state.workStressPerMinute,
+            );
+            c.state.money +=
+              this.rules.state.wageBasePerMinute +
+              c.traits.ambition * this.rules.state.wageAmbitionPerMinute;
           } else {
-            c.state.energy = clamp(c.state.energy - 0.00018);
+            c.state.energy = clamp(
+              c.state.energy + this.rules.state.activeEnergyPerMinute,
+            );
             if (c.activity === "park")
-              c.state.stress = clamp(c.state.stress - 0.0005);
+              c.state.stress = clamp(
+                c.state.stress + this.rules.state.parkStressPerMinute,
+              );
           }
           c.state.socialNeed = clamp(
-            c.state.socialNeed + (c.lastContactDay < w.day ? 0.00018 : 0.00004),
+            c.state.socialNeed +
+              (c.lastContactDay < w.day
+                ? this.rules.state.socialNeedDisconnectedPerMinute
+                : this.rules.state.socialNeedConnectedPerMinute),
           );
         }
         if (w.minute >= 1020 && w.minute < 1380)

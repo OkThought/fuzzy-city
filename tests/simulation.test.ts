@@ -8,6 +8,7 @@ import { applyInteraction } from "../src/sim/relationships";
 import { exportRun } from "../src/sim/export";
 import { roadPoint } from "../src/sim/movement";
 import { MEMORY_LIMIT, type DecisionTrace, type Job } from "../src/sim/types";
+import { RULES_V2 } from "../src/sim/rules";
 
 describe("seeded primitives", () => {
   it("keeps road intersections stable when a traveling citizen is rerouted", () => {
@@ -209,5 +210,21 @@ describe("causal simulation", () => {
     expect(w.relationships[`${b.id}>${a.id}`].affinity).toBe(-1);
     expect(a.recentMemories).toHaveLength(MEMORY_LIMIT);
     expect(b.recentMemories).toHaveLength(MEMORY_LIMIT);
+  });
+  it("centers v2 connection and tension at neutral probability", () => {
+    const world = generateCity("neutral-v2");
+    const [a, b] = world.citizens;
+    const trace = {
+      id: "neutral",
+      answers: {
+        a_felt_connection: 0.5,
+        b_felt_connection: 0.5,
+        felt_tension: 0.5,
+        memorable: 0,
+      },
+    } as unknown as DecisionTrace;
+    const result = applyInteraction(world, a, b, trace, RULES_V2);
+    expect(result.deltaA).toBe(0);
+    expect(result.deltaB).toBe(0);
   });
 });

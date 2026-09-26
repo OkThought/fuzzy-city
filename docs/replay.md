@@ -1,6 +1,6 @@
-# Minimal replay viewer
+# Lossless replay viewer
 
-Milestone 2 adds a replay-only route at `/replay`. It does not call an inference provider, expose credentials, or change the live development simulation at `/`.
+The replay-only route at `/replay` does not call an inference provider, expose credentials, or change the live development simulation at `/`. Replay v2 replaces repeated full-world public frames with exact keyframes and forward patches while retaining every 15-minute observation.
 
 ## Included recording
 
@@ -14,21 +14,25 @@ The UI keeps “Recorded Jev simulation · interactive replay” visible, identi
 
 Arbitrary principle editing is unavailable because it cannot create a recorded future. The live development mode remains linked separately.
 
-## Bundle and integrity
+## Replay v2 bundle and integrity
 
 Run from the repository root:
 
 ```powershell
-pnpm replay:bundle
+pnpm replay:bundle recordings/pilot-1000-3e-local-final public/recordings/pilot-1000-3e-local-final-v2
 ```
 
-The generator validates the recorder checkpoints and history hashes, then creates `public/recordings/milestone-one-jevk5/`. Every browser-loaded snapshot and history chunk carries a byte length and SHA-256 digest that the viewer verifies before use. The index is loaded first, followed by only the initial snapshot and its history. Later frames and cumulative history are loaded on playback or seek.
+The generator validates recorder checkpoints and history hashes, creates exact keyframes no more than 120 simulated minutes apart, and stores lossless field-level patches within each segment. It reconstructs and compares canonical semantic hashes for all source frames before succeeding. Traces are split into independently verified shards and demand-loaded only after a citizen or event is selected. Event shards preserve complete history while each playback frame carries only its ten recent event summaries.
 
-Current generated sizes:
+The complete three-evening pilot contains 219 verified frames, 28 independently fetchable segments, 75 trace shards and 19 event shards. Measurements from the local Next.js production server:
 
-- first usable city: 244,933 bytes (index, first snapshot and first history chunk);
-- complete six-frame fragment: 1,798,384 bytes;
-- full recording data is not downloaded before interaction.
+- generated disk size: 144,007,969 bytes, down from 596,481,003 bytes in v1;
+- actual gzip response bytes to first usable city: 892,583 bytes;
+- actual gzip response bytes for one complete integrity-bound fetch: 23,183,140 bytes;
+- independently compressed Brotli-quality-5 total: 19,592,070 bytes (not the encoding served in the test);
+- post-seek Chromium JS-heap indicator: 64.0 MB desktop and 97.4 MB mobile. This is a browser heap measurement, not an exact decoded-payload accounting.
+
+The server responses used `Content-Encoding: gzip`. The first-use and complete-transfer figures are observed response-body bytes, not estimates. The source recorder output remains immutable and the generated pilot v2 bundle stays ignored by Git.
 
 Immutable recorder output remains the source data. Files under `public/recordings/` are derived playback artifacts and can be regenerated.
 
@@ -43,20 +47,18 @@ pnpm build
 npx playwright test tests/browser/replay.spec.ts
 ```
 
-On the local production server at `127.0.0.1`, Playwright measured the time from navigation start to a usable Canvas and a cold seek from the first to final checkpoint:
+On the local production server at `127.0.0.1`, Playwright measured startup plus eight distinct-segment cold seeks and the same eight seeks warm:
 
-| Profile | First usable city | Cold seek |
-|---|---:|---:|
-| Chromium desktop, 1440×900 | 296 ms | 39 ms |
-| WebKit desktop, 1440×900 | 399 ms | 60 ms |
-| Chromium mobile, 390×844 | 285 ms | 30 ms |
-| WebKit mobile, 390×844 | 405 ms | 124 ms |
+| Profile | First usable city | Cold seek p50 / p95 | Warm seek p50 / p95 |
+|---|---:|---:|---:|
+| Chromium desktop, 1440×900 | 402 ms | 175 / 313 ms | 29 / 43 ms |
+| Chromium mobile, 390×844 | 404 ms | 172 / 308 ms | 29 / 43 ms |
 
-These are localhost measurements on the development machine with browser caches in their normal test context. They verify the provisional three-second target on that stated setup only; they are not a claim about arbitrary networks or devices. The browser test also checks incremental loading, integrity-checked seeking, trace inspection, and absence of horizontal overflow.
+These are localhost measurements on the development machine. They verify the provisional three-second cold and one-second warm gates on that stated setup only; they are not a claim about arbitrary networks or devices. `tests/browser/replay-pilot.spec.ts` also verifies actual gzip transfer sizes and the bounded asset cache. The checked-in six-frame real-Jev fragment exercises the same v2 viewer and lazy evidence path without requiring the ignored pilot bundle.
 
 ## Remaining limits
 
 - The included recording has one partial evening, so previous/next-evening controls are correctly disabled. They become active when a multi-evening bundle is generated.
-- Playback advances through actual 15-minute checkpoints. It does not invent intermediate state or interpolate unrelated snapshots.
-- The viewer format is ready for a later pilot bundle, but the three-evening recording and backend-selection gate remain separate work.
+- Playback advances through actual 15-minute checkpoints. It does not invent intermediate state, remove daytime observations or quantize numeric values.
+- The large pilot v2 bundle is reproducible and locally reviewable but intentionally not committed.
 - Public deployment has not been performed.
