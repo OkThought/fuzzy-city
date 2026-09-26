@@ -56,6 +56,8 @@ On the local production server at `127.0.0.1`, Playwright measured startup plus 
 
 These are localhost measurements on the development machine. They verify the provisional three-second cold and one-second warm gates on that stated setup only; they are not a claim about arbitrary networks or devices. `tests/browser/replay-pilot.spec.ts` also verifies actual gzip transfer sizes and the bounded asset cache. The checked-in six-frame real-Jev fragment exercises the same v2 viewer and lazy evidence path without requiring the ignored pilot bundle.
 
+The rules-v2 replacement pilot rebuilt the same lossless format with all 219 canonical semantic hashes verified. It generated 144,498,317 bytes, served 887,005 gzip bytes to first use and 24,425,581 bytes for a complete integrity-bound fetch. Desktop cold/warm seek p50/p95 were 179/332 ms and 32/45 ms; mobile values were 169/322 ms and 30/43 ms. The first desktop attempt failed the separate startup gate at 3,197 ms before collecting seeks; the unchanged rerun started in 457 ms. See [the rules-v2 pilot report](rules-v2-pilot-report.md) for the preserved failure and comparison.
+
 ## Remaining limits
 
 - The included recording has one partial evening, so previous/next-evening controls are correctly disabled. They become active when a multi-evening bundle is generated.

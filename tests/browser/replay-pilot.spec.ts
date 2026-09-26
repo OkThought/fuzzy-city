@@ -1,5 +1,7 @@
 import { expect, test } from "@playwright/test";
 
+const recording = process.env.REPLAY_PILOT_RECORDING ?? "pilot-1000-3e-local-final-v2";
+
 const percentile = (values: number[], p: number) => {
   const sorted = values.slice().sort((a, b) => a - b);
   return sorted[Math.max(0, Math.ceil(sorted.length * p) - 1)];
@@ -9,7 +11,7 @@ test("full pilot keeps cold and warm replay-v2 seeks bounded", async ({ page }, 
   test.skip(!testInfo.project.name.startsWith("chromium"), "Pilot timing is sampled on Chromium desktop/mobile");
   const assetResponses: { url: string; encoding: string | null; bytes: number }[] = [];
   page.on("response", (response) => {
-    if (!response.url().includes("pilot-1000-3e-local-final-v2")) return;
+    if (!response.url().includes(recording)) return;
     void response.finished().then(async () => {
       const sizes = await response.request().sizes();
       assetResponses.push({
@@ -19,7 +21,7 @@ test("full pilot keeps cold and warm replay-v2 seeks bounded", async ({ page }, 
       });
     });
   });
-  await page.goto("/replay?recording=pilot-1000-3e-local-final-v2");
+  await page.goto(`/replay?recording=${encodeURIComponent(recording)}`);
   await expect(page.locator("canvas")).toHaveAttribute("data-population", "1000");
   const startupMs = await page.evaluate(() => performance.now());
   await page.getByRole("button", { name: "Pause replay" }).click();
@@ -52,16 +54,16 @@ test("full pilot keeps cold and warm replay-v2 seeks bounded", async ({ page }, 
   const fullTransferStart = assetResponses.length;
   let fullTransferBytes: number | null = null;
   if (testInfo.project.name === "chromium-desktop") {
-    const assets = await page.evaluate(async () => {
-      const index = await fetch("/recordings/pilot-1000-3e-local-final-v2/index.json").then((response) => response.json());
+    const assets = await page.evaluate(async (recordingId) => {
+      const index = await fetch(`/recordings/${recordingId}/index.json`).then((response) => response.json());
       return [
-        "/recordings/pilot-1000-3e-local-final-v2/index.json",
+        `/recordings/${recordingId}/index.json`,
         ...index.segments.map((asset: { url: string }) => asset.url),
         index.traceCatalog.url,
         ...index.traceShards.map((asset: { url: string }) => asset.url),
         ...index.eventShards.map((asset: { url: string }) => asset.url),
       ] as string[];
-    });
+    }, recording);
     await page.evaluate(async (urls) => {
       for (const [index, url] of urls.entries()) {
         const response = await fetch(`${url}?transfer-measure=${index}`, { cache: "reload" });

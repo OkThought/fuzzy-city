@@ -16,3 +16,4 @@ __pycache__/
 # Large local pilot recording
 /public/recordings/pilot-1000-3e-local-final/
 /public/recordings/pilot-1000-3e-local-final-v2/
+/public/recordings/pilot-1000-3e-rules-v2-*/

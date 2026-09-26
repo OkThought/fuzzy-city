@@ -148,6 +148,8 @@ Do not rerun that command against the existing directory. Preserve the immutable
 
 Implementation update, 26 September 2026: the rules-v2 correction and lossless replay-v2 package has been implemented and validated without running new inference. See `docs/rules-v2.md` and `docs/replay.md`. [GitHub issue #1](https://github.com/OkThought/fuzzy-city/issues/1) tracks the explicit review/freeze gate and bounded replacement pilot; this note does not authorize GPU execution.
 
+Replacement-pilot update, 26 September 2026: the explicitly frozen rules-v2 pilot is complete. The specific v1 relationship-sign and state-boundary warnings did not recur in its three evenings, while new runtime, contact, browser-startup, and VRAM-measurement limitations remain. See [the rules-v2 pilot report](rules-v2-pilot-report.md). This does not authorize extension of either recording.
+
 Before any additional GPU recording:
 
 1. diagnose the negative-affinity skew and state saturation without changing this evidence;

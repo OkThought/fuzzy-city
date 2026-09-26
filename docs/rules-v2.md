@@ -66,4 +66,4 @@ Run the soak with:
 pnpm rules:v2:soak
 ```
 
-The review above closes the pre-inference decision gate for the bounded replacement pilot. Its execution and evidence remain tracked in [GitHub issue #1](https://github.com/OkThought/fuzzy-city/issues/1).
+The review above closed the pre-inference decision gate. The bounded replacement pilot is complete; see [the rules-v2 pilot report](rules-v2-pilot-report.md). Stop for review before any longer recording.
