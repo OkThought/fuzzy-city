@@ -8,10 +8,21 @@ export interface SystemOneRequest {
   state: DecisionState;
   questions: Record<string, Question>;
 }
+export interface ProviderAttempt {
+  attempt: number;
+  startedAt: string;
+  elapsedMs: number;
+  outcome: "success" | "http_error" | "ambiguous_network_error";
+  status?: number;
+  retryAfterMs?: number;
+  backoffMs?: number;
+  routedProvider?: string;
+}
 export interface ProviderResult {
   response: unknown;
   apiCalls: number;
   serviceMs: number;
+  attempts: ProviderAttempt[];
 }
 export interface DecisionProvider {
   readonly id: ProviderId;
@@ -25,6 +36,8 @@ export class ProviderError extends Error {
   constructor(
     message: string,
     public apiCalls = 0,
+    public attempts: ProviderAttempt[] = [],
+    public ambiguous = false,
   ) {
     super(message);
     this.name = "ProviderError";

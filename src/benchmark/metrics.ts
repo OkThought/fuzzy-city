@@ -92,5 +92,22 @@ export function summarize(
       errors: [...new Set(gpu.flatMap((s) => (s.error ? [s.error] : [])))],
     },
     apiCalls: measurements.reduce((sum, m) => sum + m.apiCalls, 0),
+    inputTokens: valid.reduce((sum, m) => sum + m.inputTokens, 0),
+    outputTokens: valid.reduce((sum, m) => sum + m.outputTokens, 0),
+    retryBackoffMs: measurements.flatMap((m) => m.attempts).reduce(
+      (sum, attempt) => sum + (attempt.backoffMs ?? 0),
+      0,
+    ),
+    httpStatuses: Object.fromEntries(
+      [...new Set(measurements.flatMap((m) => m.attempts).flatMap((attempt) => attempt.status === undefined ? [] : [attempt.status]))]
+        .sort((a, b) => a - b)
+        .map((status) => [String(status), measurements.flatMap((m) => m.attempts).filter((attempt) => attempt.status === status).length]),
+    ),
+    routedProviders: Object.fromEntries(
+      [...new Set(measurements.flatMap((m) => m.attempts).flatMap((attempt) => attempt.routedProvider ? [attempt.routedProvider] : []))]
+        .sort()
+        .map((provider) => [provider, measurements.flatMap((m) => m.attempts).filter((attempt) => attempt.routedProvider === provider).length]),
+    ),
+    ambiguousAttempts: measurements.filter((m) => m.ambiguous).length,
   };
 }

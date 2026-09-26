@@ -1,0 +1,81 @@
+{
+  "id": "2026-09-25T21-52-19-674Z-2a36ad8a",
+  "status": "failed",
+  "provider": "vercel",
+  "model": "typesafe-ai/jev",
+  "config": {
+    "populations": [
+      100
+    ],
+    "minutes": 35,
+    "concurrency": 4,
+    "seed": "fuzzy-city-pilot-gate-001"
+  },
+  "startedAt": "2026-09-25T21:52:19.674Z",
+  "cases": [
+    {
+      "population": 100,
+      "status": "failed",
+      "simulatedMinute": 1022,
+      "evaluatedCitizens": 4,
+      "interactions": 0,
+      "summary": {
+        "elapsedMs": 14620.939400000003,
+        "completedDecisions": 5,
+        "failedDecisions": 1,
+        "judgments": 25,
+        "decisionsPerSecond": 0.34197529058905746,
+        "judgmentsPerSecond": 1.7098764529452872,
+        "latencyMs": {
+          "p50": 373.55050000000483,
+          "p95": 2560.3945999999996
+        },
+        "serviceMs": {
+          "p50": 373.5279999999984,
+          "p95": 2560.3682999999946
+        },
+        "queueWaitMs": {
+          "p50": 0.004000000000814907,
+          "p95": 0.004699999997683335
+        },
+        "queue": {
+          "current": 0,
+          "peak": 0,
+          "mean": 0,
+          "peakActive": 2
+        },
+        "vram": {
+          "scope": "whole GPU, all processes",
+          "available": true,
+          "samples": 16,
+          "devices": [
+            {
+              "index": 0,
+              "name": "NVIDIA GeForce RTX 4070 Ti",
+              "peakUsedMiB": 540,
+              "lastUsedMiB": 535,
+              "totalMiB": 12282
+            }
+          ],
+          "errors": []
+        },
+        "apiCalls": 10,
+        "inputTokens": 6701,
+        "outputTokens": 495,
+        "retryBackoffMs": 11855,
+        "httpStatuses": {
+          "200": 5,
+          "429": 1,
+          "503": 4
+        },
+        "routedProviders": {},
+        "ambiguousAttempts": 0
+      },
+      "error": "vercel HTTP 503"
+    }
+  ],
+  "phase": "failed",
+  "reportDirectory": "benchmarks/2026-09-25T21-52-19-674Z-2a36ad8a",
+  "error": "vercel HTTP 503",
+  "finishedAt": "2026-09-25T21:52:34.651Z"
+}

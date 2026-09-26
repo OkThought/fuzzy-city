@@ -6,6 +6,7 @@ import { decisionState } from "../src/sim/decisions";
 import { questionsFor } from "../src/ai/jevApiTypes";
 import { providerConfig } from "../src/ai/providerConfig";
 import { HttpDecisionProvider } from "../src/ai/httpDecisionProvider";
+import { ProviderError } from "../src/ai/decisionProvider";
 import { ProviderDecisionEngine } from "../src/ai/providerEngine";
 import { MockDecisionProvider } from "../src/ai/mockDecisionProvider";
 import { ConcurrencyPool } from "../src/ai/concurrencyPool";
@@ -31,6 +32,12 @@ const envelope = {
   usage: { input_tokens: 4200, output_tokens: 0 },
   latency_ms: 345,
 };
+const providerResult = (response: unknown, serviceMs = 1) => ({
+  response,
+  apiCalls: 1,
+  serviceMs,
+  attempts: [{ attempt: 1, startedAt: "2026-09-25T00:00:00.000Z", elapsedMs: serviceMs, outcome: "success" as const, status: 200 }],
+});
 describe("local decision providers", () => {
   it("defaults to local JevK5 without needing or forwarding a paid key", async () => {
     const config = providerConfig({
@@ -112,7 +119,7 @@ describe("local decision providers", () => {
       infer: async () => {
         calls++;
         controller.abort();
-        return { response: envelope, apiCalls: 1, serviceMs: 1 };
+        return providerResult(envelope);
       },
     };
     const pool = new ConcurrencyPool(1);
@@ -133,6 +140,8 @@ describe("local decision providers", () => {
     );
     expect(() => providerConfig({ DECISION_PROVIDER: "typo" })).toThrow();
     expect(() => providerConfig({ DECISION_CONCURRENCY: "1000" })).toThrow();
+    expect(providerConfig({ DECISION_TIMEOUT_MS: "300000" }).timeoutMs).toBe(300000);
+    expect(() => providerConfig({ DECISION_TIMEOUT_MS: "700000" })).toThrow();
   });
 });
 describe("Vercel AI Gateway Jev provider", () => {
@@ -188,6 +197,40 @@ describe("Vercel AI Gateway Jev provider", () => {
     expect(fetcher).not.toHaveBeenCalled();
   });
 
+  it("records bounded 429/503 retries and never retries an ambiguous timeout", async () => {
+    const config = providerConfig({
+      JEV_PROVIDER: "vercel",
+      AI_GATEWAY_API_KEY: "gateway-test-secret",
+    });
+    const sleep = vi.fn(async () => undefined);
+    const retryingFetch = vi
+      .fn<typeof fetch>()
+      .mockResolvedValueOnce(new Response("busy", { status: 429, headers: { "retry-after": "0" } }))
+      .mockResolvedValueOnce(Response.json({ ...envelope, model: config.model }));
+    const result = await new HttpDecisionProvider(config, retryingFetch, sleep).infer({
+      model: config.model,
+      state: job.state,
+      questions: questionsFor(job),
+    });
+    expect(result.apiCalls).toBe(2);
+    expect(result.attempts.map((attempt) => [attempt.status, attempt.outcome])).toEqual([
+      [429, "http_error"],
+      [200, "success"],
+    ]);
+    expect(result.attempts[0].backoffMs).toBeGreaterThanOrEqual(400);
+    expect(sleep).toHaveBeenCalledTimes(1);
+
+    const ambiguousFetch = vi.fn<typeof fetch>().mockRejectedValue(new Error("socket lost"));
+    const ambiguous = await new HttpDecisionProvider(config, ambiguousFetch, sleep).infer({
+      model: config.model,
+      state: job.state,
+      questions: questionsFor(job),
+    }).catch((error) => error);
+    expect(ambiguous).toMatchObject({ ambiguous: true, apiCalls: 1 });
+    expect(ambiguous).toBeInstanceOf(ProviderError);
+    expect(ambiguousFetch).toHaveBeenCalledTimes(1);
+  });
+
   it("keeps direct TypeSafe available only when explicitly selected", () => {
     expect(providerConfig({
       JEV_PROVIDER: "typesafe",
@@ -225,28 +268,52 @@ describe("stress workload and measurement integrity", () => {
   it("reports successful decisions/s, nearest-rank percentiles and time-weighted waiting depth without inventing VRAM", () => {
     const values = [
       {
+        jobId: "one",
+        kind: "evening_intentions",
+        provider: "mock",
+        model: "deterministic-mock-v1",
         latencyMs: 10,
         serviceMs: 8,
         queueMs: 2,
         success: true,
         judgments: 5,
         apiCalls: 1,
+        inputTokens: 10,
+        outputTokens: 0,
+        attempts: [],
+        ambiguous: false,
       },
       {
+        jobId: "two",
+        kind: "social_interaction",
+        provider: "mock",
+        model: "deterministic-mock-v1",
         latencyMs: 90,
         serviceMs: 20,
         queueMs: 70,
         success: true,
         judgments: 4,
         apiCalls: 1,
+        inputTokens: 20,
+        outputTokens: 0,
+        attempts: [],
+        ambiguous: false,
       },
       {
+        jobId: "three",
+        kind: "friend_selection",
+        provider: "mock",
+        model: "deterministic-mock-v1",
         latencyMs: 100,
         serviceMs: 100,
         queueMs: 0,
         success: false,
         judgments: 0,
         apiCalls: 3,
+        inputTokens: 0,
+        outputTokens: 0,
+        attempts: [],
+        ambiguous: true,
       },
     ] as DecisionMeasurement[];
     const result = summarize(
@@ -264,6 +331,8 @@ describe("stress workload and measurement integrity", () => {
       decisionsPerSecond: 1,
       judgmentsPerSecond: 4.5,
       apiCalls: 5,
+      inputTokens: 30,
+      ambiguousAttempts: 1,
       latencyMs: { p50: 10, p95: 90 },
       queue: { peak: 2, mean: 1 },
       vram: { available: false, devices: [] },

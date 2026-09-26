@@ -124,6 +124,7 @@ export interface Evaluation {
   inputTokens: number;
   outputTokens: number;
   apiCalls: number;
+  providerAttempts?: import("../ai/decisionProvider").ProviderAttempt[];
   error?: string;
 }
 export interface DecisionTrace extends Evaluation {

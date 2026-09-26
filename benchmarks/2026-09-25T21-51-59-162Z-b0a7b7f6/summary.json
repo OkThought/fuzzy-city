@@ -1,0 +1,77 @@
+{
+  "id": "2026-09-25T21-51-59-162Z-b0a7b7f6",
+  "status": "complete",
+  "provider": "vercel",
+  "model": "typesafe-ai/jev",
+  "config": {
+    "populations": [
+      100
+    ],
+    "minutes": 35,
+    "concurrency": 1,
+    "seed": "fuzzy-city-pilot-gate-001"
+  },
+  "startedAt": "2026-09-25T21:51:59.164Z",
+  "cases": [
+    {
+      "population": 100,
+      "status": "complete",
+      "simulatedMinute": 1025,
+      "evaluatedCitizens": 12,
+      "interactions": 0,
+      "summary": {
+        "elapsedMs": 5384.2665000000015,
+        "completedDecisions": 12,
+        "failedDecisions": 0,
+        "judgments": 60,
+        "decisionsPerSecond": 2.2287158334380357,
+        "judgmentsPerSecond": 11.143579167190179,
+        "latencyMs": {
+          "p50": 576.9758999999976,
+          "p95": 1609.4408000000003
+        },
+        "serviceMs": {
+          "p50": 298.56890000000203,
+          "p95": 1308.1860000000015
+        },
+        "queueWaitMs": {
+          "p50": 0.2128999999986263,
+          "p95": 627.2528999999995
+        },
+        "queue": {
+          "current": 0,
+          "peak": 1,
+          "mean": 0.4446463413354452,
+          "peakActive": 1
+        },
+        "vram": {
+          "scope": "whole GPU, all processes",
+          "available": true,
+          "samples": 7,
+          "devices": [
+            {
+              "index": 0,
+              "name": "NVIDIA GeForce RTX 4070 Ti",
+              "peakUsedMiB": 538,
+              "lastUsedMiB": 538,
+              "totalMiB": 12282
+            }
+          ],
+          "errors": []
+        },
+        "apiCalls": 12,
+        "inputTokens": 16531,
+        "outputTokens": 1188,
+        "retryBackoffMs": 0,
+        "httpStatuses": {
+          "200": 12
+        },
+        "routedProviders": {},
+        "ambiguousAttempts": 0
+      }
+    }
+  ],
+  "phase": "complete",
+  "reportDirectory": "benchmarks/2026-09-25T21-51-59-162Z-b0a7b7f6",
+  "finishedAt": "2026-09-25T21:52:05.500Z"
+}

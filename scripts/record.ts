@@ -3,6 +3,7 @@ import { join, resolve } from "node:path";
 import { generateCity } from "../src/sim/cityGenerator";
 import { Simulation } from "../src/sim/simulation";
 import { createDecisionProvider } from "../src/ai/providerFactory";
+import { ProviderError } from "../src/ai/decisionProvider";
 import { providerConfig } from "../src/ai/providerConfig";
 import { ProviderDecisionEngine } from "../src/ai/providerEngine";
 import { ConcurrencyPool } from "../src/ai/concurrencyPool";
@@ -19,7 +20,7 @@ interface Manifest {
   startedAt: string; endedAt?: string; status: "running" | "incomplete" | "complete" | "failed";
   completedEvenings: number; targetEvenings: number; journalCount: number; judgments: number; apiCalls: number; inputTokens: number; outputTokens: number;
   uncertainAttempts: number; error?: string;
-  evenings: { evening: number; elapsedMs: number; judgments: number; requests: number; apiCalls: number; inputTokens: number; outputTokens: number; maxContextBytes: number; peakGpuMiB: number | null; diskBytes: number; queueDepthPeak: number; queueMsP50: number | null; queueMsP95: number | null; serviceMsP50: number | null; serviceMsP95: number | null; latencyMsP50: number | null; latencyMsP95: number | null }[];
+  evenings: { evening: number; elapsedMs: number; judgments: number; requests: number; apiCalls: number; inputTokens: number; outputTokens: number; maxContextBytes: number; peakGpuMiB: number | null; diskBytes: number; queueDepthPeak: number; queueMsP50: number | null; queueMsP95: number | null; serviceMsP50: number | null; serviceMsP95: number | null; latencyMsP50: number | null; latencyMsP95: number | null; retryBackoffMs: number; httpStatusCounts: Record<string, number>; routedProviders: Record<string, number>; ambiguousAttempts: number }[];
 }
 function percentile(values: number[], p: number) { if (!values.length) return null; const sorted = values.sort((a, b) => a - b); return sorted[Math.max(0, Math.ceil(sorted.length * p) - 1)]; }
 function option(name: string) { const i = process.argv.indexOf(name); return i < 0 ? undefined : process.argv[i + 1]; }
@@ -91,16 +92,15 @@ async function main() {
   const maxHours = Number(option("--max-hours") ?? 3);
   if (!Number.isFinite(maxHours) || maxHours <= 0) throw new Error("Invalid --max-hours");
   const config = providerConfig();
-  if (config.id === "typesafe" || config.id === "vercel") throw new Error("This recorder supports local JevK5 or mock only");
   let configuration: JournalEntry["configuration"];
   if (config.id === "mock") configuration = { provider: "mock", model: config.model, snapshot: "deterministic-mock-v1", kernel: "none" };
-  else {
+  else if (config.id === "jevk5") {
     const response = await fetch(`${config.baseUrl}/health`, { signal: AbortSignal.timeout(5000) });
     if (!response.ok) throw new Error("JevK5 health check failed");
     const health = await response.json();
     if (health.model !== config.model || typeof health.revision !== "string" || !["fla", "reference"].includes(health.kernels) || typeof health.tritonConv !== "boolean" || !Array.isArray(health.graphLengths) || typeof health.torch !== "string" || typeof health.jevk5 !== "string") throw new Error("JevK5 server does not expose verifiable runtime identity; restart it with the current launcher");
     configuration = { provider: "jevk5", model: health.model, snapshot: health.revision, kernel: `${health.kernels};tritonConv=${health.tritonConv};graphs=${health.graphLengths.join(",")}`, runtime: `jevk5=${health.jevk5};torch=${health.torch};cuda=${health.cuda};python=${health.python}` };
-  }
+  } else configuration = { provider: config.id, model: config.model, snapshot: "hosted-provider-managed", kernel: "hosted-provider-managed", runtime: config.id === "vercel" ? "vercel-ai-gateway" : "typesafe-hosted" };
   let manifest: Manifest;
   let world: World;
   let journalCount = 0;
@@ -115,7 +115,7 @@ async function main() {
   } else {
     const population = positiveInt(option("--population"), "--population", 1000);
     const seed = option("--seed") ?? "fuzzy-city-001";
-    world = generateCity(seed, config.id === "mock" ? "mock" : "jevk5", population);
+    world = generateCity(seed, config.id === "mock" ? "mock" : config.id === "jevk5" ? "jevk5" : "live", population);
     mkdirSync(dir, { recursive: true });
     durableWrite(join(dir, "initial.json"), JSON.stringify(world));
     saveCheckpoint(dir, world, 0, 0);
@@ -125,20 +125,20 @@ async function main() {
   const entries = loadJournal(dir);
   if (entries.length < journalCount) throw new Error("Journal is missing committed decisions");
   for (const entry of entries) if (JSON.stringify(entry.configuration) !== JSON.stringify(configuration)) throw new Error("Journal model configuration mismatch");
-  if (config.id !== "mock") await checkBrowser();
-  const unlock = config.id === "mock" ? () => {} : lockGpu();
+  if (config.id === "jevk5") await checkBrowser();
+  const unlock = config.id === "jevk5" ? lockGpu() : () => {};
   let stop = false;
   const stopHandler = () => { stop = true; };
   process.on("SIGINT", stopHandler); process.on("SIGTERM", stopHandler);
   const start = Date.now();
   const deadline = start + maxHours * 3600_000;
   const gpuSamples: Awaited<ReturnType<typeof sampleGpu>>[] = [];
-  const timer = config.id === "mock" ? undefined : setInterval(() => { void sampleGpu(Date.now() - start).then((sample) => gpuSamples.push(sample)); }, 30_000);
+  const timer = config.id === "jevk5" ? setInterval(() => { void sampleGpu(Date.now() - start).then((sample) => gpuSamples.push(sample)); }, 30_000) : undefined;
   const provider = createDecisionProvider(config);
   const engine = new JournalEngine(dir, entries, configuration, new ProviderDecisionEngine(provider, new ConcurrencyPool(1)), journalCount, () => stop || Date.now() >= deadline);
   const sim = new Simulation(engine, world);
   let eveningStart = Date.now(), eveningJournal = engine.cursor, eveningJudgments = world.judgments, eveningCalls = world.apiCalls, eveningInput = world.inputTokens, eveningOutput = world.outputTokens;
-  manifest.status = "running"; manifest.targetEvenings = target; saveManifest(dir, manifest);
+  manifest.status = "running"; manifest.targetEvenings = target; delete manifest.error; saveManifest(dir, manifest);
   try {
     while (manifest.completedEvenings < target) {
       if (stop || Date.now() >= deadline) throw new RecordingStopped();
@@ -151,7 +151,9 @@ async function main() {
           manifest.completedEvenings = completed;
           const recent = entries.slice(eveningJournal, engine.cursor);
           const peakGpu = gpuSamples.flatMap((s) => s.devices.map((d) => d.usedMiB));
-          const summary = { evening: completed, elapsedMs: Date.now() - eveningStart, judgments: w.judgments - eveningJudgments, requests: engine.cursor - eveningJournal, apiCalls: w.apiCalls - eveningCalls, inputTokens: w.inputTokens - eveningInput, outputTokens: w.outputTokens - eveningOutput, maxContextBytes: Math.max(0, ...recent.map((e) => Buffer.byteLength(JSON.stringify({ state: e.job.state, questions: e.questions })))), peakGpuMiB: peakGpu.length ? Math.max(...peakGpu) : null, diskBytes: diskBytes(dir), queueDepthPeak: 0, queueMsP50: percentile(recent.map((e) => e.evaluation.queueMs ?? 0), 0.5), queueMsP95: percentile(recent.map((e) => e.evaluation.queueMs ?? 0), 0.95), serviceMsP50: percentile(recent.map((e) => e.evaluation.serviceMs ?? 0), 0.5), serviceMsP95: percentile(recent.map((e) => e.evaluation.serviceMs ?? 0), 0.95), latencyMsP50: percentile(recent.map((e) => e.evaluation.latencyMs), 0.5), latencyMsP95: percentile(recent.map((e) => e.evaluation.latencyMs), 0.95) };
+          const attempts = recent.flatMap((entry) => entry.evaluation.providerAttempts ?? []);
+          const countBy = (values: (string | number | undefined)[]) => Object.fromEntries([...new Set(values.filter((value): value is string | number => value !== undefined))].map((value) => [String(value), values.filter((candidate) => candidate === value).length]));
+          const summary = { evening: completed, elapsedMs: Date.now() - eveningStart, judgments: w.judgments - eveningJudgments, requests: engine.cursor - eveningJournal, apiCalls: w.apiCalls - eveningCalls, inputTokens: w.inputTokens - eveningInput, outputTokens: w.outputTokens - eveningOutput, maxContextBytes: Math.max(0, ...recent.map((e) => Buffer.byteLength(JSON.stringify({ state: e.job.state, questions: e.questions })))), peakGpuMiB: peakGpu.length ? Math.max(...peakGpu) : null, diskBytes: diskBytes(dir), queueDepthPeak: 0, queueMsP50: percentile(recent.map((e) => e.evaluation.queueMs ?? 0), 0.5), queueMsP95: percentile(recent.map((e) => e.evaluation.queueMs ?? 0), 0.95), serviceMsP50: percentile(recent.map((e) => e.evaluation.serviceMs ?? 0), 0.5), serviceMsP95: percentile(recent.map((e) => e.evaluation.serviceMs ?? 0), 0.95), latencyMsP50: percentile(recent.map((e) => e.evaluation.latencyMs), 0.5), latencyMsP95: percentile(recent.map((e) => e.evaluation.latencyMs), 0.95), retryBackoffMs: attempts.reduce((sum, attempt) => sum + (attempt.backoffMs ?? 0), 0), httpStatusCounts: countBy(attempts.map((attempt) => attempt.status)), routedProviders: countBy(attempts.map((attempt) => attempt.routedProvider)), ambiguousAttempts: attempts.filter((attempt) => attempt.outcome === "ambiguous_network_error").length };
           manifest.evenings.push(summary);
           durableWrite(join(dir, `evening-${completed}-gpu.json`), JSON.stringify(gpuSamples));
           console.log(JSON.stringify(summary));
@@ -161,13 +163,14 @@ async function main() {
         saveManifest(dir, manifest);
       }
     }
-    manifest.status = "complete";
+    manifest.status = "complete"; delete manifest.error;
   } catch (error) {
     manifest.status = error instanceof RecordingStopped ? "incomplete" : "failed";
     manifest.error = error instanceof Error ? error.message : String(error);
-    if (config.id === "jevk5" && /timeout or network failure|cancelled/i.test(manifest.error)) manifest.uncertainAttempts++;
+    const providerError = error instanceof ProviderError ? error : undefined;
+    if (providerError?.ambiguous) manifest.uncertainAttempts += providerError.attempts.filter((attempt) => attempt.outcome === "ambiguous_network_error").length || 1;
     durableWrite(join(dir, `partial-gpu-${Date.now()}.json`), JSON.stringify(gpuSamples));
-    durableWrite(join(dir, `failure-${Date.now()}.json`), JSON.stringify({ at: new Date().toISOString(), error: manifest.error, journalCount: entries.length, lastCommitted: readJson(join(dir, "latest.json")), uncertainRemoteAttempt: config.id === "jevk5" && /timeout or network failure|cancelled/i.test(manifest.error) }));
+    durableWrite(join(dir, `failure-${Date.now()}.json`), JSON.stringify({ at: new Date().toISOString(), error: manifest.error, journalCount: entries.length, lastCommitted: readJson(join(dir, "latest.json")), uncertainRemoteAttempt: providerError?.ambiguous ?? false, attempts: providerError?.attempts ?? [] }));
     console.error(manifest.error);
     process.exitCode = manifest.status === "failed" ? 1 : 2;
   } finally {

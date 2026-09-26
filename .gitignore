@@ -11,3 +11,7 @@ playwright-report/
 __pycache__/
 /recordings/
 .recording-gpu.lock
+
+.local/
+# Large local pilot recording
+/public/recordings/pilot-1000-3e-local-final/

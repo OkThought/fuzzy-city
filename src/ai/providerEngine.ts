@@ -1,6 +1,6 @@
 import type { DecisionEngine } from "./decisionEngine";
-import type { DecisionProvider } from "./decisionProvider";
-import { errorApiCalls } from "./decisionProvider";
+import type { DecisionProvider, ProviderAttempt } from "./decisionProvider";
+import { errorApiCalls, ProviderError } from "./decisionProvider";
 import { ConcurrencyPool } from "./concurrencyPool";
 import { questionsFor, validateResponse } from "./jevApiTypes";
 import type { Evaluation, Job } from "../sim/types";
@@ -15,6 +15,10 @@ export interface DecisionMeasurement {
   latencyMs: number;
   apiCalls: number;
   judgments: number;
+  inputTokens: number;
+  outputTokens: number;
+  attempts: ProviderAttempt[];
+  ambiguous: boolean;
   error?: string;
 }
 export class ProviderDecisionEngine implements DecisionEngine {
@@ -69,6 +73,10 @@ export class ProviderDecisionEngine implements DecisionEngine {
           latencyMs: completed - submitted,
           apiCalls: calls,
           judgments: Object.keys(questionsFor(job)).length,
+          inputTokens: data.inputTokens,
+          outputTokens: data.outputTokens,
+          attempts: raw.attempts,
+          ambiguous: false,
         };
         this.observe?.(measurement);
         return {
@@ -79,6 +87,7 @@ export class ProviderDecisionEngine implements DecisionEngine {
           queueMs: measurement.queueMs,
           serviceMs: measurement.serviceMs,
           apiCalls: calls,
+          providerAttempts: raw.attempts,
         };
       } catch (error) {
         const reason =
@@ -94,9 +103,13 @@ export class ProviderDecisionEngine implements DecisionEngine {
           latencyMs: performance.now() - submitted,
           apiCalls: errorApiCalls(error, calls),
           judgments: 0,
+          inputTokens: 0,
+          outputTokens: 0,
+          attempts: error instanceof ProviderError ? error.attempts : [],
+          ambiguous: error instanceof ProviderError && error.ambiguous,
           error: reason,
         });
-        throw new Error(reason);
+        throw error instanceof Error ? error : new Error(reason);
       }
     });
   }

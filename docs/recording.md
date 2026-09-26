@@ -25,6 +25,7 @@ The app’s live inference and benchmark routes reject work while the recorder o
 
 ## Current validation and limits
 
+- Milestone 3 complete pilot: `recordings/pilot-1000-3e-local-final` contains three complete real JevK5 evenings at population 1,000, with 4,768 requests and zero uncertain attempts. Full replay matched the committed world with zero outgoing calls. See [the pilot report](pilot-report.md) for the backend gate, runtime, behavior review, failure evidence and recommendation not to extend the run yet.
 - Two-evening, 100-citizen mock fixture at `recordings/milestone-one-final`: 297 decisions; full replay matched the committed world, and a seek across 14 decisions required zero outgoing calls. This is deterministic validation, not JevK5 evidence.
 - A 100-citizen JevK5 attempt journaled 111 validated real requests. The committed 17:45 checkpoint replayed 92 requests with zero outgoing calls. A later friend-selection request timed out at both 60 and 180 seconds while the GPU remained busy, so the evening is **incomplete**. Its two unjournaled attempts are uncertain; the raw recording remains in `recordings/milestone-one-jevk5` locally. Diagnose the backend before the 1,000-citizen pilot.
 - The raw format is version `fuzzy-city-recording/v2`, with rules `fuzzy-city-rules/v1`. The public replay viewer and three-evening pilot are subsequent milestones. A public playback bundle should be derived from these chunks and must not ship the complete raw journal in the initial page payload.

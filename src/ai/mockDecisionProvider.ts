@@ -35,6 +35,7 @@ export class MockDecisionProvider implements DecisionProvider {
               { type: "noul", noul },
             ]),
           );
+    const serviceMs = performance.now() - started;
     return {
       response: {
         model: this.model,
@@ -42,7 +43,16 @@ export class MockDecisionProvider implements DecisionProvider {
         usage: { input_tokens: 0, output_tokens: 0 },
       },
       apiCalls: 0,
-      serviceMs: performance.now() - started,
+      serviceMs,
+      attempts: [
+        {
+          attempt: 1,
+          startedAt: new Date().toISOString(),
+          elapsedMs: serviceMs,
+          outcome: "success" as const,
+          status: 200,
+        },
+      ],
     };
   }
 }

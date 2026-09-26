@@ -1,0 +1,20 @@
+{
+  "id": "2026-09-25T21-52-44-996Z-e40dd896",
+  "status": "failed",
+  "provider": "vercel",
+  "model": "typesafe-ai/jev",
+  "config": {
+    "populations": [
+      1000
+    ],
+    "minutes": 35,
+    "concurrency": 1,
+    "seed": "fuzzy-city-pilot-gate-001"
+  },
+  "startedAt": "2026-09-25T21:52:44.996Z",
+  "cases": [],
+  "phase": "failed",
+  "reportDirectory": "benchmarks/2026-09-25T21-52-44-996Z-e40dd896",
+  "error": "vercel HTTP 503",
+  "finishedAt": "2026-09-25T21:52:47.655Z"
+}

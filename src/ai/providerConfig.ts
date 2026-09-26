@@ -41,8 +41,8 @@ export function providerConfig(
   const timeoutMs = Number(env.DECISION_TIMEOUT_MS || 60000);
   if (!Number.isInteger(concurrency) || concurrency < 1 || concurrency > 8)
     throw new Error("DECISION_CONCURRENCY must be 1–8");
-  if (!Number.isInteger(timeoutMs) || timeoutMs < 1000 || timeoutMs > 180000)
-    throw new Error("DECISION_TIMEOUT_MS must be 1000–180000");
+  if (!Number.isInteger(timeoutMs) || timeoutMs < 1000 || timeoutMs > 600000)
+    throw new Error("DECISION_TIMEOUT_MS must be 1000–600000");
   return {
     id: id as ProviderId,
     baseUrl: baseUrl.replace(/\/$/, ""),

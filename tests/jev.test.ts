@@ -87,7 +87,7 @@ describe("Jev contract and graceful failures", () => {
       )
       .mockResolvedValueOnce(new Response("", { status: 503 }))
       .mockResolvedValueOnce(Response.json(envelope()));
-    const sleep = vi.fn(async () => {});
+    const sleep = vi.fn(async (_ms: number) => {});
     const result = await evaluateLive(job, {
       key: "key",
       model: "jev",
@@ -96,7 +96,11 @@ describe("Jev contract and graceful failures", () => {
     });
     expect(result.source).toBe("jev");
     expect(result.apiCalls).toBe(3);
-    expect(sleep.mock.calls).toEqual([[2000], [1000]]);
+    expect(sleep).toHaveBeenCalledTimes(2);
+    expect(sleep.mock.calls[0][0]).toBeGreaterThanOrEqual(1600);
+    expect(sleep.mock.calls[0][0]).toBeLessThanOrEqual(2400);
+    expect(sleep.mock.calls[1][0]).toBeGreaterThanOrEqual(800);
+    expect(sleep.mock.calls[1][0]).toBeLessThanOrEqual(1200);
   });
   it("never labels errors as Jev and does not endlessly retry", async () => {
     const fetcher = vi
@@ -110,7 +114,7 @@ describe("Jev contract and graceful failures", () => {
     });
     expect(result.source).toBe("fallback");
     expect(result.model).toBe("deterministic-mock-v1");
-    expect(result.apiCalls).toBe(3);
+    expect(result.apiCalls).toBe(1);
     const bad = await evaluateLive(job, {
       key: "secret",
       model: "jev",

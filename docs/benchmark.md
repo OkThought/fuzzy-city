@@ -1,5 +1,7 @@
 # Local decision benchmark
 
+**Hosted recording gate, 25 September:** Vercel AI Gateway completed the 12-evaluation probe at concurrency one and two, failed under bounded retry at concurrency four, and then failed the representative 1,000-citizen warm-up at concurrency one. The recording gate therefore selected local JevK5. See [the Milestone 3 report](pilot-report.md) for the raw report paths and comparison.
+
 **GPU runtime update, 25 September:** accelerated FLA/Triton eager execution is now the local default. The unchanged 1,000-citizen opening workload measured **1.205 decisions/sec**, p50/p95 **8.953/16.742 s**, peak queue **19**, peak VRAM **10,110 MiB**, with zero failures. Earlier measurements below used reference kernels and are retained as historical evidence. See [the paired GPU comparison and numerical differences](gpu-optimization.md).
 
 Open `/benchmark` with the app and JevK5 server running. Select one population or sweep **100 / 250 / 500 / 1000**, choose a workload and concurrency, then run. The UI polls measured progress and exports a JSON summary. Raw reports persist under `benchmarks/<run-id>/` in the server working directory.

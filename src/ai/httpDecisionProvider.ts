@@ -1,6 +1,7 @@
 import {
   ProviderError,
   type DecisionProvider,
+  type ProviderAttempt,
   type ProviderResult,
   type SystemOneRequest,
 } from "./decisionProvider";
@@ -29,9 +30,12 @@ export class HttpDecisionProvider implements DecisionProvider {
       );
     let calls = 0;
     let reason = "Decision backend unavailable";
+    const attempts: ProviderAttempt[] = [];
     const start = performance.now();
     for (let attempt = 0; attempt < 3; attempt++) {
       signal?.throwIfAborted();
+      const attemptStart = performance.now();
+      const startedAt = new Date().toISOString();
       try {
         calls++;
         const response = await this.fetcher(
@@ -53,40 +57,77 @@ export class HttpDecisionProvider implements DecisionProvider {
               : AbortSignal.timeout(this.config.timeoutMs),
           },
         );
-        if (response.ok)
+        const routedProvider =
+          response.headers.get("x-vercel-ai-gateway-provider") ??
+          response.headers.get("x-ai-gateway-provider") ??
+          response.headers.get("x-vercel-ai-provider") ??
+          undefined;
+        if (response.ok) {
+          const responseBody = await response.json();
+          attempts.push({
+            attempt: attempt + 1,
+            startedAt,
+            elapsedMs: performance.now() - attemptStart,
+            outcome: "success",
+            status: response.status,
+            routedProvider,
+          });
           return {
-            response: await response.json(),
+            response: responseBody,
             apiCalls: calls,
             serviceMs: performance.now() - start,
+            attempts,
           };
+        }
         reason = `${this.id} HTTP ${response.status}`;
-        if (
-          !(response.status === 429 || response.status >= 500) ||
-          attempt === 2
-        )
-          break;
+        const retryable = response.status === 429 || response.status === 503;
         const retry = response.headers.get("retry-after");
         const retryMs = retry
           ? Number.isFinite(Number(retry))
             ? Number(retry) * 1000
             : Date.parse(retry) - Date.now()
           : 0;
-        await this.sleep(
-          Math.min(10000, Math.max(500 * 2 ** attempt, retryMs || 0)),
+        const baseBackoff = Math.min(
+          10000,
+          Math.max(500 * 2 ** attempt, retryMs || 0),
         );
+        const backoffMs =
+          retryable && attempt < 2
+            ? Math.round(baseBackoff * (0.8 + Math.random() * 0.4))
+            : undefined;
+        attempts.push({
+          attempt: attempt + 1,
+          startedAt,
+          elapsedMs: performance.now() - attemptStart,
+          outcome: "http_error",
+          status: response.status,
+          retryAfterMs: retryMs > 0 ? retryMs : undefined,
+          backoffMs,
+          routedProvider,
+        });
+        if (!retryable || attempt === 2)
+          break;
+        await this.sleep(backoffMs!);
       } catch {
         if (signal?.aborted)
           throw new ProviderError(
             "Decision cancelled; an in-flight GPU request may still finish.",
             calls,
+            attempts,
+            true,
           );
         reason = `${this.id} timeout or network failure`;
-        // The local GPU may still be computing after a socket timeout. Never
-        // amplify that load by submitting a duplicate expensive request.
-        if (this.id === "jevk5" || attempt === 2) break;
-        await this.sleep(500 * 2 ** attempt);
+        attempts.push({
+          attempt: attempt + 1,
+          startedAt,
+          elapsedMs: performance.now() - attemptStart,
+          outcome: "ambiguous_network_error",
+        });
+        // A timeout or lost connection may have reached any remote provider.
+        // Never resubmit an ambiguous logical request without idempotency.
+        throw new ProviderError(reason, calls, attempts, true);
       }
     }
-    throw new ProviderError(reason, calls);
+    throw new ProviderError(reason, calls, attempts, false);
   }
 }
