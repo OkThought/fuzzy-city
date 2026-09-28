@@ -75,6 +75,8 @@ Compared with the earlier replay-v2 package, generated size rose from 144,007,96
 
 The observed three-evening result is not a fourteen-evening stability result. Context and latency grew, one evening took nearly twice as long as the first, VRAM peak is unknown, the first desktop startup attempt missed its gate, and satisfaction remains uncorrected. Review these limitations before proposing any further recording.
 
+Follow-up runtime qualification is recorded in [runtime-qualification.md](runtime-qualification.md). It repaired future VRAM sampling and characterized the preserved journal, but failed the predeclared ten-sample replay-startup p95 gate. The draft main protocol remains blocked.
+
 ## Reproduction
 
 ```powershell

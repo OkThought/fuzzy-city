@@ -129,7 +129,9 @@ export async function runBenchmark(
       let measuringGpu: Promise<void> | undefined;
       const measureGpu = () => {
         if (!measuringGpu)
-          measuringGpu = sampleGpu(elapsed())
+          measuringGpu = sampleGpu(elapsed(), provider.id === "jevk5" ? {
+            healthUrl: `${process.env.DECISION_API_BASE_URL ?? "http://127.0.0.1:8090"}/health`,
+          } : {})
             .then((sample) => {
               gpu.push(sample);
             })

@@ -136,7 +136,7 @@ async function main() {
   const start = Date.now();
   const deadline = start + maxHours * 3600_000;
   const gpuSamples: Awaited<ReturnType<typeof sampleGpu>>[] = [];
-  const timer = config.id === "jevk5" ? setInterval(() => { void sampleGpu(Date.now() - start).then((sample) => gpuSamples.push(sample)); }, 30_000) : undefined;
+  const timer = config.id === "jevk5" ? setInterval(() => { void sampleGpu(Date.now() - start, { healthUrl: `${config.baseUrl}/health` }).then((sample) => gpuSamples.push(sample)); }, 30_000) : undefined;
   const provider = createDecisionProvider(config);
   const engine = new JournalEngine(dir, entries, configuration, new ProviderDecisionEngine(provider, new ConcurrencyPool(1)), journalCount, () => stop || Date.now() >= deadline, manifest.rules);
   const sim = new Simulation(engine, world, rulesFor(manifest.rules));

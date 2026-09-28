@@ -8,6 +8,13 @@ export interface QueueSample {
 export interface GpuSample {
   elapsedMs: number;
   devices: { index: number; name: string; usedMiB: number; totalMiB: number }[];
+  source?: "nvidia-smi" | "jevk5-health";
+  process?: {
+    allocatedMiB: number;
+    reservedMiB: number;
+    peakAllocatedMiB: number;
+    peakReservedMiB: number;
+  };
   error?: string;
 }
 export function percentile(values: number[], p: number): number | null {
@@ -79,6 +86,7 @@ export function summarize(
       scope: "whole GPU, all processes" as const,
       available: devices.length > 0,
       samples: gpu.filter((s) => s.devices.length).length,
+      sources: [...new Set(gpu.flatMap((sample) => sample.source ? [sample.source] : []))],
       devices: [...new Set(devices.map((d) => d.index))].map((index) => {
         const d = devices.filter((d) => d.index === index);
         return {
@@ -89,6 +97,13 @@ export function summarize(
           totalMiB: d[0].totalMiB,
         };
       }),
+      process: gpu.some((sample) => sample.process)
+        ? {
+            scope: "local JevK5 process, PyTorch allocator" as const,
+            peakAllocatedMiB: Math.max(...gpu.flatMap((sample) => sample.process ? [sample.process.peakAllocatedMiB] : [])),
+            peakReservedMiB: Math.max(...gpu.flatMap((sample) => sample.process ? [sample.process.peakReservedMiB] : [])),
+          }
+        : null,
       errors: [...new Set(gpu.flatMap((s) => (s.error ? [s.error] : [])))],
     },
     apiCalls: measurements.reduce((sum, m) => sum + m.apiCalls, 0),

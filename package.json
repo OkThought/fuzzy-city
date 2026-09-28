@@ -19,6 +19,8 @@
     "replay:bundle": "tsx scripts/build-replay-v2.ts",
     "replay:bundle:v1": "tsx scripts/build-replay.ts",
     "pilot:analyze": "tsx scripts/analyze-pilot.ts",
+    "runtime:analyze": "tsx scripts/analyze-runtime-qualification.ts",
+    "runtime:vram": "tsx scripts/qualify-vram.ts",
     "rules:v2:soak": "tsx scripts/soak-rules-v2.ts"
   },
   "dependencies": {

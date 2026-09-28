@@ -48,12 +48,23 @@ UpstreamHandler = make_handler(model, args.model)
 class Handler(UpstreamHandler):
     def do_GET(self):
         if self.path.rstrip('/') == '/health':
+            free_bytes, total_bytes = torch.cuda.mem_get_info()
             self._send(200, {
                 'ok': True, 'model': args.model, 'revision': args.revision,
                 'kernels': args.kernels, 'tritonConv': args.triton_conv,
                 'graphLengths': lengths, 'torch': torch.__version__,
                 'cuda': torch.version.cuda, 'python': sys.version.split()[0],
                 'jevk5': importlib.metadata.version('jevk5'),
+                'gpu': {
+                    'index': torch.cuda.current_device(),
+                    'name': torch.cuda.get_device_name(),
+                    'usedMiB': (total_bytes - free_bytes) // 1048576,
+                    'totalMiB': total_bytes // 1048576,
+                    'processAllocatedMiB': torch.cuda.memory_allocated() // 1048576,
+                    'processReservedMiB': torch.cuda.memory_reserved() // 1048576,
+                    'processPeakAllocatedMiB': torch.cuda.max_memory_allocated() // 1048576,
+                    'processPeakReservedMiB': torch.cuda.max_memory_reserved() // 1048576,
+                },
             })
         else:
             super().do_GET()
